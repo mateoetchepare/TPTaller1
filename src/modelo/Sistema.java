@@ -13,6 +13,10 @@ public class Sistema {
 	private Sueldo sueldo; // sueldo que paga a mesero
 	private static Sistema instancia = null;
 	
+	public Sistema() {
+		
+	}
+	
 	public String getNombre() {
 		return nombre;
 	}
@@ -33,6 +37,10 @@ public class Sistema {
 		if (instancia == null)
 			instancia = new Sistema();
 		return instancia;
+	}
+	
+	public void loginOperario() {
+		
 	}
 	
 	public void agregaMesa(Mesa mesa) throws MesaInvalidaException{
