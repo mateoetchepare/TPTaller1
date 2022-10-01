@@ -46,9 +46,10 @@ public class Sistema {
 			}
 			if (i == j) {
 				throw new MesaInvalidaException("El numero de mesa ya esta usado");
-			} else
+			} else {
 				mesas.add(mesa);
-			} else
-				throw new MesaInvalidaException("La combinacion de comensales - numero de mesa es invalido");
+			}
+		} else
+			throw new MesaInvalidaException("La combinacion de comensales - numero de mesa es invalido");
 	}
 }
