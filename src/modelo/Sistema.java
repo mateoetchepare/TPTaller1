@@ -2,11 +2,7 @@ package modelo;
 
 import java.util.ArrayList;
 
-import excepciones.ContraseniaIncorrectaException;
-import excepciones.LoginIncorrectoException;
-import excepciones.MesaInvalidaException;
-import excepciones.UsuarioInactivoException;
-import excepciones.UsuarioIncorrectoException;
+import excepciones.*;
 
 public class Sistema {
 	private ArrayList<Operario> operarios = new ArrayList<Operario>();
@@ -65,7 +61,7 @@ public class Sistema {
 			throw new MesaInvalidaException("La combinacion de comensales - numero de mesa es invalido");
 	}
 
-	public Operario agregaOperario(Operario operario) {
+	public Operario agregaOperario(Operario operario) throws UsuarioNuevoInvalidoException{ // falta plantear la creacion del PRIMER operario
 		int i = 0;
 		boolean mayus = false, numero = false;
 		String contrasenia = operario.getPassword();
@@ -81,8 +77,12 @@ public class Sistema {
 					i++;
 				}
 			}
-		}
-		return operario;
+			if (mayus == numero == true) {
+				return operario;
+			} else
+				throw new ContraseniaReqNoCumplidosException();
+		} else
+			throw new ContraseniaLongitudInvalidaException();
 			//throw new N
 	}
 
