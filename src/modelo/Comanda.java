@@ -28,13 +28,5 @@ public class Comanda {
 		this.estado = estado;
 	}
 	
-	public int getNumero() {
-		return numero;
-	}
-	
-	public void setNumero(int numero) {
-		this.numero = numero;
-	}
-	
 	
 }

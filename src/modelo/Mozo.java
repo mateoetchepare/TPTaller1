@@ -22,7 +22,12 @@ public class Mozo {
 		this.estado = estado;
 	}
 	
-	
+	public boolean mesaACargo(Mesa mesa) {
+		if (mesas.contains(mesa))
+			return true;
+		else
+			return false;
+	}
 	
 	
 }

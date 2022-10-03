@@ -111,10 +111,11 @@ public class Sistema {
 		return operarios.isEmpty();
 	}
 
-	public Mesa chequeaCondicionesMesa(int cantComensales) throws MesaInvalidaException{
-		int i = 0, j;
+	public Mesa condicionesUsoDeMesa(int cantComensales) throws MesaInvalidaException{
+		int i = 0, j, h = 0, k;
+		boolean mozoActivo = false;
 		j = mesas.size();
-		
+		k = mozos.size();
 		if (j == 0) {
 			throw new MesaInvalidaException("No hay mesas habilitadas");
 		} else
@@ -122,16 +123,23 @@ public class Sistema {
 				throw new MesaInvalidaException("No hay productos en stock");
 				// else si no hay promos vigentes
 			}
-			if ()
-		while (i<j && (mesas.get(i).getComensales() >= cantComensales || mesas.get(i) && mesas.get(i).getEstado() != "libre")) {
-			i++;
-		} 
-		if ( i==j ) {
-			throw new MesaInvalidaException("No se encuentra la mesa indicada")
+		while (!mozoActivo) {
+			while (i<j && (mesas.get(i).getComensales() >= cantComensales || mesas.get(i).getEstado() != "libre")) 
+				i++;
+			if (i<j) {
+				while (h < k && (mozos.get(i).getEstado()!=0 && mozos.get(i).mesaACargo(mesas.get(i)) != false)) // hay algun mozo a cargo de la mesa y q este libre?
+					h++;
+				if (mozos.get(i).getEstado()!=0 && mozos.get(i).mesaACargo(mesas.get(i)) != false) // si el mozo esta libre y tiene la mesa a cargo
+					mozoActivo = true;
+			}
+		}
+		if (mozoActivo) {
+			return mesas.get(i);
 		} else
-			if ()
-	}
-		
+			throw new MesaInvalidaException("No se encontro un mozo libre a cargo de la mesa o no habia una mesa libre con esas caracteristicas");
+	} 
+	
 }
+
 
 
