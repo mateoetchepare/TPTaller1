@@ -74,8 +74,8 @@ public class Sistema {
 				}
 				else if (Character.isUpperCase(ch)) {
 					mayus = true;
-					i++;
 				}
+				i++;
 			}
 			if (mayus == numero == true) {
 				return operario;
@@ -83,8 +83,8 @@ public class Sistema {
 				throw new ContraseniaReqNoCumplidosException();
 		} else
 			throw new ContraseniaLongitudInvalidaException();
-			//throw new N
-	}
+	} // falta verificar que sea el admin, porque sino un operario no puede anadir a otro operario
+	// de todos modos esto se puede llegar a hacer con la ventana, que solo aparezca el  boton si es admin
 
 	public Operario loginOperario(Operario operario) throws LoginIncorrectoException {
 		int j, i =0;
@@ -104,6 +104,10 @@ public class Sistema {
 					throw new UsuarioInactivoException();
 				else
 					return operarios.get(i);
+	}
+	
+	public boolean noHayOperarios() { // esto seria para llamar desde el controlador. if NO hay op, crear operario default . op primerOp = new operario(admin, admin1234)
+		return operarios.isEmpty();
 	}
 
 }

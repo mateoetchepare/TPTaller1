@@ -20,5 +20,4 @@ public class Mesa {
 		return this.comensales;
 	}
 	
-	
 }
