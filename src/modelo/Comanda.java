@@ -1,11 +1,20 @@
 package modelo;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Comanda {
 	private ArrayList<Pedido> pedidos = new ArrayList<Pedido>();
 	private String estado;
-	private int numero;
+	private LocalDate fecha;
+	private Mesa mesa;
+	
+	public Comanda(Mesa mesa) {
+		this.fecha = LocalDate.now();
+		this.estado = "abierta";
+		this.pedidos = null;
+		this.mesa = mesa;
+	}
 	
 	public ArrayList<Pedido> getPedidos() {
 		return pedidos;

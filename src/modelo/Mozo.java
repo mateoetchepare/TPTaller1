@@ -13,4 +13,16 @@ public class Mozo {
 		this.hijos = hijos;
 		this.nacimiento = nacimiento; // chequear >18
 	}
+
+	public int getEstado() {
+		return estado;
+	}
+
+	public void setEstado(int estado) {
+		this.estado = estado;
+	}
+	
+	
+	
+	
 }

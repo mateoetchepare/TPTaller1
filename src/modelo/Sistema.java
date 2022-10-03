@@ -9,6 +9,7 @@ public class Sistema {
 	private ArrayList<Mozo> mozos = new ArrayList<Mozo>();
 	private ArrayList<Producto> productos = new ArrayList<Producto>();
 	private ArrayList<Mesa> mesas = new ArrayList<Mesa>();
+	// private ArrayList<Promos> promos = new Arraylist<Promos>();
 	private String nombre;
 	private Sueldo sueldo; // sueldo que paga a mesero
 	private static Sistema instancia = null;
@@ -91,7 +92,7 @@ public class Sistema {
 
 
 		j = operarios.size();
-		while (i < j && (operarios.get(i).getNombreUsuario() != operario.getNombreUsuario() && operarios.get(i).getPassword() != operario.getPassword())) {
+		while (i < j && (operarios.get(i).getNombreUsuario() != operario.getNombreUsuario())) {
 			i++;
 		}
 		if (i == j) {
@@ -110,6 +111,27 @@ public class Sistema {
 		return operarios.isEmpty();
 	}
 
+	public Mesa chequeaCondicionesMesa(int cantComensales) throws MesaInvalidaException{
+		int i = 0, j;
+		j = mesas.size();
+		
+		if (j == 0) {
+			throw new MesaInvalidaException("No hay mesas habilitadas");
+		} else
+			if (productos.size() == 0) {
+				throw new MesaInvalidaException("No hay productos en stock");
+				// else si no hay promos vigentes
+			}
+			if ()
+		while (i<j && (mesas.get(i).getComensales() >= cantComensales || mesas.get(i) && mesas.get(i).getEstado() != "libre")) {
+			i++;
+		} 
+		if ( i==j ) {
+			throw new MesaInvalidaException("No se encuentra la mesa indicada")
+		} else
+			if ()
+	}
+		
 }
 
 
