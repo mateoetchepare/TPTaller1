@@ -9,6 +9,7 @@ public class Sistema {
 	private ArrayList<Mozo> mozos = new ArrayList<Mozo>();
 	private ArrayList<Producto> productos = new ArrayList<Producto>();
 	private ArrayList<Mesa> mesas = new ArrayList<Mesa>();
+	private ArrayList<Promocion> promociones = new ArrayList<Promocion>();
 	// private ArrayList<Promos> promos = new Arraylist<Promos>();
 	private String nombre;
 	private Sueldo sueldo; // sueldo que paga a mesero
@@ -138,6 +139,14 @@ public class Sistema {
 		} else
 			throw new MesaInvalidaException("No se encontro un mozo libre a cargo de la mesa o no habia una mesa libre con esas caracteristicas");
 	} 
+	
+	public int retornaStock(Producto  producto) throws ProductoInvalidoException{
+		if (productos.contains(producto)) {
+			int indice = productos.indexOf(producto);
+				return productos.get(indice).getStock();
+		} else
+			throw new ProductoInvalidoException();
+	}
 	
 }
 
