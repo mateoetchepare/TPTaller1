@@ -201,9 +201,15 @@ public class Sistema {
 		double total;
 		int i=0, j;
 		j = promociones.size();
-		while (i<j )
+		while (i<j) {
+			if (promociones.get(i).isActivo()) {
+				
+			}
+		}
 		
 		Factura factura = new Factura(comanda.getMesa(), comanda.getPedidos(), comanda.getPromos, comanda.);
+		
+		comandas.remove(comanda);
 	}
 }
 

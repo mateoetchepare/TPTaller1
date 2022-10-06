@@ -8,7 +8,7 @@ public class Factura {
 	private LocalDate fecha;
 	private Mesa mesa;
 	private ArrayList<Producto> productos = new ArrayList<Producto>();
-	private ArrayList<Promocion> promociones = new ArrayList<Promocion>();
+	private ArrayList<Promocion> promocionesAplicadas = new ArrayList<Promocion>();
 	private double total;
 	private String formaDePago;
 	
@@ -16,7 +16,7 @@ public class Factura {
 		this.fecha = LocalDate.now();
 		this.mesa = mesa;
 		this.productos = (ArrayList<Producto>) productos.clone();
-		this.promociones = (ArrayList<Promocion>) promos.clone();
+		this.promocionesAplicadas = (ArrayList<Promocion>) promos.clone();
 		this.total = total;
 		this.formaDePago = formaDePago;
 	}

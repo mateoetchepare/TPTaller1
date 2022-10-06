@@ -32,8 +32,10 @@ public class Comanda {
 	public void setEstado(String estado) throws CierreComandaException{
 		if (this.estado == "cerrada "&& estado == "cerrada") 
 			throw new CierreComandaException();
-		else
+		else {
 			this.estado = estado;
+			this.mesa.setEstado("libre");
+		}
 	}
 	
 	
