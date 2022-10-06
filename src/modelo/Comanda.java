@@ -2,6 +2,8 @@ package modelo;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+
+import excepciones.CierreComandaException;
 import excepciones.PedidoInvalidoException;
 import excepciones.ProductoExistenteException;
 
@@ -27,10 +29,26 @@ public class Comanda {
 		return estado;
 	}
 	
-	public void setEstado(String estado) {
-		this.estado = estado;
+	public void setEstado(String estado) throws CierreComandaException{
+		if (this.estado == "cerrada "&& estado == "cerrada") 
+			throw new CierreComandaException();
+		else
+			this.estado = estado;
 	}
 	
+	
+	public Mesa getMesa() {
+		return mesa;
+	}
+
+	public void setMesa(Mesa mesa) {
+		this.mesa = mesa;
+	}
+
+	public LocalDate getFecha() {
+		return fecha;
+	}
+
 	public boolean contieneProducto(Producto producto) {
 		int i=0, j;
 		j = pedidos.size();

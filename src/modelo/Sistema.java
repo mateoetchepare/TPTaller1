@@ -11,6 +11,7 @@ public class Sistema {
 	private ArrayList<Mesa> mesas = new ArrayList<Mesa>();
 	private ArrayList<Promocion> promociones = new ArrayList<Promocion>();
 	private ArrayList<Comanda> comandas = new ArrayList<Comanda>();
+	private ArrayList<Factura> facturas = new ArrayList<Factura>();
 	// private ArrayList<Promos> promos = new Arraylist<Promos>();
 	private String nombre;
 	private Sueldo sueldo; // sueldo que paga a mesero
@@ -196,7 +197,16 @@ public class Sistema {
 			throw new ProductoExistenteException();
 	}
 	
+	public void facturarComanda(Comanda comanda, String formaDePago) {
+		double total;
+		int i=0, j;
+		j = promociones.size();
+		while (i<j )
+		
+		Factura factura = new Factura(comanda.getMesa(), comanda.getPedidos(), comanda.getPromos, comanda.);
+	}
 }
+
 
 
 
