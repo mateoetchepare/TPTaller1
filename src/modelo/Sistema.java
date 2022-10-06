@@ -50,10 +50,10 @@ public class Sistema {
 		if ((mesa.getNumeroMesa() >= 1 && mesa.getComensales() >= 2) || (mesa.getNumeroMesa() == 0 && mesa.getComensales() == 1)) {
 			j = this.mesas.size();
 
-			while(i < j && !(this.mesas.get(i).getNumeroMesa() != mesa.getNumeroMesa())) {
+			while(i < j && (this.mesas.get(i).getNumeroMesa() != mesa.getNumeroMesa())) {
 				i++;
 			}
-			if (i == j) {
+			if (this.mesas.get(i).getNumeroMesa() == mesa.getNumeroMesa()) {
 				throw new MesaInvalidaException("El numero de mesa ya esta usado");
 			} else {
 				mesas.add(mesa);
