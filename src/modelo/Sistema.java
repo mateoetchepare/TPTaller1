@@ -40,6 +40,8 @@ public class Sistema {
 			instancia = new Sistema();
 		return instancia;
 	}
+	
+	
 
 	public void agregaMesa(Mesa mesa) throws MesaInvalidaException{
 		int i = 0, j;
@@ -101,15 +103,11 @@ public class Sistema {
 				if (operarios.get(i).isActivo() == false) 
 					throw new UsuarioInactivoException();
 				else
-					if (operarios.get(i).getNombreUsuario() == operario.getNombreUsuario() && operarios.get(i).getPassword() == operario.getPassword() 
-					&& (operario.getNombreUsuario() == "ADMIN" && operario.getPassword() == "ADMIN1234"))
-						throw new CambioObligatorioContraseniaException();
-					else
-						return operarios.get(i);
+					return operarios.get(i);
 	}
-	
-	public boolean noHayOperarios() { // esto seria para llamar desde el controlador. if NO hay op, crear operario default . op primerOp = new operario(admin, admin1234)
-		return operarios.isEmpty();
+
+	public boolean unSoloOperario() {
+		return operarios.size() == 1;
 	}
 
 	public Mesa condicionesUsoDeMesa(int cantComensales) throws MesaInvalidaException{
