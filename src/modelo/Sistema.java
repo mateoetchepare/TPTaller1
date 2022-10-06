@@ -41,10 +41,6 @@ public class Sistema {
 		return instancia;
 	}
 
-	public void loginOperario() {
-
-	}
-
 	public void agregaMesa(Mesa mesa) throws MesaInvalidaException{
 		int i = 0, j;
 
@@ -88,7 +84,7 @@ public class Sistema {
 	} // falta verificar que sea el admin, porque sino un operario no puede anadir a otro operario
 	// de todos modos esto se puede llegar a hacer con la ventana, que solo aparezca el  boton si es admin
 
-	public Operario loginOperario(Operario operario) throws LoginIncorrectoException {
+	public Operario loginOperario(Operario operario) throws LoginIncorrectoException, CambioObligatorioContraseniaException{
 		int j, i =0;
 
 
@@ -105,7 +101,11 @@ public class Sistema {
 				if (operarios.get(i).isActivo() == false) 
 					throw new UsuarioInactivoException();
 				else
-					return operarios.get(i);
+					if (operarios.get(i).getNombreUsuario() == operario.getNombreUsuario() && operarios.get(i).getPassword() == operario.getPassword() 
+					&& (operario.getNombreUsuario() == "ADMIN" && operario.getPassword() == "ADMIN1234"))
+						throw new CambioObligatorioContraseniaException();
+					else
+						return operarios.get(i);
 	}
 	
 	public boolean noHayOperarios() { // esto seria para llamar desde el controlador. if NO hay op, crear operario default . op primerOp = new operario(admin, admin1234)
