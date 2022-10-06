@@ -10,6 +10,7 @@ public class Sistema {
 	private ArrayList<Producto> productos = new ArrayList<Producto>();
 	private ArrayList<Mesa> mesas = new ArrayList<Mesa>();
 	private ArrayList<Promocion> promociones = new ArrayList<Promocion>();
+	private ArrayList<Comanda> comandas = new ArrayList<Comanda>();
 	// private ArrayList<Promos> promos = new Arraylist<Promos>();
 	private String nombre;
 	private Sueldo sueldo; // sueldo que paga a mesero
@@ -138,12 +139,48 @@ public class Sistema {
 			throw new MesaInvalidaException("No se encontro un mozo libre a cargo de la mesa o no habia una mesa libre con esas caracteristicas");
 	} 
 	
-	public int retornaStock(Producto  producto) throws ProductoInvalidoException{
-		if (productos.contains(producto)) {
+	/* public Mozo retornaMozo(Mozo mozo) throws MozoInvalidoException {
+		if (mozos.contains(mozo)) {
+			int indice = mozos.indexOf(mozo);
+			return mozos.get(indice);
+		} else
+			throw new MozoInvalidoException();	
+	}
+	*/ // estp crep q lo hice al pedo ( ahora aclaro en discord ) 
+	
+	public int retornaStock(Producto  producto){ // 
 			int indice = productos.indexOf(producto);
 				return productos.get(indice).getStock();
+	}
+	
+	public void agregaComanda (Comanda comanda) { // esto se va a poder llamar si se valida condicionesUsoDeMesa
+		comandas.add(comanda);
+	}
+	
+	public void eliminaProducto(Producto producto) throws ProductoEnComandaException{ // usar un try en el controlador
+		boolean alMenosUnaComanda = false;
+		int i = 0, j;
+		j = comandas.size(); // NO VALIDO SI CONTIENE PORQUE SE VA A PICKEAR DESDE UNA LISTA
+		while (i<j && alMenosUnaComanda == false) {
+			if (comandas.get(i).contieneProducto(producto))
+				alMenosUnaComanda = true;
+			else
+				i++;
+		}
+		if (alMenosUnaComanda) {
+			throw new ProductoEnComandaException();
 		} else
-			throw new ProductoInvalidoException();
+			productos.remove(producto);
+	}
+	
+	public void nuevoProducto(Producto producto) throws ProductoExistenteException, ProductoPreciosInvalidosException{
+		if (!productos.contains(producto))
+			if (producto.getPrecioCosto() <= producto.getPrecioVenta() && producto.getPrecioCosto() > 0 && producto.getPrecioVenta() > 0 )
+				productos.add(producto);
+			else
+				throw new ProductoPreciosInvalidosException();
+		else
+			throw new ProductoExistenteException();
 	}
 	
 }

@@ -3,7 +3,7 @@ package modelo;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import excepciones.PedidoInvalidoException;
-import excepciones.ProductoInvalidoException;
+import excepciones.ProductoExistenteException;
 
 
 public class Comanda {
@@ -31,18 +31,25 @@ public class Comanda {
 		this.estado = estado;
 	}
 	
+	public boolean contieneProducto(Producto producto) {
+		int i=0, j;
+		j = pedidos.size();
+		
+		while (i<j && producto != pedidos.get(i).getProducto()) {
+			i++;
+		}
+		return i==j;
+	}
+	
 	public void agregaPedido(Pedido pedido) throws PedidoInvalidoException{
 		int stock;
-		try {
 			stock = Sistema.getInstancia().retornaStock(pedido.getProducto());
-			if (stock >= pedido.getCantidad())
+			if (stock >= pedido.getCantidad()) {
 				pedidos.add(pedido);
+				pedido.getProducto().restarStock(pedido.getCantidad());
+			}
 			else
 				throw new PedidoInvalidoException();
-		} catch (ProductoInvalidoException e) {
-			throw new PedidoInvalidoException();
 		}
 	}
 	
-	
-}

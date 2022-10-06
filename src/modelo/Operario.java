@@ -1,5 +1,8 @@
 package modelo;
 
+import excepciones.EstadoInvalidoMozoException;
+import excepciones.ProductoEnComandaException;
+
 public class Operario {
 	private boolean activo;
 	private String nombreUsuario;
@@ -37,6 +40,8 @@ public class Operario {
 		this.activo = activo;
 	}
 	
-	
+	public void seteaEstadoMozo(Mozo mozo, int estado) throws EstadoInvalidoMozoException {
+		mozo.setEstado(estado);
+	}
 	
 }

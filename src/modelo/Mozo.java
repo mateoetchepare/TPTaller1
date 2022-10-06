@@ -5,6 +5,7 @@ import java.util.GregorianCalendar;
 
 public class Mozo {
 	private ArrayList<Mesa> mesas = new ArrayList<Mesa>();
+	private String nombreYApellido;
 	private int estado; // 0 (activo), 1(de franco), 2 (ausente)
 	private int hijos;
 	private GregorianCalendar nacimiento;
