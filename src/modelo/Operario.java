@@ -1,6 +1,7 @@
 package modelo;
 
 import excepciones.EstadoInvalidoMozoException;
+import excepciones.MesaInvalidaException;
 import excepciones.ProductoEnComandaException;
 
 public class Operario {
@@ -42,6 +43,10 @@ public class Operario {
 	
 	public void seteaEstadoMozo(Mozo mozo, int estado) throws EstadoInvalidoMozoException {
 		mozo.setEstado(estado);
+	}
+	
+	public void asignaMesas(Mozo mozo, int numeroMesa) throws MesaInvalidaException{
+		mozo.agregaMesa(numeroMesa);
 	}
 	
 }

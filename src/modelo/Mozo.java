@@ -2,6 +2,8 @@ package modelo;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
+import excepciones.MesaInvalidaException;
+
 
 public class Mozo {
 	private ArrayList<Mesa> mesas = new ArrayList<Mesa>();
@@ -21,6 +23,18 @@ public class Mozo {
 
 	public void setEstado(int estado) {
 		this.estado = estado;
+	}
+	
+	public void agregaMesa(int numeroMesa) throws MesaInvalidaException{
+		int i=0, j;
+		j = mesas.size();
+		while (i<j && mesas.get(i).getNumeroMesa() != numeroMesa) {
+			i++;
+		}
+		if (i<j) 
+			mesas.add(Sistema.getInstancia().retornaMesa(numeroMesa));
+		else
+			throw new MesaInvalidaException("La mesa ya pertenece al mozo");
 	}
 	
 	public boolean mesaACargo(Mesa mesa) {

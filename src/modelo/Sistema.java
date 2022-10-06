@@ -53,13 +53,26 @@ public class Sistema {
 			while(i < j && (this.mesas.get(i).getNumeroMesa() != mesa.getNumeroMesa())) {
 				i++;
 			}
-			if (this.mesas.get(i).getNumeroMesa() == mesa.getNumeroMesa()) {
+			if (i < j) {
 				throw new MesaInvalidaException("El numero de mesa ya esta usado");
 			} else {
 				mesas.add(mesa);
 			}
 		} else
 			throw new MesaInvalidaException("La combinacion de comensales - numero de mesa es invalido");
+	}
+
+	
+	public Mesa retornaMesa(int numeroMesa) throws MesaInvalidaException{
+		int i=0, j;
+		j = mesas.size();
+		while (i<j && mesas.get(i).getNumeroMesa() != numeroMesa) {
+			i++;
+		}
+		if (i<j) 
+			return mesas.get(i);
+		else
+			throw new MesaInvalidaException("La mesa no existe");
 	}
 
 	public void agregaOperario(Operario operario) throws UsuarioNuevoInvalidoException{ // falta plantear la creacion del PRIMER operario
