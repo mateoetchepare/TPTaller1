@@ -3,8 +3,15 @@ package modelo;
 public class Operario {
 	private boolean activo;
 	private String nombreUsuario;
-	private String nombreYApellido;
 	private String password;
+	private String nombreYApellido;
+	
+	public Operario(String nombreUsuario, String password, String nombreYApellido) {
+		this.nombreUsuario = nombreUsuario;
+		this.password = password;
+		this.nombreYApellido = nombreYApellido;
+		this.activo = true; // asumimos que cuando se agrega operario, se agrega como activo
+	}
 	
 	public String getNombreUsuario() {
 		return nombreUsuario;

@@ -63,7 +63,7 @@ public class Sistema {
 			throw new MesaInvalidaException("La combinacion de comensales - numero de mesa es invalido");
 	}
 
-	public Operario agregaOperario(Operario operario) throws UsuarioNuevoInvalidoException{ // falta plantear la creacion del PRIMER operario
+	public void agregaOperario(Operario operario) throws UsuarioNuevoInvalidoException{ // falta plantear la creacion del PRIMER operario
 		int i = 0;
 		boolean mayus = false, numero = false;
 		String contrasenia = operario.getPassword();
@@ -80,7 +80,7 @@ public class Sistema {
 				i++;
 			}
 			if (mayus == numero == true) {
-				return operario;
+				operarios.add(operario);
 			} else
 				throw new ContraseniaReqNoCumplidosException();
 		} else
