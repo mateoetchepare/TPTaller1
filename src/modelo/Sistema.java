@@ -201,7 +201,7 @@ public class Sistema {
 	public void facturarComanda(Comanda comanda, String formaDePago) {
 		double auxTotal=0, total=0;
 		int i=0, j, h=0, k;;
-		ArrayList<Pedido> pedidos = new ArrayList<Pedido>(); // aca voy a dejar los pedidos que NO tengan promo
+		ArrayList<Pedido> pedidos = clonoArrayList(comanda.getPedidos());// aca voy a dejar los pedidos que NO tengan promo
 		ArrayList<Promocion> promosAplicadas = new ArrayList<Promocion>();
 		boolean acumulable = false, hayPromoTemp=false;
 		double porcDesc=0;
@@ -261,10 +261,14 @@ public class Sistema {
 		comandas.remove(comanda);
 	}
 	
-	/*public ArrayList<Pedido> clone(ArrayList<Pedido> pedidos) {
-		
+	public ArrayList<Pedido> clonoArrayList(ArrayList<Pedido> pedidos) {
+		ArrayList<Pedido> pedidosClonados = new ArrayList<Pedido>();
+		for (Pedido p : pedidos) {
+			pedidosClonados.add((Pedido) p.clone());
+		}
+		return pedidosClonados;
 	}
-	*/
+	
 }
 
 

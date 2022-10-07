@@ -2,14 +2,24 @@ package modelo;
 
 import excepciones.ProductoPreciosInvalidosException;
 
-public class Producto {
+public class Producto implements Cloneable{
 	private int id;
 	private String nombre;
 	private double precioCosto;
 	private double precioVenta;
 	private int stock;
 	
-	
+	@Override
+	public Object clone() {
+		Producto p = null;
+		try {
+			p = (Producto)super.clone();
+			return p;
+		} catch (CloneNotSupportedException e){
+			System.out.println("Esto no deberia pasar");
+		}
+		return p;
+	}
 	
 	
 	public int getId() {
