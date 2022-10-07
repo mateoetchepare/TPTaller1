@@ -12,7 +12,7 @@ public class Factura {
 	private double total;
 	private String formaDePago;
 	
-	public Factura(Mesa mesa, ArrayList<Producto> productos, ArrayList<Promocion> promos, double total, String formaDePago) {
+	public Factura(Mesa mesa, ArrayList<Pedido> pedidos, double total, String formaDePago, ArrayList<Promocion> promos) {
 		this.fecha = LocalDate.now();
 		this.mesa = mesa;
 		this.productos = (ArrayList<Producto>) productos.clone();

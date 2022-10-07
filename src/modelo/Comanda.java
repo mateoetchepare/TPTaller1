@@ -61,6 +61,19 @@ public class Comanda {
 		return i==j;
 	}
 	
+	public int cantidadDelProducto(Producto producto) {
+		int i=0, j;
+		int aux=0;
+		j = pedidos.size();
+		
+		for (i=0 ; i<j ; i++) {
+			if (pedidos.get(i).getProducto() == producto) {
+				aux += pedidos.get(i).getCantidad();
+			}
+		}
+		return aux;
+	}
+	
 	public void agregaPedido(Pedido pedido) throws PedidoInvalidoException{
 		int stock;
 			stock = Sistema.getInstancia().retornaStock(pedido.getProducto());

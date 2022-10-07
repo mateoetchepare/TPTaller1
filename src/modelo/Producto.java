@@ -9,6 +9,17 @@ public class Producto {
 	private double precioVenta;
 	private int stock;
 	
+	
+	
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public int getStock() {
 		return stock;
 	}

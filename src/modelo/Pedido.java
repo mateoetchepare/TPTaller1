@@ -1,11 +1,11 @@
 package modelo;
-import java.util.GregorianCalendar;
+import java.time.LocalDate;
 
 
 public class Pedido {
 	private Producto producto;
 	private int cantidad;
-	private GregorianCalendar fecha;
+	private LocalDate fecha;
 	
 	
 	public Producto getProducto() {

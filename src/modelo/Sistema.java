@@ -1,6 +1,7 @@
 package modelo;
 
 import java.util.ArrayList;
+import java.math.*;
 
 import excepciones.*;
 
@@ -198,19 +199,72 @@ public class Sistema {
 	}
 	
 	public void facturarComanda(Comanda comanda, String formaDePago) {
-		double total;
-		int i=0, j;
+		double auxTotal=0, total=0;
+		int i=0, j, h=0, k;;
+		ArrayList<Pedido> pedidos = new ArrayList<Pedido>(); // aca voy a dejar los pedidos que NO tengan promo
+		ArrayList<Promocion> promosAplicadas = new ArrayList<Promocion>();
+		boolean acumulable = false, hayPromoTemp=false;
+		double porcDesc=0;
+
 		j = promociones.size();
 		while (i<j) {
 			if (promociones.get(i).isActivo()) {
-				
+				if (promociones.get(i) instanceof PromocionProd) {
+					PromocionProd aux = (PromocionProd) promociones.get(i);
+					if (comanda.contieneProducto(aux.getProducto())) {
+						if (aux.isAplicaDosPorUno()) {
+							auxTotal += Math.ceil(comanda.cantidadDelProducto(aux.getProducto()) * aux.getProducto().getPrecioVenta() / 2);
+						} else
+							if (aux.isAplicaDtoPorCantidad() && (aux.getDtoPorCantidad_CantMinima() > comanda.cantidadDelProducto(aux.getProducto())))
+								auxTotal += aux.getDtoPorCantidad_PrecioUnitario() * aux.getProducto().getPrecioVenta();
+
+						k = pedidos.size();
+						while (h < k) { // elimino de la lista de productos que no tienen promo
+							if (aux.getProducto().getId() == pedidos.get(h).getProducto().getId()) 
+								pedidos.remove(h);
+							h++;
+						}
+						promosAplicadas.add(aux);
+					}
+				} else {
+					PromocionTemp auxT = (PromocionTemp) promociones.get(i);
+					if (auxT.getFormaPago() == formaDePago) {
+						acumulable = auxT.isEsAcumulable();
+						porcDesc = auxT.getPorcentajeDescuento();
+						hayPromoTemp = true;
+						promosAplicadas.add(auxT);
+					}
+				}
 			}
+			i++;
 		}
 		
-		Factura factura = new Factura(comanda.getMesa(), comanda.getPedidos(), comanda.getPromos, comanda.);
+		k = pedidos.size();
+		h = 0;
+
+		while (h < k) {
+			total += pedidos.get(h).getCantidad() * pedidos.get(h).getProducto().getPrecioVenta();
+		}
+		if (hayPromoTemp) {
+			if (acumulable) {
+				auxTotal *= porcDesc;
+			}
+			total = (total*porcDesc) + auxTotal;
+		} else {
+			total = total + auxTotal;
+		}
+
+
+
+		Factura factura = new Factura(comanda.getMesa(), comanda.getPedidos(), total, formaDePago, promosAplicadas);
 		
 		comandas.remove(comanda);
 	}
+	
+	/*public ArrayList<Pedido> clone(ArrayList<Pedido> pedidos) {
+		
+	}
+	*/
 }
 
 
