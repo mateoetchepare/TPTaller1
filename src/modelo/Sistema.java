@@ -2,6 +2,8 @@ package modelo;
 
 import java.util.ArrayList;
 import java.math.*;
+import java.time.LocalDate;
+import java.time.DayOfWeek;
 
 import excepciones.*;
 
@@ -142,9 +144,9 @@ public class Sistema {
 			while (i<j && (mesas.get(i).getComensales() >= cantComensales || mesas.get(i).getEstado() != "libre")) 
 				i++;
 			if (i<j) {
-				while (h < k && (mozos.get(i).getEstado()!=0 && mozos.get(i).mesaACargo(mesas.get(i)) != false)) // hay algun mozo a cargo de la mesa y q este libre?
+				while (h < k && (mozos.get(i).getEstado()!="activo" && mozos.get(i).mesaACargo(mesas.get(i)) != false)) // hay algun mozo a cargo de la mesa y q este libre?
 					h++;
-				if (mozos.get(i).getEstado()!=0 && mozos.get(i).mesaACargo(mesas.get(i)) != false) // si el mozo esta libre y tiene la mesa a cargo
+				if (mozos.get(i).getEstado()!="activo" && mozos.get(i).mesaACargo(mesas.get(i)) != false) // si el mozo esta libre y tiene la mesa a cargo
 					mozoActivo = true;
 			}
 		}
@@ -208,7 +210,7 @@ public class Sistema {
 
 		j = promociones.size();
 		while (i<j) {
-			if (promociones.get(i).isActivo()) {
+			if (promociones.get(i).isActivo()) { //  && promociones.get(i).getDiasDePromo()) ///////COMO MIER... ME FIJO SI EL DIA ACTUAL ES IGUAL AL DIA DE LA PROMO?
 				if (promociones.get(i) instanceof PromocionProd) {
 					PromocionProd aux = (PromocionProd) promociones.get(i);
 					if (comanda.contieneProducto(aux.getProducto())) {

@@ -41,7 +41,7 @@ public class Operario {
 		this.activo = activo;
 	}
 	
-	public void seteaEstadoMozo(Mozo mozo, int estado) throws EstadoInvalidoMozoException {
+	public void seteaEstadoMozo(Mozo mozo, String estado) throws EstadoInvalidoMozoException {
 		mozo.setEstado(estado);
 	}
 	

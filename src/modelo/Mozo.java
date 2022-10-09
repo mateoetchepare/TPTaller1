@@ -8,7 +8,7 @@ import excepciones.MesaInvalidaException;
 public class Mozo {
 	private ArrayList<Mesa> mesas = new ArrayList<Mesa>();
 	private String nombreYApellido;
-	private int estado; // 0 (activo), 1(de franco), 2 (ausente)
+	private String estado; // 0 (activo), 1(de franco), 2 (ausente)
 	private int hijos;
 	private GregorianCalendar nacimiento;
 	
@@ -17,11 +17,11 @@ public class Mozo {
 		this.nacimiento = nacimiento; // chequear >18
 	}
 
-	public int getEstado() {
+	public String getEstado() {
 		return estado;
 	}
 
-	public void setEstado(int estado) {
+	public void setEstado(String estado) {
 		this.estado = estado;
 	}
 	
