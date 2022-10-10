@@ -15,7 +15,6 @@ public class Sistema {
 	private ArrayList<Promocion> promociones = new ArrayList<Promocion>();
 	private ArrayList<Comanda> comandas = new ArrayList<Comanda>();
 	private ArrayList<Factura> facturas = new ArrayList<Factura>();
-	// private ArrayList<Promos> promos = new Arraylist<Promos>();
 	private String nombre;
 	private Sueldo sueldo; // sueldo que paga a mesero
 	private static Sistema instancia = null;
@@ -172,6 +171,7 @@ public class Sistema {
 	
 	public void agregaComanda (Comanda comanda) { // esto se va a poder llamar si se valida condicionesUsoDeMesa
 		comandas.add(comanda);
+		comanda.getMesa().setEstado("ocupada");
 	}
 	
 	public void eliminaProducto(Producto producto) throws ProductoEnComandaException{ // usar un try en el controlador
@@ -259,7 +259,7 @@ public class Sistema {
 
 
 		Factura factura = new Factura(comanda.getMesa(), comanda.getPedidos(), total, formaDePago, promosAplicadas);
-		
+		comanda.getMesa().setEstado("libre");
 		comandas.remove(comanda);
 	}
 	
