@@ -64,7 +64,7 @@ public class VentanaLogin extends JFrame implements KeyListener, IVistaLogin {
 	 * Create the frame.
 	 */
 	public VentanaLogin() {
-		setTitle("Restaurante");
+		setTitle("Sistema Restaurante");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		this.contentPane = new JPanel();
