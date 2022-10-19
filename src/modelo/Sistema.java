@@ -45,6 +45,10 @@ public class Sistema {
 		return instancia;
 	}
 	
+	public ArrayList<Operario> getOperarios() {
+		return operarios;
+	}	
+	
 	
 
 	public void agregaMesa(Mesa mesa) throws MesaInvalidaException{

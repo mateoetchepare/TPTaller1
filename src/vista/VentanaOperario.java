@@ -3,20 +3,21 @@ package vista;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
-import java.awt.FlowLayout;
-import javax.swing.JButton;
-import javax.swing.ListSelectionModel;
 
-public class VentanaOperario extends JFrame {
+public class VentanaOperario extends JFrame implements IVistaOperario{
 
 	private JPanel contentPane;
 	private JLabel LabelPrincipal;
@@ -65,7 +66,7 @@ public class VentanaOperario extends JFrame {
 	public VentanaOperario() {
 		setTitle("Sistema Restaurante");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 555, 390);
+		setBounds(100, 100, 650, 400);
 		this.contentPane = new JPanel();
 		this.contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(this.contentPane);
@@ -157,6 +158,18 @@ public class VentanaOperario extends JFrame {
 		this.btnVerMesa = new JButton("Ver Mesa");
 		this.btnVerMesa.setEnabled(false);
 		this.panelBotonesMesas.add(this.btnVerMesa);
+	}
+	
+	public void completarTitulo(String nombre) {
+		String titulo=this.LabelPrincipal.getText();
+		titulo+= "                 "+nombre.toUpperCase();
+		this.LabelPrincipal.setText(titulo);
+	}
+	
+	public void addActionListener(ActionListener listener) {
+		//agregar todos los botones
+		this.btnAgregar.addActionListener(listener);
+		
 	}
 
 }
