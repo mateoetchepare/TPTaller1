@@ -14,6 +14,8 @@ public class Comanda {
 	private LocalDate fecha;
 	private Mesa mesa;
 	
+	public Comanda() {}
+	
 	public Comanda(Mesa mesa) {
 		this.fecha = LocalDate.now();
 		this.estado = "abierta";
@@ -21,6 +23,14 @@ public class Comanda {
 		this.mesa = mesa;
 	}
 	
+	public void setPedidos(ArrayList<Pedido> pedidos) {
+		this.pedidos = pedidos;
+	}
+
+	public void setFecha(LocalDate fecha) {
+		this.fecha = fecha;
+	}
+
 	public ArrayList<Pedido> getPedidos() {
 		return pedidos;
 	}

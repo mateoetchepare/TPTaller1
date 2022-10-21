@@ -9,6 +9,8 @@ public class Producto implements Cloneable{
 	private double precioVenta;
 	private int stock;
 	
+	public Producto() {}
+	
 	@Override
 	public Object clone() {
 		Producto p = null;
@@ -22,6 +24,14 @@ public class Producto implements Cloneable{
 	}
 	
 	
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
 	public int getId() {
 		return id;
 	}

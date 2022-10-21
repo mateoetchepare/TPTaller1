@@ -3,6 +3,9 @@ package modelo;
 public class Promocion {
 	private boolean activo;
 	private String diasDePromo;
+	
+	public Promocion() {}
+	
 
 	public boolean isActivo() {
 		return activo;

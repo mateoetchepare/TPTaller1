@@ -10,6 +10,8 @@ public class Operario {
 	private String password;
 	private String nombreYApellido;
 	
+	public Operario() {}
+	
 	public Operario(String nombreUsuario, String password, String nombreYApellido) {
 		this.nombreUsuario = nombreUsuario;
 		this.password = password;
@@ -17,6 +19,14 @@ public class Operario {
 		this.activo = true; // asumimos que cuando se agrega operario, se agrega como activo
 	}
 	
+	public String getNombreYApellido() {
+		return nombreYApellido;
+	}
+
+	public void setNombreYApellido(String nombreYApellido) {
+		this.nombreYApellido = nombreYApellido;
+	}
+
 	public String getNombreUsuario() {
 		return nombreUsuario;
 	}

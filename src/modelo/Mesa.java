@@ -5,10 +5,20 @@ public class Mesa {
 	private int comensales;
 	private String estado;
 	
+	public Mesa() {}
+	
 	public Mesa(int numeroMesa, int comensales) {
 		this.numeroMesa = numeroMesa;
 		this.comensales = comensales;
 		this.estado = "libre";
+	}
+
+	public void setNumeroMesa(int numeroMesa) {
+		this.numeroMesa = numeroMesa;
+	}
+
+	public void setComensales(int comensales) {
+		this.comensales = comensales;
 	}
 
 	public int getNumeroMesa() {

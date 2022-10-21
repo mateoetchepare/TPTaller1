@@ -21,6 +21,16 @@ public class Pedido implements Cloneable{
 		return p;
 	}
 	
+	public Pedido() {}
+	
+	public LocalDate getFecha() {
+		return fecha;
+	}
+
+	public void setFecha(LocalDate fecha) {
+		this.fecha = fecha;
+	}
+
 	public Producto getProducto() {
 		return producto;
 	}
