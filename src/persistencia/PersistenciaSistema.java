@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-public class PersistenciaSistema<Sistema> implements IPersistencia<Sistema> {
+public class PersistenciaSistema<SistemaDTO> implements IPersistencia<SistemaDTO> {
 	private FileOutputStream fileOut;
 	private FileInputStream fileIn;
 	private ObjectOutputStream output;
@@ -38,27 +38,27 @@ public class PersistenciaSistema<Sistema> implements IPersistencia<Sistema> {
 	}
 
 	@Override
-	public void escribir(Sistema sistema) throws IOException {
+	public void escribir(SistemaDTO sistemaDTO) throws IOException {
 		if (output != null)
-			output.writeObject(sistema);
+			output.writeObject(sistemaDTO);
 	}
 
 	//averiguar como persisistir un singleton
 	
 	@Override
-	public Sistema leer() throws IOException, ClassNotFoundException {
-		Sistema sistema = null;
+	public SistemaDTO leer() throws IOException, ClassNotFoundException {
+		SistemaDTO sistemaDTO = null;
 		if (input != null) {
 
 			try {
-				sistema = (Sistema) input.readObject();
+				sistemaDTO = (SistemaDTO) input.readObject();
 			} catch (EOFException eof) {
 				// TODO Auto-generated catch block
 				System.out.println("EOF Exception");
 			}
 		}
 
-		return sistema;
+		return sistemaDTO;
 	}
 
 }

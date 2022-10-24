@@ -1,8 +1,9 @@
 package modelo;
+import java.io.Serializable;
 import java.time.LocalDate;
 
 
-public class Pedido implements Cloneable{
+public class Pedido implements Cloneable, Serializable{
 	private Producto producto;
 	private int cantidad;
 	private LocalDate fecha;

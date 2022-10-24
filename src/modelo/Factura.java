@@ -1,10 +1,11 @@
 package modelo;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
-public class Factura {
+public class Factura implements Serializable{
 	private LocalDate fecha;
 	private Mesa mesa;
 	private ArrayList<Producto> productos = new ArrayList<Producto>();

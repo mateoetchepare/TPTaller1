@@ -1,8 +1,10 @@
 package modelo;
 
+import java.io.Serializable;
+
 import excepciones.ProductoPreciosInvalidosException;
 
-public class Producto implements Cloneable{
+public class Producto implements Cloneable, Serializable{
 	private int id;
 	private String nombre;
 	private double precioCosto;

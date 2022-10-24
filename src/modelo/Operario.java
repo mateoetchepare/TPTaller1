@@ -1,10 +1,12 @@
 package modelo;
 
+import java.io.Serializable;
+
 import excepciones.EstadoInvalidoMozoException;
 import excepciones.MesaInvalidaException;
 import excepciones.ProductoEnComandaException;
 
-public class Operario {
+public class Operario implements Serializable{
 	private boolean activo;
 	private String nombreUsuario;
 	private String password;

@@ -1,5 +1,6 @@
 package modelo;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -8,7 +9,7 @@ import excepciones.PedidoInvalidoException;
 import excepciones.ProductoExistenteException;
 
 
-public class Comanda {
+public class Comanda implements Serializable{
 	private ArrayList<Pedido> pedidos = new ArrayList<Pedido>();
 	private String estado;
 	private LocalDate fecha;

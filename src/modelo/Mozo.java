@@ -1,11 +1,12 @@
 package modelo;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
 import excepciones.MesaInvalidaException;
 
 
-public class Mozo {
+public class Mozo implements Serializable{
 	private transient ArrayList<Mesa> mesas = new ArrayList<Mesa>(); //no se persiste
 	private String nombreYApellido;
 	private transient String estado; // 0 (activo), 1(de franco), 2 (ausente) //no se persiste

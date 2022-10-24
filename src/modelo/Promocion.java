@@ -1,6 +1,8 @@
 package modelo;
 
-public class Promocion {
+import java.io.Serializable;
+
+public class Promocion implements Serializable{
 	private boolean activo;
 	private String diasDePromo;
 	
