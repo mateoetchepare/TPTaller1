@@ -4,6 +4,7 @@ import controlador.ControladorLogin;
 import excepciones.UsuarioNuevoInvalidoException;
 import modelo.Operario;
 import modelo.Sistema;
+import persistencia.Persistir;
 import vista.VentanaLogin;
 
 public class Prueba {
@@ -22,6 +23,10 @@ public class Prueba {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		Persistir.escribirSistema();
 	}
+	
+	
 
 }

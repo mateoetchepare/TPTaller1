@@ -20,7 +20,7 @@ public class Sistema {
 	private static Sistema instancia = null;
 
 	//persistencia XML constructor vacio y todos los geter y seters
-	//se persiste sistemaDTO no sistema, con utilSistema se hacen los pasajes
+	//Agregue todas las cosas necesarias para hacer persistencia XML y termine usando bin
 	public Sistema() {
 
 	}
