@@ -6,4 +6,8 @@ public interface IVistaLogin {
 	String getUsername();
 	String getPassword();
 	void addActionListener(ActionListener listener);
+	
+	void emergenteUsuarioIncorecto();
+	void emergetneContraseniaIncorrecta();
+	void emergenteUsuarioInactivo();
 }

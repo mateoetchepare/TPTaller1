@@ -7,6 +7,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.GridLayout;
 import javax.swing.JSplitPane;
 import javax.swing.SwingConstants;
@@ -170,5 +172,21 @@ public class VentanaLogin extends JFrame implements KeyListener, IVistaLogin {
 	public void addActionListener(ActionListener listener) {
 		this.btnLogin.addActionListener(listener);
 		
+	}
+
+	@Override
+	public void emergenteUsuarioIncorecto() {
+		JOptionPane.showMessageDialog(this,"Usuario no encontrado");
+		
+	}
+
+	@Override
+	public void emergetneContraseniaIncorrecta() {
+		JOptionPane.showMessageDialog(this,"Contrasenia Incorrecta");
+	}
+
+	@Override
+	public void emergenteUsuarioInactivo() {
+		JOptionPane.showMessageDialog(this,"El operario NO esta activo, no puede ingresar al sistema. Consulte con el administrador");
 	}
 }

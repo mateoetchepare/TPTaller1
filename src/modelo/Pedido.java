@@ -24,6 +24,12 @@ public class Pedido implements Cloneable, Serializable{
 	
 	public Pedido() {}
 	
+	public Pedido(Producto producto,int cant) {
+		this.producto=producto;
+		this.cantidad=cant;
+		this.fecha=LocalDate.now();
+	}
+	
 	public LocalDate getFecha() {
 		return fecha;
 	}
@@ -46,6 +52,11 @@ public class Pedido implements Cloneable, Serializable{
 
 	public void setCantidad(int cantidad) {
 		this.cantidad = cantidad;
+	}
+
+	@Override
+	public String toString() {
+		return  producto + ", cantidad=" + cantidad  ;
 	}
 	
 	

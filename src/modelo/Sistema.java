@@ -169,19 +169,25 @@ public class Sistema {
 	} // falta verificar que sea el admin, porque sino un operario no puede anadir a otro operario
 	// de todos modos esto se puede llegar a hacer con la ventana, que solo aparezca el  boton si es admin
 
-	public Operario loginOperario(Operario operario) throws LoginIncorrectoException, CambioObligatorioContraseniaException{
+	
+	//cambio el login, ue no se pase un operario, sino nombre de usuario y contrasenia
+	public Operario loginOperario(String usuario,String contrasenia) throws LoginIncorrectoException, CambioObligatorioContraseniaException{
 		int j, i =0;
 
 
 		j = operarios.size();
-		while (i < j && (operarios.get(i).getNombreUsuario() != operario.getNombreUsuario())) {
+		while (i < j && (!operarios.get(i).getNombreUsuario().equals(usuario) )){
+			
 			i++;
 		}
 		if (i == j) {
+			
 			throw new UsuarioIncorrectoException();
 		} else
-			if (operarios.get(i).getNombreUsuario() == operario.getNombreUsuario() && operarios.get(i).getPassword() != operario.getPassword())
+			if (operarios.get(i).getNombreUsuario().equals(usuario) && !operarios.get(i).getPassword().equals(contrasenia)) {
+				
 				throw new ContraseniaIncorrectaException();
+			}
 			else
 				if (operarios.get(i).isActivo() == false) 
 					throw new UsuarioInactivoException();

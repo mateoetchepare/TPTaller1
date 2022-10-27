@@ -6,7 +6,6 @@ import java.util.ArrayList;
 
 import excepciones.CierreComandaException;
 import excepciones.PedidoInvalidoException;
-import excepciones.ProductoExistenteException;
 
 
 public class Comanda implements Serializable{
@@ -86,15 +85,22 @@ public class Comanda implements Serializable{
 		return aux;
 	}
 	
-	public void agregaPedido(Pedido pedido) throws PedidoInvalidoException{
+	//Cambio no paso un pedido sino un producto y la cantidad
+	public void agregaPedido(Producto producto,int cant) throws PedidoInvalidoException{
 		int stock;
-			stock = Sistema.getInstancia().retornaStock(pedido.getProducto());
-			if (stock >= pedido.getCantidad()) {
+			stock = Sistema.getInstancia().retornaStock(producto);
+			if (stock >= cant) {
+				Pedido pedido=new Pedido(producto,cant);
 				pedidos.add(pedido);
 				pedido.getProducto().restarStock(pedido.getCantidad());
 			}
 			else
-				throw new PedidoInvalidoException();
-		}
+				throw new PedidoInvalidoException(cant,stock);
+	}
+	
+	public void sacarPedido(Pedido pedido) {
+		if(this.pedidos.contains(pedido))
+			this.pedidos.remove(pedido);
+	}
 	}
 	

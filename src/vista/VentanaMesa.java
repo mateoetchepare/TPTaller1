@@ -25,6 +25,8 @@ import javax.swing.border.EmptyBorder;
 import modelo.Mozo;
 import modelo.Pedido;
 import modelo.Producto;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseEvent;
 
 public class VentanaMesa extends JFrame implements KeyListener,IVistaMesa {
 
@@ -118,6 +120,7 @@ public class VentanaMesa extends JFrame implements KeyListener,IVistaMesa {
 		this.scrollPane_1.setColumnHeaderView(LabelProductos);
 		
 		this.listProductos = new JList();
+		//this.listProductos.addMouseListener(this);
 		this.listProductos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		this.scrollPane_1.setViewportView(this.listProductos);
 		this.modeloListaProductos=new DefaultListModel<Producto>();
@@ -194,6 +197,8 @@ public class VentanaMesa extends JFrame implements KeyListener,IVistaMesa {
 			this.btnAgregar.setEnabled(false);
 			this.btnModificar.setEnabled(false);
 		}
+		if(this.listComanda.getSelectedValue()!=null)
+			this.btnSacar.setEnabled(true);
 	}
 	public void keyTyped(KeyEvent e) {
 	}
@@ -233,4 +238,48 @@ public class VentanaMesa extends JFrame implements KeyListener,IVistaMesa {
 		// TODO Auto-generated method stub
 		return this.modeloListaProductos;
 	}
+
+	@Override
+	public void emergentePedidoNoSeleccionado() {
+		JOptionPane.showMessageDialog(this,"No hay seleccionado pedido de la comanda");
+		
+	}
+	public void mouseClicked(MouseEvent e) {
+		if(this.listProductos.getSelectedValue()!=null) {
+			this.btnAgregar.setVisible(true);
+			this.btnSacar.setVisible(true);
+			this.btnModificar.setVisible(true);
+		}
+		else {
+			this.btnAgregar.setVisible(false);
+			this.btnSacar.setVisible(false);
+			this.btnModificar.setVisible(false);
+		}
+	}
+	
+	
+	public void emergenteStockInsuficiente(int cant,int stock) {
+		JOptionPane.showMessageDialog(this,"No hay suficiente de este producto. Pedido: "+cant+", Stock: "+stock);
+	}
+
+	@Override
+	public JList<Producto> getListProductos() {
+		// TODO Auto-generated method stub
+		return this.listProductos;
+	}
+	
+	@Override
+	public void emergenteProductoNoSeleccionado() {
+		JOptionPane.showMessageDialog(this,"No hay seleccionado un producto");
+		
+	}
+
+	@Override
+	public JList<Pedido> getListComanda() {
+		// TODO Auto-generated method stub
+		return this.listComanda;
+	}
+	
+
+	
 }
