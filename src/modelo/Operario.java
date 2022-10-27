@@ -67,5 +67,8 @@ public class Operario implements Serializable{
 	public void deshabilitarMesa(Mesa mesa) {
 		mesa.deshabilitar();
 	}
+	public void ocuparMesa(Mesa mesa) {
+		mesa.ocuparMesa();
+	}
 	
 }

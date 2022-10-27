@@ -3,6 +3,7 @@ package vista;
 import java.awt.event.ActionListener;
 
 import javax.swing.DefaultListModel;
+import javax.swing.JButton;
 import javax.swing.JList;
 
 import modelo.Mesa;
@@ -15,5 +16,10 @@ public interface IVistaOperario {
 	DefaultListModel<Mesa> getModeloListaMesas();
 	JList<Mesa> getListMesas();
 	
+	boolean getSeleccionado();
+	JButton getBtnVerMesa();
+	
+	void emergenteNoHaySeleccion();
+	void setVisible(boolean res);
 	
 }

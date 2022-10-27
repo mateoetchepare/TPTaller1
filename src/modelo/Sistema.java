@@ -1,11 +1,19 @@
 package modelo;
 
 import java.util.ArrayList;
-import java.math.*;
-import java.time.LocalDate;
-import java.time.DayOfWeek;
 
-import excepciones.*;
+import excepciones.CambioObligatorioContraseniaException;
+import excepciones.ContraseniaIncorrectaException;
+import excepciones.ContraseniaLongitudInvalidaException;
+import excepciones.ContraseniaReqNoCumplidosException;
+import excepciones.LoginIncorrectoException;
+import excepciones.MesaInvalidaException;
+import excepciones.ProductoEnComandaException;
+import excepciones.ProductoExistenteException;
+import excepciones.ProductoPreciosInvalidosException;
+import excepciones.UsuarioInactivoException;
+import excepciones.UsuarioIncorrectoException;
+import excepciones.UsuarioNuevoInvalidoException;
 
 public class Sistema {
 	private ArrayList<Operario> operarios = new ArrayList<Operario>(); //puede XML
@@ -227,10 +235,11 @@ public class Sistema {
 				return productos.get(indice).getStock();
 	}
 	
-	public void agregaComanda (Comanda comanda) { // esto se va a poder llamar si se valida condicionesUsoDeMesa
+	//Revisar, agregar una nueva comanda cuando estado de mesa pasa a ocupada
+	/*public void agregaComanda (Comanda comanda) { // esto se va a poder llamar si se valida condicionesUsoDeMesa
 		comandas.add(comanda);
 		comanda.getMesa().setEstado("ocupada");
-	}
+	}*/
 	
 	public void eliminaProducto(Producto producto) throws ProductoEnComandaException{ // usar un try en el controlador
 		boolean alMenosUnaComanda = false;
@@ -315,9 +324,18 @@ public class Sistema {
 		}
 
 
-
-		Factura factura = new Factura(comanda.getMesa(), comanda.getPedidos(), total, formaDePago, promosAplicadas);
-		comanda.getMesa().setEstado("libre");
+		/// AGREGO///
+		Mesa mesa=null;
+		int aux=0;
+		
+		while(i<this.mesas.size() && mesa==null) {
+			if(comanda.getNumeroMesa()==this.mesas.get(aux).getNumeroMesa())
+				mesa=this.mesas.get(aux);
+		}//en teoria mesa no puede ser null porue la comanda se crea en una mesa, asegurando ue la encuentra
+		///////////////
+		Factura factura = new Factura(/*comanda.getMesa()*/mesa, comanda.getPedidos(), total, formaDePago, promosAplicadas);
+		//comanda.getMesa().setEstado("libre"); //Se pone en estado libre desde la ventana solo cuando se 
+		//cierra la mesa
 		comandas.remove(comanda);
 	}
 	

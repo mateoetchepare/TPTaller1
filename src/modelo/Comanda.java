@@ -13,15 +13,15 @@ public class Comanda implements Serializable{
 	private ArrayList<Pedido> pedidos = new ArrayList<Pedido>();
 	private String estado;
 	private LocalDate fecha;
-	private Mesa mesa;
+	private int numeroMesa;
 	
 	public Comanda() {}
 	
-	public Comanda(Mesa mesa) {
+	public Comanda(int num) {
 		this.fecha = LocalDate.now();
 		this.estado = "abierta";
 		this.pedidos = null;
-		this.mesa = mesa;
+		this.numeroMesa = num;
 	}
 	
 	public void setPedidos(ArrayList<Pedido> pedidos) {
@@ -40,22 +40,23 @@ public class Comanda implements Serializable{
 		return estado;
 	}
 	
+	//revisar y poner el setEstado de mesa en otro lado
 	public void setEstado(String estado) throws CierreComandaException{
 		if (this.estado == "cerrada "&& estado == "cerrada") 
 			throw new CierreComandaException();
 		else {
 			this.estado = estado;
-			this.mesa.setEstado("libre");
+			//this.mesa.setEstado("libre");
 		}
 	}
 	
 	
-	public Mesa getMesa() {
-		return mesa;
+	public int getNumeroMesa() {
+		return numeroMesa;
 	}
 
-	public void setMesa(Mesa mesa) {
-		this.mesa = mesa;
+	public void setNumeroMesa(int num) {
+		this.numeroMesa = num;
 	}
 
 	public LocalDate getFecha() {

@@ -15,6 +15,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
@@ -52,7 +53,7 @@ public class VentanaOperario extends JFrame implements IVistaOperario, MouseList
 	private JButton btnProductosPromociones;
 	private JButton btnAgregarOperario;
 	private JButton btnCerrarSecion;
-	
+	boolean seleccionado=false;
 
 	/**
 	 * Launch the application.
@@ -194,6 +195,7 @@ public class VentanaOperario extends JFrame implements IVistaOperario, MouseList
 		this.btnDeshabilitar.addActionListener(listener);
 		this.btnVerMesa.addActionListener(listener);
 		
+		
 	}
 
 	@Override
@@ -222,12 +224,14 @@ public class VentanaOperario extends JFrame implements IVistaOperario, MouseList
 		if(this.listMesas.getSelectedValue()!=null) {
 			this.btnHabilitar.setEnabled(true);
 			this.btnDeshabilitar.setEnabled(true);
+			this.seleccionado=true;//sobra
 			this.btnVerMesa.setEnabled(true);
 			System.out.println(this.listMesas.getSelectedValue()+"++");
 		}
 		else {
 			this.btnHabilitar.setEnabled(false);
 			this.btnDeshabilitar.setEnabled(false);
+			this.seleccionado=false;//sobra
 			this.btnVerMesa.setEnabled(false);
 			System.out.println("no hay seleccion en lista mesas");
 		}
@@ -247,5 +251,23 @@ public class VentanaOperario extends JFrame implements IVistaOperario, MouseList
 		// TODO Auto-generated method stub
 		return this.listMesas;
 	}
+
+	@Override
+	public boolean getSeleccionado() {
+		// TODO Auto-generated method stub
+		return this.seleccionado;
+	}
+
+	@Override
+	public JButton getBtnVerMesa() {
+		// TODO Auto-generated method stub
+		return this.btnVerMesa;
+	}
+	
+	@Override
+	public void emergenteNoHaySeleccion() {
+		JOptionPane.showMessageDialog(this,"No hay seleccion en la lista mesas");
+	}
+	
 	
 }

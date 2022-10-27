@@ -7,6 +7,7 @@ import controlador.ControladorLogin;
 import modelo.Mesa;
 import modelo.Mozo;
 import modelo.Operario;
+import modelo.Producto;
 import modelo.Sistema;
 import vista.VentanaLogin;
 
@@ -22,6 +23,16 @@ public class PruebaHardcodeo {
 		mesas.add(new Mesa(3, 4));
 		mesas.add(new Mesa(4, 6));
 		////////////////////////////////////////////////////////////////////////
+		
+		////////////////////////  PRODUCTOS   ////////////////////////////////
+		ArrayList<Producto> productos=new ArrayList<Producto>();
+		
+		productos.add(new Producto(1,"Milanesa",200,500,20));
+		productos.add(new Producto(2,"Tortilla",200,500,20));
+		productos.add(new Producto(3,"Tacos",200,500,20));
+		productos.add(new Producto(4,"Arepas",200,500,20));
+		productos.add(new Producto(5,"Tempura de hongos",200,500,20));
+		///////////////////////////////////////////////////////////////////////
 
 		/////////////////////// OPERARIOS ///////////////////////////////////////
 		ArrayList<Operario> operarios = new ArrayList<Operario>();
@@ -52,16 +63,20 @@ public class PruebaHardcodeo {
 		Sistema.getInstancia().setMesas(mesas);
 		Sistema.getInstancia().setOperarios(operarios);
 		Sistema.getInstancia().setMozos(mozos);
+		Sistema.getInstancia().setProductos(productos);
 		
 		System.out.println("Hay "+Sistema.getInstancia().getMesas().size()+" mesas");
 		System.out.println("Hay "+Sistema.getInstancia().getOperarios().size()+" operarios");
 		System.out.println("Hay "+Sistema.getInstancia().getMozos().size()+" mozos");
+		System.out.println("Hay "+Sistema.getInstancia().getProductos().size()+" productos");
 		
 		////////////////////////////////////////////////////////////////////////////////
 		
 		VentanaLogin ventanaLogin = new VentanaLogin();
 		ControladorLogin controladorLogin=new ControladorLogin(ventanaLogin);
 		ventanaLogin.setVisible(true);
+		
+		
 	}
 
 }

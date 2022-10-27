@@ -8,6 +8,7 @@ public class Mesa implements Serializable{
 	private String estado;
 	private transient boolean habilitado; //agrego para poder habilitar o desabilitar mesa mas alla 
 	//de si esta ocupada o no 
+	Comanda comanda=null;
 	
 	public Mesa() {}
 	
@@ -42,6 +43,14 @@ public class Mesa implements Serializable{
 		this.estado = estado;
 	}
 
+	public void ocuparMesa() {
+		if(this.estado=="libre") {
+			this.estado="ocupado";
+			this.comanda=new Comanda();
+		}
+		else
+			System.out.println("la mesa ya esta ocupada");//agregar exception
+	}
 	public void habilitar() {
 		this.habilitado=true;
 	}
@@ -52,6 +61,16 @@ public class Mesa implements Serializable{
 	public boolean getHabilitado() {
 		return this.habilitado;
 	}
+	
+	
+	public Comanda getComanda() {
+		return comanda;
+	}
+
+	public void setComanda(Comanda comanda) {
+		this.comanda = comanda;
+	}
+
 	@Override
 	public String toString() {
 		String salida=null;

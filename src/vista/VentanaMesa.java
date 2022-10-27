@@ -3,40 +3,59 @@ package vista;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import javax.swing.JScrollPane;
-import javax.swing.SwingConstants;
-import javax.swing.JList;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import javax.swing.ListSelectionModel;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
-public class VentanaMesa extends JFrame {
+import javax.swing.DefaultListModel;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+
+import modelo.Mozo;
+import modelo.Pedido;
+import modelo.Producto;
+
+public class VentanaMesa extends JFrame implements KeyListener,IVistaMesa {
 
 	private JPanel contentPane;
 	private JLabel LabelTitulo;
 	private JPanel panelPrincipal;
 	private JScrollPane scrollPane;
 	private JLabel LabelComanda;
-	private JList list;
+	private JList listComanda;
+	private JPanel panelDerecho;
+	private JScrollPane scrollPane_1;
 	private JPanel panelBotonera;
-	private JPanel panelPedido;
-	private JPanel panel_1;
-	private JPanel panel_2;
-	private JPanel panel_3;
-	private JPanel panel_4;
-	private JPanel panel_5;
-	private JLabel lblNewLabel;
+	private JList listProductos;
+	private JPanel panelCantidad;
+	private JLabel LabelCantidad;
 	private JTextField textFieldCantidad;
 	private JButton btnAgregar;
+	private JPanel panelSacarModificar;
 	private JButton btnSacar;
 	private JButton btnModificar;
+	private JPanel panel;
+	private JPanel panel_1;
+	private JPanel panelFinal;
+	private JButton btnListo;
 	private JButton btnCerrarMesa;
+	private JPanel panel_3;
+	private JPanel panel_4;
+	private JPanel panel_2;
+	private DefaultListModel<Pedido> modeloListaComanda;
+	private DefaultListModel<Producto> modeloListaProductos;
+	
 
 	/**
 	 * Launch the application.
@@ -60,7 +79,7 @@ public class VentanaMesa extends JFrame {
 	public VentanaMesa() {
 		setTitle("Sistema Restaurante");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 495, 298);
 		this.contentPane = new JPanel();
 		this.contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(this.contentPane);
@@ -81,54 +100,137 @@ public class VentanaMesa extends JFrame {
 		this.LabelComanda.setHorizontalAlignment(SwingConstants.CENTER);
 		this.scrollPane.setColumnHeaderView(this.LabelComanda);
 		
-		this.list = new JList();
-		this.list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		this.scrollPane.setViewportView(this.list);
+		this.listComanda = new JList();
+		this.listComanda.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		this.scrollPane.setViewportView(this.listComanda);
+		this.modeloListaComanda=new DefaultListModel<Pedido>();
+		this.listComanda.setModel(modeloListaComanda);
+		
+		this.panelDerecho = new JPanel();
+		this.panelPrincipal.add(this.panelDerecho, BorderLayout.CENTER);
+		this.panelDerecho.setLayout(new GridLayout(2, 2, 0, 0));
+		
+		this.scrollPane_1 = new JScrollPane();
+		this.panelDerecho.add(this.scrollPane_1);
+		
+		JLabel LabelProductos = new JLabel("Productos");
+		LabelProductos.setHorizontalAlignment(SwingConstants.CENTER);
+		this.scrollPane_1.setColumnHeaderView(LabelProductos);
+		
+		this.listProductos = new JList();
+		this.listProductos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		this.scrollPane_1.setViewportView(this.listProductos);
+		this.modeloListaProductos=new DefaultListModel<Producto>();
+		this.listProductos.setModel(modeloListaProductos);
 		
 		this.panelBotonera = new JPanel();
-		this.panelPrincipal.add(this.panelBotonera, BorderLayout.CENTER);
-		this.panelBotonera.setLayout(new GridLayout(6, 0, 0, 0));
+		this.panelDerecho.add(this.panelBotonera);
+		this.panelBotonera.setLayout(new GridLayout(3, 0, 0, 0));
 		
-		this.panelPedido = new JPanel();
-		this.panelBotonera.add(this.panelPedido);
-		this.panelPedido.setLayout(new GridLayout(1, 0, 0, 0));
+		this.panelCantidad = new JPanel();
+		this.panelBotonera.add(this.panelCantidad);
+		this.panelCantidad.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
-		this.lblNewLabel = new JLabel("Producto");
-		this.lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		this.panelPedido.add(this.lblNewLabel);
+		this.LabelCantidad = new JLabel("Cantidad: ");
+		this.panelCantidad.add(this.LabelCantidad);
 		
 		this.textFieldCantidad = new JTextField();
-		this.panelPedido.add(this.textFieldCantidad);
+		this.textFieldCantidad.addKeyListener(this);
+		this.panelCantidad.add(this.textFieldCantidad);
 		this.textFieldCantidad.setColumns(10);
 		
-		this.panel_1 = new JPanel();
-		this.panelBotonera.add(this.panel_1);
-		this.panel_1.setLayout(new GridLayout(0, 2, 0, 0));
-		
-		this.btnAgregar = new JButton("Agregar");
-		this.panel_1.add(this.btnAgregar);
-		
-		this.btnSacar = new JButton("Sacar");
-		this.panel_1.add(this.btnSacar);
+		this.panelSacarModificar = new JPanel();
+		this.panelBotonera.add(this.panelSacarModificar);
+		this.panelSacarModificar.setLayout(new GridLayout(0, 3, 0, 0));
 		
 		this.panel_2 = new JPanel();
-		this.panelBotonera.add(this.panel_2);
-		this.panel_2.setLayout(new GridLayout(0, 2, 0, 0));
+		this.panelSacarModificar.add(this.panel_2);
+		
+		this.btnAgregar = new JButton("Agregar");
+		this.btnAgregar.setEnabled(false);
+		this.panel_2.add(this.btnAgregar);
+		
+		this.panel = new JPanel();
+		this.panelSacarModificar.add(this.panel);
+		
+		this.btnSacar = new JButton("Sacar");
+		this.btnSacar.setEnabled(false);
+		this.panel.add(this.btnSacar);
+		
+		this.panel_1 = new JPanel();
+		this.panelSacarModificar.add(this.panel_1);
 		
 		this.btnModificar = new JButton("Modificar");
-		this.panel_2.add(this.btnModificar);
+		this.btnModificar.setEnabled(false);
+		this.panel_1.add(this.btnModificar);
 		
-		this.btnCerrarMesa = new JButton("Cerrar Mesa");
-		this.panel_2.add(this.btnCerrarMesa);
+		this.panelFinal = new JPanel();
+		this.panelBotonera.add(this.panelFinal);
+		this.panelFinal.setLayout(new GridLayout(0, 2, 0, 0));
 		
 		this.panel_3 = new JPanel();
-		this.panelBotonera.add(this.panel_3);
+		this.panelFinal.add(this.panel_3);
+		
+		this.btnListo = new JButton("Listo");
+		this.panel_3.add(this.btnListo);
 		
 		this.panel_4 = new JPanel();
-		this.panelBotonera.add(this.panel_4);
+		this.panelFinal.add(this.panel_4);
 		
-		this.panel_5 = new JPanel();
-		this.panelBotonera.add(this.panel_5);
+		this.btnCerrarMesa = new JButton("Cerrar Mesa");
+		this.panel_4.add(this.btnCerrarMesa);
+		
+	
 	}
 
+	public void keyPressed(KeyEvent e) {
+	}
+	public void keyReleased(KeyEvent e) {
+		if(this.textFieldCantidad.getText().length()>0 && this.listProductos.getSelectedValue()!=null) {
+			this.btnAgregar.setEnabled(true);
+			this.btnModificar.setEnabled(true);
+		}
+		else {
+			this.btnAgregar.setEnabled(false);
+			this.btnModificar.setEnabled(false);
+		}
+	}
+	public void keyTyped(KeyEvent e) {
+	}
+
+	@Override
+	public void addActionListener(ActionListener listener) {
+		this.btnAgregar.addActionListener(listener);
+		this.btnSacar.addActionListener(listener);
+		this.btnModificar.addActionListener(listener);
+		this.btnListo.addActionListener(listener);
+		this.btnCerrarMesa.addActionListener(listener);
+		
+	}
+
+	@Override
+	public String getCantidad() {
+		// TODO Auto-generated method stub
+		return this.textFieldCantidad.getText();
+	}
+
+	@Override
+	public void emergenteCantidadInvalida() {
+		// TODO Auto-generated method stub
+		JOptionPane.showMessageDialog(this,"Numero mal ingresado, ingrese un numero mayor a 0");
+		
+		
+	}
+
+	@Override
+	public DefaultListModel<Pedido> getModeloListaComanda() {
+		// TODO Auto-generated method stub
+		return this.modeloListaComanda;
+	}
+
+	@Override
+	public DefaultListModel<Producto> getModeloListaProductos() {
+		// TODO Auto-generated method stub
+		return this.modeloListaProductos;
+	}
 }
