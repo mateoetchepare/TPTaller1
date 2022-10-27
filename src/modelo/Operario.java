@@ -61,4 +61,11 @@ public class Operario implements Serializable{
 		mozo.agregaMesa(numeroMesa);
 	}
 	
+	public void habilitarMesa(Mesa mesa) {
+		mesa.habilitar();
+	}
+	public void deshabilitarMesa(Mesa mesa) {
+		mesa.deshabilitar();
+	}
+	
 }

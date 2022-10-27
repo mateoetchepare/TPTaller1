@@ -3,7 +3,10 @@ package controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import modelo.Mesa;
+import modelo.Mozo;
 import modelo.Operario;
+import modelo.Sistema;
 import vista.IVistaOperario;
 
 public class ControladorOperario implements ActionListener {
@@ -14,11 +17,37 @@ public class ControladorOperario implements ActionListener {
 		this.vista=vista;
 		this.operario=operario;
 		this.vista.addActionListener(this);
+		this.actualizarListas();
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		//this.actualizarListas();
+		
+		if(e.getActionCommand().equals("Habilitar")) { 
+			this.operario.habilitarMesa(this.vista.getListMesas().getSelectedValue());
+			this.actualizarListas();
+		}
+		else if(e.getActionCommand().equals("Deshabilitar")) {
+			this.operario.deshabilitarMesa(this.vista.getListMesas().getSelectedValue());
+			this.actualizarListas();
+		}
+		else if(e.getActionCommand().equals("Ver Mesa")) {
+			//lanzar ventana y ocntrolador de mesa 
+		}
+	}
+
+	private void actualizarListas() {
+		this.vista.getModeloListaMozos().clear();
+		for(Mozo mozo:Sistema.getInstancia().getMozos()) {
+			this.vista.getModeloListaMozos().addElement(mozo);
+		}
+		this.vista.getModeloListaMesas().clear();
+		for(Mesa mesa:Sistema.getInstancia().getMesas()) {
+			this.vista.getModeloListaMesas().addElement(mesa);
+		}
+		this.vista.actualizarListas();
 		
 	}
+	
 }

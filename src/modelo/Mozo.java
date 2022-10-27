@@ -78,6 +78,17 @@ public class Mozo implements Serializable{
 		else
 			return false;
 	}
+
+	@Override
+	public String toString() {
+		String salida=null;
+		if(this.estado==null)
+			salida= nombreYApellido+ ", estado= s/asignar" ;
+		else
+			salida= nombreYApellido + ", estado=" + estado ;
+		
+		return salida;
+	}
 	
 	
 }

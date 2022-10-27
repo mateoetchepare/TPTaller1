@@ -6,7 +6,11 @@ import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.util.ArrayList;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -17,7 +21,10 @@ import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
-public class VentanaOperario extends JFrame implements IVistaOperario{
+import modelo.Mesa;
+import modelo.Mozo;
+
+public class VentanaOperario extends JFrame implements IVistaOperario, MouseListener{
 
 	private JPanel contentPane;
 	private JLabel LabelPrincipal;
@@ -27,10 +34,12 @@ public class VentanaOperario extends JFrame implements IVistaOperario{
 	private JPanel panelDer;
 	private JScrollPane scrollPane;
 	private JList listMesas;
+	private DefaultListModel<Mesa> modeloListaMesas;
 	private JLabel LabelMesas;
 	private JPanel panelBotonesMesas;
 	private JScrollPane scrollPane_1;
 	private JList listMozos;
+	private DefaultListModel<Mozo> modeloListaMozos;
 	private JLabel lblNewLabel;
 	private JPanel panelBotonesMozos;
 	private JButton btnEliminar;
@@ -43,6 +52,7 @@ public class VentanaOperario extends JFrame implements IVistaOperario{
 	private JButton btnProductosPromociones;
 	private JButton btnAgregarOperario;
 	private JButton btnCerrarSecion;
+	
 
 	/**
 	 * Launch the application.
@@ -86,9 +96,14 @@ public class VentanaOperario extends JFrame implements IVistaOperario{
 		this.scrollPane_1 = new JScrollPane();
 		this.panelIz.add(this.scrollPane_1, BorderLayout.CENTER);
 		
-		this.listMozos = new JList();
+		this.listMozos = new JList<Mozo>();
+		this.listMozos.addMouseListener(this);
 		this.listMozos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		this.scrollPane_1.setViewportView(this.listMozos);
+		this.scrollPane_1.setViewportView(this.listMozos);////////////
+		this.modeloListaMozos=new DefaultListModel<Mozo>();
+		this.listMozos.setModel(modeloListaMozos);
+		
+		//////
 		
 		this.lblNewLabel = new JLabel("Lista Mozos");
 		this.lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -121,9 +136,12 @@ public class VentanaOperario extends JFrame implements IVistaOperario{
 		this.scrollPane = new JScrollPane();
 		this.panelDer.add(this.scrollPane, BorderLayout.CENTER);
 		
-		this.listMesas = new JList();
+		this.listMesas = new JList<Mesa>();
+		this.listMesas.addMouseListener(this);
 		this.listMesas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		this.scrollPane.setViewportView(this.listMesas);
+		this.modeloListaMesas=new DefaultListModel<Mesa>();
+		this.listMesas.setModel(modeloListaMesas);
 		
 		this.LabelMesas = new JLabel("Lista Mesas");
 		this.LabelMesas.setHorizontalAlignment(SwingConstants.CENTER);
@@ -136,6 +154,7 @@ public class VentanaOperario extends JFrame implements IVistaOperario{
 		this.panelBotonesMozos.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		this.btnEliminar = new JButton("Eliminar");
+		this.btnEliminar.setEnabled(false);
 		this.panelBotonesMozos.add(this.btnEliminar);
 		
 		this.btnAgregar = new JButton("Agregar");
@@ -148,14 +167,17 @@ public class VentanaOperario extends JFrame implements IVistaOperario{
 		this.panelBotonesMesas.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		this.btnHabilitar = new JButton("Habilitar");
+		
 		this.btnHabilitar.setEnabled(false);
 		this.panelBotonesMesas.add(this.btnHabilitar);
 		
 		this.btnDeshabilitar = new JButton("Deshabilitar");
+		
 		this.btnDeshabilitar.setEnabled(false);
 		this.panelBotonesMesas.add(this.btnDeshabilitar);
 		
 		this.btnVerMesa = new JButton("Ver Mesa");
+		
 		this.btnVerMesa.setEnabled(false);
 		this.panelBotonesMesas.add(this.btnVerMesa);
 	}
@@ -168,8 +190,62 @@ public class VentanaOperario extends JFrame implements IVistaOperario{
 	
 	public void addActionListener(ActionListener listener) {
 		//agregar todos los botones
-		this.btnAgregar.addActionListener(listener);
+		this.btnHabilitar.addActionListener(listener);
+		this.btnDeshabilitar.addActionListener(listener);
+		this.btnVerMesa.addActionListener(listener);
 		
 	}
 
+	@Override
+	public void actualizarListas() {
+		// TODO Auto-generated method stub
+		//this.repaint();
+		this.mouseClicked(null);
+		
+	}
+
+	@Override
+	public DefaultListModel<Mozo> getModeloListaMozos() {
+		// TODO Auto-generated method stub
+		return this.modeloListaMozos;
+	}
+
+	@Override
+	public DefaultListModel<Mesa> getModeloListaMesas() {
+		// TODO Auto-generated method stub
+		return this.modeloListaMesas;
+	}
+	
+	
+
+	public void mouseClicked(MouseEvent e) {
+		if(this.listMesas.getSelectedValue()!=null) {
+			this.btnHabilitar.setEnabled(true);
+			this.btnDeshabilitar.setEnabled(true);
+			this.btnVerMesa.setEnabled(true);
+			System.out.println(this.listMesas.getSelectedValue()+"++");
+		}
+		else {
+			this.btnHabilitar.setEnabled(false);
+			this.btnDeshabilitar.setEnabled(false);
+			this.btnVerMesa.setEnabled(false);
+			System.out.println("no hay seleccion en lista mesas");
+		}
+			
+	}
+	public void mouseEntered(MouseEvent e) {
+	}
+	public void mouseExited(MouseEvent e) {
+	}
+	public void mousePressed(MouseEvent e) {
+	}
+	public void mouseReleased(MouseEvent e) {
+	}
+
+	@Override
+	public JList<Mesa> getListMesas() {
+		// TODO Auto-generated method stub
+		return this.listMesas;
+	}
+	
 }
