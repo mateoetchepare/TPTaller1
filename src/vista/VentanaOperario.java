@@ -120,13 +120,13 @@ public class VentanaOperario extends JFrame implements IVistaOperario, MouseList
 		this.btnAsignarMozo.setEnabled(false);
 		this.panelCentral.add(this.btnAsignarMozo);
 		
-		this.btnProductosPromociones = new JButton("Productos/ Promociones");
+		this.btnProductosPromociones = new JButton("Productos / Promociones");
 		this.panelCentral.add(this.btnProductosPromociones);
 		
 		this.btnAgregarOperario = new JButton("Agregar Operario");
 		this.panelCentral.add(this.btnAgregarOperario);
 		
-		this.btnCerrarSecion = new JButton("Cerrar Secion");
+		this.btnCerrarSecion = new JButton("Cerrar Sesion");
 		this.panelCentral.add(this.btnCerrarSecion);
 		
 		this.panelDer = new JPanel();
