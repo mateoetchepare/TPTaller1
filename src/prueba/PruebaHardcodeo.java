@@ -9,6 +9,7 @@ import modelo.Mozo;
 import modelo.Operario;
 import modelo.Producto;
 import modelo.Sistema;
+import persistencia.Persistir;
 import vista.VentanaLogin;
 
 public class PruebaHardcodeo {
@@ -76,6 +77,9 @@ public class PruebaHardcodeo {
 		ControladorLogin controladorLogin=new ControladorLogin(ventanaLogin);
 		ventanaLogin.setVisible(true);
 		
+		
+		//HACER PERSISTENCIA EN CONTROLADOR OPERARIO CUANDO CIERRA SESION
+		//Persistir.escribirSistema();
 		
 	}
 
