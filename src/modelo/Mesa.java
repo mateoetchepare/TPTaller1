@@ -2,6 +2,8 @@ package modelo;
 
 import java.io.Serializable;
 
+import excepciones.MesaDeshabilitadaException;
+
 public class Mesa implements Serializable{
 	private int numeroMesa;
 	private int comensales;
@@ -51,12 +53,18 @@ public class Mesa implements Serializable{
 		else
 			System.out.println("la mesa ya esta ocupada");//agregar exception
 	}
+	
 	public void habilitar() {
 		this.habilitado=true;
 	}
 	
-	public void deshabilitar() {
-		this.habilitado=false;
+	public void deshabilitar() throws MesaDeshabilitadaException{
+		if(this.estado.equals("libre"))
+			this.habilitado=false;
+		else {
+			System.out.println("No se puede deshabilitar mesa porue esta ocupada");//agregar exception
+			throw new MesaDeshabilitadaException();
+		}
 	}
 	public boolean getHabilitado() {
 		return this.habilitado;

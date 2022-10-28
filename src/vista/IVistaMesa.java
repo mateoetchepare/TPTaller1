@@ -22,4 +22,6 @@ public interface IVistaMesa {
 	void emergenteStockInsuficiente(int cant,int stock);
 	void emergenteProductoNoSeleccionado();
 	
+	void completarTitulo(int numeroMesa,String estado);
+	
 }

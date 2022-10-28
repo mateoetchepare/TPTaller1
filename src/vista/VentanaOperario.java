@@ -194,7 +194,7 @@ public class VentanaOperario extends JFrame implements IVistaOperario, MouseList
 		this.btnHabilitar.addActionListener(listener);
 		this.btnDeshabilitar.addActionListener(listener);
 		this.btnVerMesa.addActionListener(listener);
-		
+		this.btnAsignarMozo.addActionListener(listener);
 		
 	}
 
@@ -235,6 +235,19 @@ public class VentanaOperario extends JFrame implements IVistaOperario, MouseList
 			this.btnVerMesa.setEnabled(false);
 			System.out.println("no hay seleccion en lista mesas");
 		}
+		if(this.listMozos.getSelectedValue()!=null) {
+			//habilitar botones mozo
+		}
+		else {
+			//deshabilitar botones mozo
+		}
+		
+		if(this.listMozos.getSelectedValue()!=null && this.listMesas.getSelectedValue()!=null) {
+			this.btnAsignarMozo.setEnabled(true);
+		}
+		else {
+			this.btnAsignarMozo.setEnabled(false);
+		}
 			
 	}
 	public void mouseEntered(MouseEvent e) {
@@ -267,6 +280,24 @@ public class VentanaOperario extends JFrame implements IVistaOperario, MouseList
 	@Override
 	public void emergenteNoHaySeleccion() {
 		JOptionPane.showMessageDialog(this,"No hay seleccion en la lista mesas");
+	}
+
+	@Override
+	public void emergenteMesaDeshabilitada() {
+		// TODO Auto-generated method stub
+		JOptionPane.showMessageDialog(this,"No se puede ver mesa, esta deshabilitada");
+	}
+
+	@Override
+	public void emergenteMesaOcupada() {
+		// TODO Auto-generated method stub
+		JOptionPane.showMessageDialog(this,"No se puede deshabilitar mesa, esta ocupada");
+	}
+
+	@Override
+	public JList<Mozo> getListMozos() {
+		// TODO Auto-generated method stub
+		return this.listMozos;
 	}
 	
 	

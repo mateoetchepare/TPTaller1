@@ -25,6 +25,7 @@ public class ControladorMesa implements ActionListener {
 		this.vistaOperario.setVisible(false);
 
 		this.actualizarListas();
+		this.vista.completarTitulo(mesa.getNumeroMesa(),mesa.getEstado());
 	}
 
 	@Override
@@ -35,7 +36,7 @@ public class ControladorMesa implements ActionListener {
 			try {
 				cantidad = Integer.parseInt(this.vista.getCantidad());
 				esNumero = true;
-				System.out.println("Numero correcto");
+				//System.out.println("Numero correcto");
 				if (e.getActionCommand().equals("Agregar")) {// agrego pedido a comanda
 					if (this.vista.getListProductos().getSelectedValue() != null) {
 						try {
@@ -71,6 +72,17 @@ public class ControladorMesa implements ActionListener {
 			}
 			
 		}else if (e.getActionCommand().equals("Listo")) {
+			this.vistaOperario.actualizarListas();
+			VentanaMesa v = (VentanaMesa) this.vista;
+			v.setVisible(false);
+			this.vistaOperario.setVisible(true);
+			
+		}else if (e.getActionCommand().equals("Cerrar Mesa")) {
+			//cerrar mesa tiene ue generar la factura de la comanda
+			//establecer esta de la mesa como libre
+			//volver a vista operario
+			
+			this.mesa.setEstado("libre");// no usar este metodo, es para probar funcionalidad
 			this.vistaOperario.actualizarListas();
 			VentanaMesa v = (VentanaMesa) this.vista;
 			v.setVisible(false);

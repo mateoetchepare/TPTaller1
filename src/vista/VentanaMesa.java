@@ -191,10 +191,16 @@ public class VentanaMesa extends JFrame implements KeyListener,IVistaMesa {
 	public void keyReleased(KeyEvent e) {
 		if(this.textFieldCantidad.getText().length()>0 && this.listProductos.getSelectedValue()!=null) {
 			this.btnAgregar.setEnabled(true);
-			this.btnModificar.setEnabled(true);
+			
 		}
 		else {
 			this.btnAgregar.setEnabled(false);
+			
+		}
+		if(this.textFieldCantidad.getText().length()>0 && this.listComanda.getSelectedValue()!=null) {
+			this.btnModificar.setEnabled(true);
+		}
+		else {
 			this.btnModificar.setEnabled(false);
 		}
 		if(this.listComanda.getSelectedValue()!=null)
@@ -278,6 +284,14 @@ public class VentanaMesa extends JFrame implements KeyListener,IVistaMesa {
 	public JList<Pedido> getListComanda() {
 		// TODO Auto-generated method stub
 		return this.listComanda;
+	}
+
+	@Override
+	public void completarTitulo(int numeroMesa,String estado) {
+		String titulo=null;
+		titulo="Mesa Nº "+numeroMesa+", estado: "+estado;
+		this.LabelTitulo.setText(titulo);
+		
 	}
 	
 

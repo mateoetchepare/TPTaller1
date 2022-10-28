@@ -15,11 +15,15 @@ public interface IVistaOperario {
 	DefaultListModel<Mozo> getModeloListaMozos();
 	DefaultListModel<Mesa> getModeloListaMesas();
 	JList<Mesa> getListMesas();
+	JList<Mozo> getListMozos();
 	
 	boolean getSeleccionado();
 	JButton getBtnVerMesa();
 	
 	void emergenteNoHaySeleccion();
 	void setVisible(boolean res);
+	
+	void emergenteMesaDeshabilitada();
+	void emergenteMesaOcupada();
 	
 }

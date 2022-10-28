@@ -3,6 +3,7 @@ package controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import excepciones.MesaDeshabilitadaException;
 import modelo.Mesa;
 import modelo.Mozo;
 import modelo.Operario;
@@ -31,7 +32,12 @@ public class ControladorOperario implements ActionListener {
 				this.actualizarListas();
 
 			} else if (e.getActionCommand().equals("Deshabilitar")) {
-				this.operario.deshabilitarMesa(this.vista.getListMesas().getSelectedValue());
+				try {
+					this.operario.deshabilitarMesa(this.vista.getListMesas().getSelectedValue());
+				} catch (MesaDeshabilitadaException e1) {
+					this.vista.emergenteMesaOcupada();
+					//e1.printStackTrace();
+				}
 				this.actualizarListas();
 			} else if (e.getActionCommand().equals("Ver Mesa")) {
 				// lanzar ventana y ocntrolador de mesa
@@ -44,8 +50,14 @@ public class ControladorOperario implements ActionListener {
 					vistaMesa.setVisible(true);
 				}
 				else
-					System.out.println("mesa no habilitada para verla");
+					this.vista.emergenteMesaDeshabilitada();
+				
+			}else if (e.getActionCommand().equals("Asignar")) {
+				System.out.println("Se presiono boton asignar");
+				this.operario.asignarMesa(this.vista.getListMozos().getSelectedValue(), this.vista.getListMesas().getSelectedValue());
+				
 			}
+
 		
 
 	}

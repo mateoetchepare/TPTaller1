@@ -3,6 +3,7 @@ package modelo;
 import java.io.Serializable;
 
 import excepciones.EstadoInvalidoMozoException;
+import excepciones.MesaDeshabilitadaException;
 import excepciones.MesaInvalidaException;
 import excepciones.ProductoEnComandaException;
 
@@ -57,14 +58,19 @@ public class Operario implements Serializable{
 		mozo.setEstado(estado);
 	}
 	
-	public void asignaMesas(Mozo mozo, int numeroMesa) throws MesaInvalidaException{
+	/* CAMBIO EL METODO ABAJO, LO DEJO COMENTADO POR LAS DUDAS
+	 * public void asignaMesas(Mozo mozo, int numeroMesa) throws MesaInvalidaException{
 		mozo.agregaMesa(numeroMesa);
+	}*/
+	
+	public void asignarMesa(Mozo mozo,Mesa mesa) {
+		mozo.agregarMesa(mesa);//falta la exception
 	}
 	
 	public void habilitarMesa(Mesa mesa) {
 		mesa.habilitar();
 	}
-	public void deshabilitarMesa(Mesa mesa) {
+	public void deshabilitarMesa(Mesa mesa) throws MesaDeshabilitadaException {
 		mesa.deshabilitar();
 	}
 	public void ocuparMesa(Mesa mesa) {

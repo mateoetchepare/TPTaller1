@@ -2,8 +2,7 @@ package modelo;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
-
-import excepciones.MesaInvalidaException;
+import java.util.Iterator;
 
 
 public class Mozo implements Serializable{
@@ -59,7 +58,7 @@ public class Mozo implements Serializable{
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
-	
+	/* CAMBIO EL METODO ABAJO, LO DEJO COMENTADO POR LAS DUDAS
 	public void agregaMesa(int numeroMesa) throws MesaInvalidaException{
 		int i=0, j;
 		j = mesas.size();
@@ -70,6 +69,25 @@ public class Mozo implements Serializable{
 			mesas.add(Sistema.getInstancia().retornaMesa(numeroMesa));
 		else
 			throw new MesaInvalidaException("La mesa ya pertenece al mozo");
+	}*/
+	
+	public void agregarMesa(Mesa mesa) {
+		boolean yaAsignada=false;
+		
+		Iterator<Mozo> itMozo= Sistema.getInstancia().getMozos().iterator();
+		while(itMozo.hasNext() && !yaAsignada) {
+			if(itMozo.next().getMesas().contains(mesa)) {//algun mozo ya tiene esta mesa asignada
+				yaAsignada=true;
+			}
+		}
+		if(yaAsignada) {
+			System.out.println("La mesa ya esta asignada a un mozo");//hacer exception
+		}
+		else {
+			this.mesas.add(mesa);
+			System.out.println("Se agrego la mesa al mozo");
+		}
+		
 	}
 	
 	public boolean mesaACargo(Mesa mesa) {
