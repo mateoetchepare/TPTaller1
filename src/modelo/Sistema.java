@@ -111,7 +111,13 @@ public class Sistema {
 		return operarios;
 	}	
 	
-	
+	/**
+	 *	Metodo encargado de crear una mesa nueva para el restaurant
+	 *  
+	 * <b>PostCond:</b> Devuelve una mesa valida nueva en caso de que el numero ingresado no este usado previamente <br>
+	 * por otra mesa y que la combinacion de numero de comensales y numero de mesa sea valido
+	 *
+	 */
 
 	public void agregaMesa(Mesa mesa) throws MesaInvalidaException{
 		int i = 0, j;
@@ -130,7 +136,13 @@ public class Sistema {
 		} else
 			throw new MesaInvalidaException("La combinacion de comensales - numero de mesa es invalido");
 	}
-
+	
+	/**
+	 * 
+	 * <b>PreCond:</b> numeroMesa debe ser mayor a 0. <br>
+	 * <b>PostCond:</b> debe devolver una mesa, si el numero ingresado corresponde a una mesa valida
+	 *
+	 */
 	
 	public Mesa retornaMesa(int numeroMesa) throws MesaInvalidaException{
 		int i=0, j;
@@ -171,6 +183,15 @@ public class Sistema {
 
 	
 	//cambio el login, ue no se pase un operario, sino nombre de usuario y contrasenia
+	
+	/**
+	 * 
+	 *
+	 * <b>PostCond:</b> devuelve el operario logueado, si no hay ningun error en el tipeo de datos
+	 *
+	 */
+	
+	
 	public Operario loginOperario(String usuario,String contrasenia) throws LoginIncorrectoException, CambioObligatorioContraseniaException{
 		int j, i =0;
 
@@ -198,6 +219,13 @@ public class Sistema {
 	public boolean unSoloOperario() {
 		return operarios.size() == 1;
 	}
+	
+	/**
+	 * 
+	 * <b>PreCond:</b> cantComensales debe ser mayor a 0 <br>
+	 * <b>PostCond:</b> devuelve una mesa si en efecto habia una libre para ocuparse
+	 *
+	 */
 
 	public Mesa condicionesUsoDeMesa(int cantComensales) throws MesaInvalidaException{
 		int i = 0, j, h = 0, k;
@@ -263,6 +291,8 @@ public class Sistema {
 			productos.remove(producto);
 	}
 	
+	
+	
 	public void nuevoProducto(Producto producto) throws ProductoExistenteException, ProductoPreciosInvalidosException{
 		if (!productos.contains(producto))
 			if (producto.getPrecioCosto() <= producto.getPrecioVenta() && producto.getPrecioCosto() > 0 && producto.getPrecioVenta() > 0 )
@@ -273,6 +303,14 @@ public class Sistema {
 			throw new ProductoExistenteException();
 	}
 	
+	
+	
+	/**
+	 * Genera la factura de la comanda luego de cerrarse la comanda
+	 * <b>PreCond:</b> la formaDePago debe ser una formaDePago valida. <br>
+	 * <b>PostCond:</b> debe crearse la factura correctamente y guardarse en sistema
+	 *
+	 */
 	public void facturarComanda(Comanda comanda, String formaDePago) {
 		double auxTotal=0, total=0;
 		int i=0, j, h=0, k;;
