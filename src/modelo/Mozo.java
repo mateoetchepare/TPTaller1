@@ -11,12 +11,10 @@ public class Mozo implements Serializable{
 	private transient String estado; // 0 (activo), 1(de franco), 2 (ausente) //no se persiste
 	private int hijos;
 	private GregorianCalendar nacimiento;
-	private Sueldo sueldo;
 	
 	public Mozo(int hijos, GregorianCalendar nacimiento) {
 		this.hijos = hijos;
 		this.nacimiento = nacimiento; // chequear >18
-		this.sueldo = new Sueldo(500, hijos);
 	}
 
 	public Mozo() {}
