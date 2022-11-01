@@ -226,7 +226,7 @@ public class Sistema {
 	 * <b>PostCond:</b> devuelve una mesa si en efecto habia una libre para ocuparse
 	 *
 	 */
-
+/*
 	public Mesa condicionesUsoDeMesa(int cantComensales) throws MesaInvalidaException{
 		int i = 0, j, h = 0, k;
 		boolean mozoActivo = false;
@@ -254,6 +254,7 @@ public class Sistema {
 		} else
 			throw new MesaInvalidaException("No se encontro un mozo libre a cargo de la mesa o no habia una mesa libre con esas caracteristicas");
 	} 
+	*/
 	
 	/* public Mozo retornaMozo(Mozo mozo) throws MozoInvalidoException {
 		if (mozos.contains(mozo)) {
