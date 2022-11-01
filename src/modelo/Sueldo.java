@@ -2,28 +2,26 @@ package modelo;
 
 public class Sueldo {
 	private double basico;
-	private double porcentaje;
+	private double totalSueldo;
 	
-	public Sueldo() {}
+	public Sueldo(int basico, int cantHijos) {
+		this.totalSueldo = basico + (1.05*cantHijos);
+	}
 	
-	public Sueldo(int basico) {
-		//completar solo con basico o agregar tambien el porcentaje por parametro
+	public void modificaSueldo(int basico, int cantHijos) {
+		this.totalSueldo = basico + (1.05*cantHijos);
 	}
 
+	public double getTotalSueldo() {
+		return totalSueldo;
+	}
+	
 	public double getBasico() {
 		return basico;
 	}
 
 	public void setBasico(double basico) {
 		this.basico = basico;
-	}
-
-	public double getPorcentaje() {
-		return porcentaje;
-	}
-
-	public void setPorcentaje(double porcentaje) {
-		this.porcentaje = porcentaje;
 	}
 	
 }
