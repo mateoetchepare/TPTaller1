@@ -13,8 +13,6 @@ public class Operario implements Serializable{
 	private String password;
 	private String nombreYApellido;
 	
-	public Operario() {}
-	
 	public Operario(String nombreUsuario, String password, String nombreYApellido) {
 		this.nombreUsuario = nombreUsuario;
 		this.password = password;

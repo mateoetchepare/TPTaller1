@@ -164,7 +164,7 @@ public class Sistema {
 			throw new MesaInvalidaException("La mesa no existe");
 	}
 
-	public void agregaOperario(Operario operario) throws UsuarioNuevoInvalidoException{ // falta plantear la creacion del PRIMER operario
+	public void agregaOperario(Operario operario) throws ContraseniaReqNoCumplidosException, ContraseniaLongitudInvalidaException{ 
 		int i = 0;
 		boolean mayus = false, numero = false;
 		String contrasenia = operario.getPassword();
@@ -186,8 +186,8 @@ public class Sistema {
 				throw new ContraseniaReqNoCumplidosException();
 		} else
 			throw new ContraseniaLongitudInvalidaException();
-	} // falta verificar que sea el admin, porque sino un operario no puede anadir a otro operario
-	// de todos modos esto se puede llegar a hacer con la ventana, que solo aparezca el  boton si es admin
+	} 
+	
 
 	
 	//cambio el login, ue no se pase un operario, sino nombre de usuario y contrasenia

@@ -9,4 +9,5 @@ public interface IVistaInicial {
 	String getNombre();
 	String getNombreApellido();
 	String getSueldo();
+	void muestraError(String msg);
 }
