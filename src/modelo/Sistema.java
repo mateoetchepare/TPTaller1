@@ -188,7 +188,9 @@ public class Sistema {
 			throw new ContraseniaLongitudInvalidaException();
 	} 
 	
-
+	public void borrarMozo(Mozo mozo) {
+		mozos.remove(mozo);
+	}
 	
 	//cambio el login, ue no se pase un operario, sino nombre de usuario y contrasenia
 	

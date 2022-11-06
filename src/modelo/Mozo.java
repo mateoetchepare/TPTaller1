@@ -18,8 +18,6 @@ public class Mozo implements Serializable{
 		this.hijos = hijos;
 		this.nacimiento = nacimiento; // chequear >18
 	}
-
-	public Mozo() {}
 	
 	public ArrayList<Mesa> getMesas() {
 		return mesas;
