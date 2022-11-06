@@ -10,6 +10,7 @@ import modelo.Mozo;
 import modelo.Operario;
 import modelo.Producto;
 import modelo.Promocion;
+import modelo.Sistema;
 import modelo.Sueldo;
 
 public class SistemaDTO implements Serializable {
@@ -96,6 +97,5 @@ public class SistemaDTO implements Serializable {
 	public void setSueldo(Sueldo sueldo) {
 		this.sueldo = sueldo;
 	}
-	
 	
 }

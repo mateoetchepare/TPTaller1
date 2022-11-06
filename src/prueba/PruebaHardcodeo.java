@@ -1,5 +1,6 @@
 package prueba;
 
+import java.time.DayOfWeek;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
@@ -13,10 +14,10 @@ import persistencia.Persistir;
 import vista.VentanaLogin;
 
 public class PruebaHardcodeo {
-
 	public static void main(String[] args) {
 		/////////////////////// MESAS ///////////////////////////////////////
 		ArrayList<Mesa> mesas = new ArrayList<Mesa>();
+		
 
 		mesas.add(new Mesa(0, 1));
 		mesas.add(new Mesa(1, 2));
@@ -38,7 +39,7 @@ public class PruebaHardcodeo {
 		/////////////////////// OPERARIOS ///////////////////////////////////////
 		ArrayList<Operario> operarios = new ArrayList<Operario>();
 
-		operarios.add(new Operario("Usuario 1", "contrasenia1", "Joaco Acuña"));
+		operarios.add(new Operario("Usuario 1", "contrasenia1", "Joaco Acuï¿½a"));
 		operarios.add(new Operario("Usuario 2", "contrasenia2", "Ramiro Lopez"));
 		operarios.add(new Operario("Usuario 3", "contrasenia3", "Julian Gonzales"));
 		/////////////////////////////////////////////////////////////////////////////

@@ -1,5 +1,7 @@
 package modelo;
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import excepciones.CambioObligatorioContraseniaException;
@@ -26,11 +28,13 @@ public class Sistema {
 	private String nombre;
 	private Sueldo sueldo; // sueldo que paga a mesero  //puede XML
 	private static Sistema instancia = null;
+	private transient LocalDate fecha;
+	private transient String diaActual;
 
 	//persistencia XML constructor vacio y todos los geter y seters
 	//Agregue todas las cosas necesarias para hacer persistencia XML y termine usando bin
 	public Sistema() {
-
+		
 	}
 
 	public ArrayList<Mozo> getMozos() {
@@ -100,7 +104,11 @@ public class Sistema {
 	public void setSueldo(Sueldo sueldo) {
 		this.sueldo = sueldo;
 	}
-
+	
+	public void setFecha(LocalDate fecha) {
+		this.fecha = fecha;
+	}
+	
 	public static Sistema getInstancia() {
 		if (instancia == null)
 			instancia = new Sistema();
@@ -304,7 +312,32 @@ public class Sistema {
 			throw new ProductoExistenteException();
 	}
 	
-	
+	public void diaActualAlEspanol() {
+		switch (fecha.getDayOfWeek()) {
+		case SUNDAY:
+			this.diaActual = "domingo";
+			break;
+		case MONDAY:
+			this.diaActual = "lunes";
+			break;
+		case TUESDAY:
+			this.diaActual = "martes";
+			break;
+		case WEDNESDAY:
+			this.diaActual = "miercoles";
+			break;
+		case THURSDAY:
+			this.diaActual = "jueves";
+			break;
+		case FRIDAY:
+			this.diaActual = "viernes";
+			break;
+		case SATURDAY:
+			this.diaActual = "sabado";
+			break;
+		}
+	}
+		
 	
 	/**
 	 * Genera la factura de la comanda luego de cerrarse la comanda
@@ -322,7 +355,7 @@ public class Sistema {
 
 		j = promociones.size();
 		while (i<j) {
-			if (promociones.get(i).isActivo()) { //  && promociones.get(i).getDiasDePromo()) ///////COMO MIER... ME FIJO SI EL DIA ACTUAL ES IGUAL AL DIA DE LA PROMO?
+			if (promociones.get(i).isActivo() && promociones.get(i).getDiasDePromo() == this.diaActual) { //  && promociones.get(i).getDiasDePromo()) ///////COMO MIER... ME FIJO SI EL DIA ACTUAL ES IGUAL AL DIA DE LA PROMO?
 				if (promociones.get(i) instanceof PromocionProd) {
 					PromocionProd aux = (PromocionProd) promociones.get(i);
 					if (comanda.contieneProducto(aux.getProducto())) {

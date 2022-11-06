@@ -1,5 +1,7 @@
 package persistencia;
 
+import java.time.LocalDate;
+
 import modelo.Sistema;
 
 public class UtilSistema {
@@ -33,6 +35,7 @@ public class UtilSistema {
 		sistema.setFacturas(sistemaDTO.getFacturas());
 		sistema.setNombre(sistemaDTO.getNombre());
 		sistema.setSueldo(sistemaDTO.getSueldo());
+		sistema.setFecha(LocalDate.now());
 		
 		return sistema;
 	}

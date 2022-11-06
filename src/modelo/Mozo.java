@@ -1,5 +1,6 @@
 package modelo;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.Iterator;
@@ -10,9 +11,9 @@ public class Mozo implements Serializable{
 	private String nombreYApellido;
 	private transient String estado; // 0 (activo), 1(de franco), 2 (ausente) //no se persiste
 	private int hijos;
-	private GregorianCalendar nacimiento;
+	private LocalDate nacimiento;
 	
-	public Mozo(int hijos, GregorianCalendar nacimiento) {
+	public Mozo(int hijos, LocalDate nacimiento) {
 		this.hijos = hijos;
 		this.nacimiento = nacimiento; // chequear >18
 	}
