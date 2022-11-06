@@ -401,19 +401,15 @@ public class Sistema {
 			total = total + auxTotal;
 		}
 
-
-		/// AGREGO///
 		Mesa mesa=null;
 		int aux=0;
 		
 		while(i<this.mesas.size() && mesa==null) {
 			if(comanda.getNumeroMesa()==this.mesas.get(aux).getNumeroMesa())
 				mesa=this.mesas.get(aux);
-		}//en teoria mesa no puede ser null porue la comanda se crea en una mesa, asegurando ue la encuentra
-		///////////////
-		Factura factura = new Factura(/*comanda.getMesa()*/mesa, comanda.getPedidos(), total, formaDePago, promosAplicadas);
-		//comanda.getMesa().setEstado("libre"); //Se pone en estado libre desde la ventana solo cuando se 
-		//cierra la mesa
+		} 
+		Factura factura = new Factura(mesa, comanda.getPedidos(), total, formaDePago, promosAplicadas);
+		mesa.setEstado("libre");
 		comandas.remove(comanda);
 	}
 	
