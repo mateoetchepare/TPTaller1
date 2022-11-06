@@ -42,10 +42,6 @@ public class VentanaABMMozo extends JFrame {
 	private JLabel labelFecha;
 	private JPanel panel_3;
 	private JTextField textFieldFecha;
-	private JPanel panelEstado;
-	private JRadioButton rdbtnActivo;
-	private JRadioButton rdbtnFranco;
-	private JRadioButton rdbtnAusente;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private JPanel panelBotones;
 	private JButton btnAgregar;
@@ -86,7 +82,7 @@ public class VentanaABMMozo extends JFrame {
 		
 		this.panelPrincipal = new JPanel();
 		this.contentPane.add(this.panelPrincipal, BorderLayout.CENTER);
-		this.panelPrincipal.setLayout(new GridLayout(6, 0, 0, 0));
+		this.panelPrincipal.setLayout(new GridLayout(5, 0, 0, 0));
 		
 		this.panelNombre = new JPanel();
 		this.panelPrincipal.add(this.panelNombre);
@@ -155,25 +151,6 @@ public class VentanaABMMozo extends JFrame {
 		this.textFieldFecha = new JTextField();
 		this.textFieldFecha.setColumns(10);
 		this.panel_3.add(this.textFieldFecha);
-		
-		this.panelEstado = new JPanel();
-		this.panelPrincipal.add(this.panelEstado);
-		this.panelEstado.setLayout(new GridLayout(0, 3, 0, 0));
-		
-		this.rdbtnActivo = new JRadioButton("Activo");
-		buttonGroup.add(this.rdbtnActivo);
-		this.rdbtnActivo.setHorizontalAlignment(SwingConstants.CENTER);
-		this.panelEstado.add(this.rdbtnActivo);
-		
-		this.rdbtnFranco = new JRadioButton("De Franco");
-		buttonGroup.add(this.rdbtnFranco);
-		this.rdbtnFranco.setHorizontalAlignment(SwingConstants.CENTER);
-		this.panelEstado.add(this.rdbtnFranco);
-		
-		this.rdbtnAusente = new JRadioButton("Ausente");
-		buttonGroup.add(this.rdbtnAusente);
-		this.rdbtnAusente.setHorizontalAlignment(SwingConstants.CENTER);
-		this.panelEstado.add(this.rdbtnAusente);
 		
 		this.panelBotones = new JPanel();
 		this.panelPrincipal.add(this.panelBotones);

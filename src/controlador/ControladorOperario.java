@@ -20,6 +20,7 @@ public class ControladorOperario implements ActionListener {
 		this.operario = operario;
 		this.vista.addActionListener(this);
 		this.actualizarListas();
+		this.vista.vistaAdmin(operario.equals(Sistema.getInstancia().getOperarios().get(0)));
 	}
 
 	@Override

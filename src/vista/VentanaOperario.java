@@ -24,6 +24,8 @@ import javax.swing.border.EmptyBorder;
 
 import modelo.Mesa;
 import modelo.Mozo;
+import javax.swing.JRadioButton;
+import javax.swing.ButtonGroup;
 
 public class VentanaOperario extends JFrame implements IVistaOperario, MouseListener{
 
@@ -43,18 +45,21 @@ public class VentanaOperario extends JFrame implements IVistaOperario, MouseList
 	private DefaultListModel<Mozo> modeloListaMozos;
 	private JLabel lblNewLabel;
 	private JPanel panelBotonesMozos;
-	private JButton btnEliminar;
-	private JButton btnAgregar;
 	private JButton btnModificar;
 	private JButton btnHabilitar;
 	private JButton btnDeshabilitar;
 	private JButton btnVerMesa;
 	private JButton btnAsignarMozo;
 	private JButton btnProductosPromociones;
-	private JButton btnAgregarOperarioMozo;
+	private JButton btnAgregarOperario;
 	private JButton btnCerrarSecion;
 	boolean seleccionado=false;
 	private JButton btnEstadisticas;
+	private JRadioButton rdbtnActivo;
+	private JRadioButton rdbtnDeFranco;
+	private JRadioButton rdbtnAusente;
+	private final ButtonGroup buttonGroup = new ButtonGroup();
+	private JButton btnMozos;
 
 	/**
 	 * Launch the application.
@@ -125,8 +130,11 @@ public class VentanaOperario extends JFrame implements IVistaOperario, MouseList
 		this.btnProductosPromociones = new JButton("Productos / Promociones");
 		this.panelCentral.add(this.btnProductosPromociones);
 		
-		this.btnAgregarOperarioMozo = new JButton("Agregar Operario / Mozo");
-		this.panelCentral.add(this.btnAgregarOperarioMozo);
+		this.btnAgregarOperario = new JButton("Operario ");
+		this.panelCentral.add(this.btnAgregarOperario);
+		
+		this.btnMozos = new JButton("Mozos");
+		this.panelCentral.add(this.btnMozos);
 		
 		this.btnEstadisticas = new JButton("Estadisticas");
 		this.panelCentral.add(this.btnEstadisticas);
@@ -158,12 +166,17 @@ public class VentanaOperario extends JFrame implements IVistaOperario, MouseList
 		this.panelBotonesMozos.setPreferredSize(new Dimension(70,70));
 		this.panelBotonesMozos.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
-		this.btnEliminar = new JButton("Eliminar");
-		this.btnEliminar.setEnabled(false);
-		this.panelBotonesMozos.add(this.btnEliminar);
+		this.rdbtnActivo = new JRadioButton("Activo");
+		buttonGroup.add(this.rdbtnActivo);
+		this.panelBotonesMozos.add(this.rdbtnActivo);
 		
-		this.btnAgregar = new JButton("Agregar");
-		this.panelBotonesMozos.add(this.btnAgregar);
+		this.rdbtnDeFranco = new JRadioButton("De franco");
+		buttonGroup.add(this.rdbtnDeFranco);
+		this.panelBotonesMozos.add(this.rdbtnDeFranco);
+		
+		this.rdbtnAusente = new JRadioButton("Ausente");
+		buttonGroup.add(this.rdbtnAusente);
+		this.panelBotonesMozos.add(this.rdbtnAusente);
 		
 		this.btnModificar = new JButton("Modificar");
 		this.btnModificar.setEnabled(false);
@@ -302,6 +315,11 @@ public class VentanaOperario extends JFrame implements IVistaOperario, MouseList
 	public JList<Mozo> getListMozos() {
 		// TODO Auto-generated method stub
 		return this.listMozos;
+	}
+
+	@Override
+	public void vistaAdmin(boolean admin) {
+		this.btnAgregarOperario.setEnabled(admin);
 	}
 	
 	

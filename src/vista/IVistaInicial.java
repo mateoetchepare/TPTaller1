@@ -7,6 +7,6 @@ public interface IVistaInicial {
 	String getContrasenia();
 	String getContrasenia2();
 	String getNombre();
-	int getSueldo();
-	double getPorcentaje();
+	String getNombreApellido();
+	String getSueldo();
 }

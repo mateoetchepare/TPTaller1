@@ -1,18 +1,18 @@
 package vista;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import java.awt.GridLayout;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-import javax.swing.JTextField;
-import javax.swing.JButton;
+import java.awt.event.ActionListener;
 
-public class VentanaInicial extends JFrame {
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+
+public class VentanaInicial extends JFrame implements IVistaInicial{
 
 	private JPanel contentPane;
 	private JLabel labelTitulo;
@@ -121,6 +121,47 @@ public class VentanaInicial extends JFrame {
 		
 		this.btnConfirmar = new JButton("Confirmar");
 		this.panelBoton.add(this.btnConfirmar);
+		
+		
 	}
+
+	@Override
+	public void addActionListener(ActionListener listener) {
+		// TODO Auto-generated method stub
+		this.btnConfirmar.addActionListener(listener);
+	}
+
+	@Override
+	public String getContrasenia() {
+		// TODO Auto-generated method stub
+		return this.textContrasenia.getText();
+	}
+
+	@Override
+	public String getContrasenia2() {
+		// TODO Auto-generated method stub
+		return this.textRepetirContrasenia.getText();
+	}
+
+	@Override
+	public String getNombre() {
+		// TODO Auto-generated method stub
+		return this.textFieldRestaurante.getText();
+	}
+
+	@Override
+	public String getNombreApellido() {
+		// TODO Auto-generated method stub
+		return this.textFieldNombreApellido.getText();
+	}
+	
+	@Override
+	public String getSueldo() {
+		// TODO Auto-generated method stub
+		return this.textFieldSueldo.getText();
+	}
+
+	
+	
 
 }

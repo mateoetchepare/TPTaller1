@@ -27,6 +27,8 @@ import modelo.Pedido;
 import modelo.Producto;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseEvent;
+import javax.swing.JRadioButton;
+import javax.swing.ButtonGroup;
 
 public class VentanaMesa extends JFrame implements KeyListener,IVistaMesa {
 
@@ -57,6 +59,12 @@ public class VentanaMesa extends JFrame implements KeyListener,IVistaMesa {
 	private JPanel panel_2;
 	private DefaultListModel<Pedido> modeloListaComanda;
 	private DefaultListModel<Producto> modeloListaProductos;
+	private JPanel panelFormaPago;
+	private JRadioButton rdbtnEfectivo;
+	private JRadioButton rdbtnTarjeta;
+	private JRadioButton rdbtnMercadoPago;
+	private JRadioButton rdbtnCuentaDNI;
+	private final ButtonGroup buttonGroup = new ButtonGroup();
 	
 
 	/**
@@ -81,7 +89,7 @@ public class VentanaMesa extends JFrame implements KeyListener,IVistaMesa {
 	public VentanaMesa() {
 		setTitle("Sistema Restaurante");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 495, 298);
+		setBounds(100, 100, 596, 357);
 		this.contentPane = new JPanel();
 		this.contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(this.contentPane);
@@ -128,7 +136,7 @@ public class VentanaMesa extends JFrame implements KeyListener,IVistaMesa {
 		
 		this.panelBotonera = new JPanel();
 		this.panelDerecho.add(this.panelBotonera);
-		this.panelBotonera.setLayout(new GridLayout(3, 0, 0, 0));
+		this.panelBotonera.setLayout(new GridLayout(4, 0, 0, 0));
 		
 		this.panelCantidad = new JPanel();
 		this.panelBotonera.add(this.panelCantidad);
@@ -166,6 +174,25 @@ public class VentanaMesa extends JFrame implements KeyListener,IVistaMesa {
 		this.btnModificar = new JButton("Modificar");
 		this.btnModificar.setEnabled(false);
 		this.panel_1.add(this.btnModificar);
+		
+		this.panelFormaPago = new JPanel();
+		this.panelBotonera.add(this.panelFormaPago);
+		
+		this.rdbtnEfectivo = new JRadioButton("Efectivo");
+		buttonGroup.add(this.rdbtnEfectivo);
+		this.panelFormaPago.add(this.rdbtnEfectivo);
+		
+		this.rdbtnTarjeta = new JRadioButton("Tarjeta");
+		buttonGroup.add(this.rdbtnTarjeta);
+		this.panelFormaPago.add(this.rdbtnTarjeta);
+		
+		this.rdbtnMercadoPago = new JRadioButton("Mercado Pago");
+		buttonGroup.add(this.rdbtnMercadoPago);
+		this.panelFormaPago.add(this.rdbtnMercadoPago);
+		
+		this.rdbtnCuentaDNI = new JRadioButton("Cuenta DNI");
+		buttonGroup.add(this.rdbtnCuentaDNI);
+		this.panelFormaPago.add(this.rdbtnCuentaDNI);
 		
 		this.panelFinal = new JPanel();
 		this.panelBotonera.add(this.panelFinal);

@@ -26,4 +26,6 @@ public interface IVistaOperario {
 	void emergenteMesaDeshabilitada();
 	void emergenteMesaOcupada();
 	
+	void vistaAdmin(boolean admin);
+	
 }
