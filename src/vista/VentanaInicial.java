@@ -30,6 +30,9 @@ public class VentanaInicial extends JFrame {
 	private JLabel labelSueldo;
 	private JTextField textFieldSueldo;
 	private JButton btnConfirmar;
+	private JPanel panelNombreApellido;
+	private JLabel labelNombreApellido;
+	private JTextField textFieldNombreApellido;
 
 	/**
 	 * Launch the application.
@@ -57,11 +60,21 @@ public class VentanaInicial extends JFrame {
 		this.contentPane = new JPanel();
 		this.contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(this.contentPane);
-		this.contentPane.setLayout(new GridLayout(6, 0, 0, 0));
+		this.contentPane.setLayout(new GridLayout(7, 0, 0, 0));
 		
 		this.labelTitulo = new JLabel("Usuario: ADMIN123");
 		this.labelTitulo.setHorizontalAlignment(SwingConstants.CENTER);
 		this.contentPane.add(this.labelTitulo);
+		
+		this.panelNombreApellido = new JPanel();
+		this.contentPane.add(this.panelNombreApellido);
+		
+		this.labelNombreApellido = new JLabel("Nombre y Apellido: ");
+		this.panelNombreApellido.add(this.labelNombreApellido);
+		
+		this.textFieldNombreApellido = new JTextField();
+		this.panelNombreApellido.add(this.textFieldNombreApellido);
+		this.textFieldNombreApellido.setColumns(10);
 		
 		this.panelContrasenia = new JPanel();
 		this.contentPane.add(this.panelContrasenia);
