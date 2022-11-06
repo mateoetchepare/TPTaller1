@@ -48,16 +48,13 @@ public class PruebaHardcodeo {
 		/////////////////////// MOZOS ///////////////////////////////////////
 		ArrayList<Mozo> mozos = new ArrayList<Mozo>();
 
-		Mozo mozo=new Mozo(0,LocalDate.of(1998,07,04));
-		mozo.setNombreYApellido("Malena");
+		Mozo mozo=new Mozo("pedro", 0,LocalDate.of(1998,07,04));
 		mozos.add(mozo);
 		
-		mozo=new Mozo(0,LocalDate.of(1998,9,12));
-		mozo.setNombreYApellido("Manu");
+		mozo=new Mozo("juancito", 0,LocalDate.of(1998,9,12));
 		mozos.add(mozo);
 		
-		mozo=new Mozo(0,LocalDate.of(2000,9,12));
-		mozo.setNombreYApellido("More");
+		mozo=new Mozo("josesito", 0,LocalDate.of(2000,9,12));
 		mozos.add(mozo);
 		
 		/////////////////////////////////////////////////////////////////////////////
