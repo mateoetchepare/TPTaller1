@@ -2,7 +2,7 @@ package modelo;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.GregorianCalendar;
+//import java.util.GregorianCalendar;
 import java.util.Iterator;
 
 
@@ -44,11 +44,11 @@ public class Mozo implements Serializable{
 		this.hijos = hijos;
 	}
 
-	public GregorianCalendar getNacimiento() {
+	public LocalDate getNacimiento() {
 		return nacimiento;
 	}
 
-	public void setNacimiento(GregorianCalendar nacimiento) {
+	public void setNacimiento(LocalDate nacimiento) {
 		this.nacimiento = nacimiento;
 	}
 

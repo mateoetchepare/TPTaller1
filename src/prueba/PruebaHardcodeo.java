@@ -1,6 +1,7 @@
 package prueba;
 
 import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
@@ -47,15 +48,15 @@ public class PruebaHardcodeo {
 		/////////////////////// MOZOS ///////////////////////////////////////
 		ArrayList<Mozo> mozos = new ArrayList<Mozo>();
 
-		Mozo mozo=new Mozo(0,new GregorianCalendar(1998,07,04));
+		Mozo mozo=new Mozo(0,LocalDate.of(1998,07,04));
 		mozo.setNombreYApellido("Malena");
 		mozos.add(mozo);
 		
-		mozo=new Mozo(0,new GregorianCalendar(1998,9,12));
+		mozo=new Mozo(0,LocalDate.of(1998,9,12));
 		mozo.setNombreYApellido("Manu");
 		mozos.add(mozo);
 		
-		mozo=new Mozo(0,new GregorianCalendar(2000,9,12));
+		mozo=new Mozo(0,LocalDate.of(2000,9,12));
 		mozo.setNombreYApellido("More");
 		mozos.add(mozo);
 		
