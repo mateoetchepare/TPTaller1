@@ -77,7 +77,8 @@ public class Operario implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Usuario: "+ nombreUsuario + ", nombreYApellido=" + nombreYApellido ;
+		//return "Usuario: "+ nombreUsuario + ", nombreYApellido=" + nombreYApellido ;
+		return "Usuario: "+nombreUsuario+" contrasenia: "+password;
 	}
 	
 }

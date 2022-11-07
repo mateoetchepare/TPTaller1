@@ -89,7 +89,7 @@ public class VentanaMesa extends JFrame implements KeyListener,IVistaMesa {
 	public VentanaMesa() {
 		setTitle("Sistema Restaurante");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 596, 357);
+		setBounds(100, 100, 600, 400);
 		this.contentPane = new JPanel();
 		this.contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(this.contentPane);

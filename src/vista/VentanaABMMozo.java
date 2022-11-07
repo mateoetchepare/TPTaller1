@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import modelo.Mozo;
+import modelo.Operario;
 
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
@@ -25,6 +26,7 @@ import javax.swing.ListSelectionModel;
 import java.awt.FlowLayout;
 import javax.swing.JRadioButton;
 import javax.swing.ButtonGroup;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 
 public class VentanaABMMozo extends JFrame implements IVistaABMMozo{
@@ -57,6 +59,7 @@ public class VentanaABMMozo extends JFrame implements IVistaABMMozo{
 	private JButton btnSacar;
 	private JButton btnModificar;
 	private JButton btnListo;
+	private DefaultListModel<Mozo> modeloListaMozos;
 
 	/**
 	 * Launch the application.
@@ -188,11 +191,16 @@ public class VentanaABMMozo extends JFrame implements IVistaABMMozo{
 		this.list = new JList();
 		this.scrollPane.setViewportView(this.list);
 		this.list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		this.modeloListaMozos=new DefaultListModel<Mozo>();
+		this.list.setModel(modeloListaMozos);
 	}
 
 	@Override
 	public void addActionListener(ActionListener listener) {
-		// TODO Auto-generated method stub
+		this.btnAgregar.addActionListener(listener);
+		this.btnListo.addActionListener(listener);
+		this.btnModificar.addActionListener(listener);
+		this.btnSacar.addActionListener(listener);
 		
 	}
 
@@ -233,5 +241,18 @@ public class VentanaABMMozo extends JFrame implements IVistaABMMozo{
 	public Mozo getMozo() {
 		return (Mozo) this.list.getSelectedValue();
 	}
+
+	@Override
+	public DefaultListModel<Mozo> getModeloListaMozos() {
+		// TODO Auto-generated method stub
+		return this.modeloListaMozos;
+	}
+
+	@Override
+	public JList<Mozo> getListMozos() {
+		// TODO Auto-generated method stub
+		return this.list;
+	}
+	
 	
 }

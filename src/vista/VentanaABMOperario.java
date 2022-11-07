@@ -81,7 +81,7 @@ public class VentanaABMOperario extends JFrame implements IVistaABMOperario, Key
 	 */
 	public VentanaABMOperario() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 600, 400);
 		this.contentPane = new JPanel();
 		this.contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(this.contentPane);
@@ -89,7 +89,7 @@ public class VentanaABMOperario extends JFrame implements IVistaABMOperario, Key
 		
 		this.scrollPane = new JScrollPane();
 		this.contentPane.add(this.scrollPane, BorderLayout.WEST);
-		this.scrollPane.setPreferredSize(new Dimension(150,50));
+		this.scrollPane.setPreferredSize(new Dimension(225,50));
 		
 		this.listOperarios = new JList();
 		this.listOperarios.addMouseListener(this);
@@ -218,6 +218,7 @@ public class VentanaABMOperario extends JFrame implements IVistaABMOperario, Key
 	@Override
 	public DefaultListModel<Operario> getModeloListaOperarios() {
 		// TODO Auto-generated method stub
+		mouseClicked(null);
 		return this.modeloListaOperarios;
 	}
 

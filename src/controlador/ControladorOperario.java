@@ -10,6 +10,7 @@ import modelo.Mozo;
 import modelo.Operario;
 import modelo.Sistema;
 import vista.IVistaOperario;
+import vista.VentanaABMMozo;
 import vista.VentanaABMOperario;
 import vista.VentanaLogin;
 import vista.VentanaMesa;
@@ -70,7 +71,9 @@ public class ControladorOperario implements ActionListener {
 				ventanaABMOperario.setVisible(true);
 			}else if (e.getActionCommand().equals("Mozos")) {
 				System.out.println("BOTON MOZOS");
-				
+				VentanaABMMozo ventanaABMMozo=new VentanaABMMozo();
+				ControladorABMMozo controladorABMMozo=new ControladorABMMozo(ventanaABMMozo,this.vista);
+				ventanaABMMozo.setVisible(true);
 			}else if (e.getActionCommand().equals("Estadisticas")) {
 				System.out.println("BOTON ESTADISTICAS");
 				
