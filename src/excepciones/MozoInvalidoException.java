@@ -2,6 +2,6 @@ package excepciones;
 
 public class MozoInvalidoException extends Exception {
 	public MozoInvalidoException() {
-		super("Ingrese un mozo valido");
+		super("No puede asignar un mozo que este ausente o de franco a una mesa");
 	}
 }
