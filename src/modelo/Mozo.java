@@ -5,6 +5,8 @@ import java.util.ArrayList;
 //import java.util.GregorianCalendar;
 import java.util.Iterator;
 
+import excepciones.MozoInvalidoException;
+
 
 public class Mozo implements Serializable{
 	private transient ArrayList<Mesa> mesas = new ArrayList<Mesa>(); //no se persiste
@@ -71,25 +73,27 @@ public class Mozo implements Serializable{
 			throw new MesaInvalidaException("La mesa ya pertenece al mozo");
 	}*/
 	
-	public void agregarMesa(Mesa mesa) {
+	public void agregarMesa(Mesa mesa) throws MozoInvalidoException{
 		boolean yaAsignada=false;
 		
-		Iterator<Mozo> itMozo= Sistema.getInstancia().getMozos().iterator();
-		while(itMozo.hasNext() && !yaAsignada) {
-			if(itMozo.next().getMesas().contains(mesa)) {//algun mozo ya tiene esta mesa asignada
-				yaAsignada=true;
+		if (this.getEstado() == "activo") {
+			Iterator<Mozo> itMozo= Sistema.getInstancia().getMozos().iterator();
+			while(itMozo.hasNext() && !yaAsignada) {
+				if(itMozo.next().getMesas().contains(mesa)) {//algun mozo ya tiene esta mesa asignada
+					yaAsignada=true;
+				}
 			}
-		}
-		if(yaAsignada) {
-			System.out.println("La mesa ya esta asignada a un mozo");//hacer exception
-		}
-		else {
-			this.mesas.add(mesa);
-			System.out.println("Se agrego la mesa al mozo");
-		}
-		
+			if(yaAsignada) {
+				System.out.println("La mesa ya esta asignada a un mozo");//hacer exception
+			}
+			else {
+				this.mesas.add(mesa);
+				System.out.println("Se agrego la mesa al mozo");
+			}
+		} else
+			throw new MozoInvalidoException();
 	}
-	
+
 	public boolean mesaACargo(Mesa mesa) {
 		if (mesas.contains(mesa))
 			return true;
