@@ -2,6 +2,8 @@ package modelo;
 
 import java.io.Serializable;
 
+import excepciones.ContraseniaLongitudInvalidaException;
+import excepciones.ContraseniaReqNoCumplidosException;
 import excepciones.EstadoInvalidoMozoException;
 import excepciones.MesaDeshabilitadaException;
 import excepciones.MesaInvalidaException;
@@ -40,8 +42,27 @@ public class Operario implements Serializable{
 		return password;
 	}
 	
-	public void setPassword(String password) { //agregar confirmacion de ue la contrasenia cumpla y las exception
-		this.password = password;
+	public void setPassword(String password) throws ContraseniaReqNoCumplidosException, ContraseniaLongitudInvalidaException { 
+		char ch;
+		int i = 0;
+		boolean mayus = false, numero = false;
+		if (password.length() >= 6 && password.length() <= 12) {
+			while (i < password.length() && (mayus != true || numero != true)) {
+				ch = password.charAt(i);
+				if( Character.isDigit(ch)) {
+					numero = true;
+				}
+				else if (Character.isUpperCase(ch)) {
+					mayus = true;
+				}
+				i++;
+			}
+			if (mayus && numero)
+				this.password = password;
+			else
+				throw new ContraseniaReqNoCumplidosException();
+		} else
+			throw new ContraseniaLongitudInvalidaException();
 	}
 
 	public boolean isActivo() {
