@@ -83,7 +83,7 @@ public class VentanaOperario extends JFrame implements IVistaOperario, MouseList
 	public VentanaOperario() {
 		setTitle("Sistema Restaurante");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 650, 400);
+		setBounds(100, 100, 750, 400);
 		this.contentPane = new JPanel();
 		this.contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(this.contentPane);
@@ -167,14 +167,17 @@ public class VentanaOperario extends JFrame implements IVistaOperario, MouseList
 		this.panelBotonesMozos.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		this.rdbtnActivo = new JRadioButton("Activo");
+		this.rdbtnActivo.addMouseListener(this);
 		buttonGroup.add(this.rdbtnActivo);
 		this.panelBotonesMozos.add(this.rdbtnActivo);
 		
 		this.rdbtnDeFranco = new JRadioButton("De franco");
+		this.rdbtnDeFranco.addMouseListener(this);
 		buttonGroup.add(this.rdbtnDeFranco);
 		this.panelBotonesMozos.add(this.rdbtnDeFranco);
 		
 		this.rdbtnAusente = new JRadioButton("Ausente");
+		this.rdbtnAusente.addMouseListener(this);
 		buttonGroup.add(this.rdbtnAusente);
 		this.panelBotonesMozos.add(this.rdbtnAusente);
 		
@@ -207,11 +210,16 @@ public class VentanaOperario extends JFrame implements IVistaOperario, MouseList
 	}
 	
 	public void addActionListener(ActionListener listener) {
-		//agregar todos los botones
 		this.btnHabilitar.addActionListener(listener);
 		this.btnDeshabilitar.addActionListener(listener);
 		this.btnVerMesa.addActionListener(listener);
 		this.btnAsignarMozo.addActionListener(listener);
+		this.btnProductosPromociones.addActionListener(listener);
+		this.btnAgregarOperario.addActionListener(listener);
+		this.btnMozos.addActionListener(listener);
+		this.btnEstadisticas.addActionListener(listener);
+		this.btnCerrarSecion.addActionListener(listener);
+		this.btnModificar.addActionListener(listener);
 		
 	}
 
@@ -252,11 +260,11 @@ public class VentanaOperario extends JFrame implements IVistaOperario, MouseList
 			this.btnVerMesa.setEnabled(false);
 			System.out.println("no hay seleccion en lista mesas");
 		}
-		if(this.listMozos.getSelectedValue()!=null) {
-			//habilitar botones mozo
+		if(this.listMozos.getSelectedValue()!=null && this.buttonGroup.getSelection()!=null) {
+			this.btnModificar.setEnabled(true);
 		}
 		else {
-			//deshabilitar botones mozo
+			this.btnModificar.setEnabled(false);
 		}
 		
 		if(this.listMozos.getSelectedValue()!=null && this.listMesas.getSelectedValue()!=null) {
@@ -320,6 +328,19 @@ public class VentanaOperario extends JFrame implements IVistaOperario, MouseList
 	@Override
 	public void vistaAdmin(boolean admin) {
 		this.btnAgregarOperario.setEnabled(admin);
+		this.btnMozos.setEnabled(admin);
+	}
+
+	@Override
+	public JRadioButton getEstadoMozo() {
+		JRadioButton rb=null;	
+		if(this.rdbtnActivo.isSelected())
+			rb=this.rdbtnActivo;
+		else if(this.rdbtnAusente.isSelected())
+			rb=this.rdbtnAusente;
+		else if(this.rdbtnDeFranco.isSelected())
+			rb=this.rdbtnDeFranco;
+		return rb;
 	}
 	
 	

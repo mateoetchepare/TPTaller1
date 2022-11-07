@@ -42,7 +42,7 @@ public class Operario implements Serializable{
 		return password;
 	}
 	
-	public void setPassword(String password) {
+	public void setPassword(String password) { //agregar confirmacion de ue la contrasenia cumpla y las exception
 		this.password = password;
 	}
 
@@ -75,6 +75,11 @@ public class Operario implements Serializable{
 	}
 	public void ocuparMesa(Mesa mesa) {
 		mesa.ocuparMesa();
+	}
+
+	@Override
+	public String toString() {
+		return "Usuario: "+ nombreUsuario + ", nombreYApellido=" + nombreYApellido ;
 	}
 	
 }

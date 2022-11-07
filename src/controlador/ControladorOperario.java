@@ -3,12 +3,15 @@ package controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import excepciones.EstadoInvalidoMozoException;
 import excepciones.MesaDeshabilitadaException;
 import modelo.Mesa;
 import modelo.Mozo;
 import modelo.Operario;
 import modelo.Sistema;
 import vista.IVistaOperario;
+import vista.VentanaABMOperario;
+import vista.VentanaLogin;
 import vista.VentanaMesa;
 
 public class ControladorOperario implements ActionListener {
@@ -57,7 +60,45 @@ public class ControladorOperario implements ActionListener {
 				System.out.println("Se presiono boton asignar");
 				this.operario.asignarMesa(this.vista.getListMozos().getSelectedValue(), this.vista.getListMesas().getSelectedValue());
 				
+			}else if (e.getActionCommand().equals("Productos / Promociones")) {
+				System.out.println("BOTON PRODUCTO/PROMOCION");
+				
+			}else if (e.getActionCommand().equals("Operario ")) {
+				System.out.println("BOTON OPERARIOS");
+				VentanaABMOperario ventanaABMOperario=new VentanaABMOperario();
+				ControladorABMOperario controladorABMOperario=new ControladorABMOperario(ventanaABMOperario,this.operario,this.vista);
+				ventanaABMOperario.setVisible(true);
+			}else if (e.getActionCommand().equals("Mozos")) {
+				System.out.println("BOTON MOZOS");
+				
+			}else if (e.getActionCommand().equals("Estadisticas")) {
+				System.out.println("BOTON ESTADISTICAS");
+				
+			}else if (e.getActionCommand().equals("Cerrar Sesion")) {
+				System.out.println("BOTON CERRAR SESION");
+				
+				//ocultar esta vista y volver a ventana login
+				this.vista.setVisible(false);
+				VentanaLogin ventanaLogin=new VentanaLogin();
+				ControladorLogin controladorLogin=new ControladorLogin(ventanaLogin);
+				ventanaLogin.setVisible(true);
+				//DEBERIA PERSISTIR????
+				
+				
+			}else if (e.getActionCommand().equals("Modificar")) {
+				System.out.println("BOTON MODIFICAR");
+				//toma elemento de la lista mozo y el radio button seleccionado y le cambia estado
+				try {
+					this.operario.seteaEstadoMozo(this.vista.getListMozos().getSelectedValue(), this.vista.getEstadoMozo().getText());
+				} catch (EstadoInvalidoMozoException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace(); //no deberia lanzar nunca esta exception
+				}
+				this.actualizarListas();	
+				
+				
 			}
+			
 
 		
 
@@ -74,7 +115,6 @@ public class ControladorOperario implements ActionListener {
 		}
 		this.vista.actualizarListas();
 		
-
 	}
 
 }

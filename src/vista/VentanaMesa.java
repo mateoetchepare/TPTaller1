@@ -318,7 +318,7 @@ public class VentanaMesa extends JFrame implements KeyListener,IVistaMesa {
 		String titulo=null;
 		titulo="Mesa Nº "+numeroMesa+", estado: "+estado;
 		this.LabelTitulo.setText(titulo);
-		
+
 	}
 	
 

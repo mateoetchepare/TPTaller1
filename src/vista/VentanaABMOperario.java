@@ -7,16 +7,28 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import modelo.Operario;
+import modelo.Pedido;
+
 import javax.swing.JScrollPane;
 import javax.swing.JList;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.GridLayout;
+import java.awt.event.ActionListener;
+
 import javax.swing.JTextField;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import java.awt.FlowLayout;
+import javax.swing.ListSelectionModel;
+import java.awt.event.KeyListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseEvent;
 
-public class VentanaABMOperario extends JFrame {
+public class VentanaABMOperario extends JFrame implements IVistaABMOperario, KeyListener, MouseListener {
 
 	private JPanel contentPane;
 	private JScrollPane scrollPane;
@@ -46,6 +58,7 @@ public class VentanaABMOperario extends JFrame {
 	private JButton btnSacar;
 	private JButton btnModificar;
 	private JButton btnListo;
+	private DefaultListModel<Operario> modeloListaOperarios;
 
 	/**
 	 * Launch the application.
@@ -79,7 +92,11 @@ public class VentanaABMOperario extends JFrame {
 		this.scrollPane.setPreferredSize(new Dimension(150,50));
 		
 		this.listOperarios = new JList();
+		this.listOperarios.addMouseListener(this);
+		this.listOperarios.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		this.scrollPane.setViewportView(this.listOperarios);
+		this.modeloListaOperarios=new DefaultListModel<Operario>();
+		this.listOperarios.setModel(modeloListaOperarios);
 		
 		this.labelOperarios = new JLabel("Operarios");
 		this.labelOperarios.setHorizontalAlignment(SwingConstants.CENTER);
@@ -107,6 +124,7 @@ public class VentanaABMOperario extends JFrame {
 		this.panelUsername.add(this.panel);
 		
 		this.textFieldUsername = new JTextField();
+		this.textFieldUsername.addKeyListener(this);
 		this.panel.add(this.textFieldUsername);
 		this.textFieldUsername.setColumns(10);
 		
@@ -124,6 +142,7 @@ public class VentanaABMOperario extends JFrame {
 		this.panelPassword.add(this.panel_1);
 		
 		this.textFieldPassword = new JTextField();
+		this.textFieldPassword.addKeyListener(this);
 		this.panel_1.add(this.textFieldPassword);
 		this.textFieldPassword.setColumns(10);
 		
@@ -141,6 +160,7 @@ public class VentanaABMOperario extends JFrame {
 		this.panelNombre.add(this.panel_2);
 		
 		this.textFieldNombre = new JTextField();
+		this.textFieldNombre.addKeyListener(this);
 		this.panel_2.add(this.textFieldNombre);
 		this.textFieldNombre.setColumns(10);
 		
@@ -158,6 +178,7 @@ public class VentanaABMOperario extends JFrame {
 		this.panelApellido.add(this.panel_3);
 		
 		this.textFieldApellido = new JTextField();
+		this.textFieldApellido.addKeyListener(this);
 		this.panel_3.add(this.textFieldApellido);
 		this.textFieldApellido.setColumns(10);
 		
@@ -166,9 +187,11 @@ public class VentanaABMOperario extends JFrame {
 		this.panelBotones1.setLayout(new GridLayout(0, 2, 0, 0));
 		
 		this.btnAgregar = new JButton("Agregar");
+		this.btnAgregar.setEnabled(false);
 		this.panelBotones1.add(this.btnAgregar);
 		
 		this.btnSacar = new JButton("Sacar");
+		this.btnSacar.setEnabled(false);
 		this.panelBotones1.add(this.btnSacar);
 		
 		this.panelBotones2 = new JPanel();
@@ -176,12 +199,94 @@ public class VentanaABMOperario extends JFrame {
 		this.panelBotones2.setLayout(new GridLayout(0, 2, 0, 0));
 		
 		this.btnModificar = new JButton("Modificar");
+		this.btnModificar.setEnabled(false);
 		this.panelBotones2.add(this.btnModificar);
 		
 		this.btnListo = new JButton("Listo");
 		this.panelBotones2.add(this.btnListo);
 	}
+
+	@Override
+	public void addActionListener(ActionListener listener) {
+		this.btnAgregar.addActionListener(listener);
+		this.btnListo.addActionListener(listener);
+		this.btnModificar.addActionListener(listener);
+		this.btnSacar.addActionListener(listener);
+		
+	}
+
+	@Override
+	public DefaultListModel<Operario> getModeloListaOperarios() {
+		// TODO Auto-generated method stub
+		return this.modeloListaOperarios;
+	}
+
+	@Override
+	public String getUsername() {
+		// TODO Auto-generated method stub
+		return this.textFieldUsername.getText();
+	}
+
+	@Override
+	public String getPassword() {
+		// TODO Auto-generated method stub
+		return this.textFieldPassword.getText();
+	}
+
+	@Override
+	public String getNombre() {
+		// TODO Auto-generated method stub
+		return this.textFieldNombre.getText();
+	}
+
+	@Override
+	public String getApellido() {
+		// TODO Auto-generated method stub
+		return this.textFieldApellido.getText();
+	}
 	
 	//SOLO DISPONIBLE PARA EL ADMIN
+	
 
+	public void keyPressed(KeyEvent e) {
+	}
+	public void keyReleased(KeyEvent e) {
+		if(this.textFieldApellido.getText().length()>0 && this.textFieldNombre.getText().length()>0 && 
+				this.textFieldPassword.getText().length()>0 && this.textFieldUsername.getText().length()>0) {
+			this.btnAgregar.setEnabled(true);
+		}
+		else {
+			this.btnAgregar.setEnabled(false);
+		}
+	}
+	public void keyTyped(KeyEvent e) {
+	}
+	
+	public void mouseClicked(MouseEvent e) {
+		if(this.listOperarios.getSelectedValue()!=null) {
+			this.btnSacar.setEnabled(true);
+		}
+		else {
+			this.btnSacar.setEnabled(false);
+		}
+		if(this.listOperarios.getSelectedValue()!=null &&(this.textFieldPassword.getText().length()>0))
+			this.btnModificar.setEnabled(true);
+		else
+			this.btnModificar.setEnabled(false);
+	}
+	public void mouseEntered(MouseEvent e) {
+	}
+	public void mouseExited(MouseEvent e) {
+	}
+	public void mousePressed(MouseEvent e) {
+	}
+	public void mouseReleased(MouseEvent e) {
+		
+	}
+
+	@Override
+	public JList getListOperarios() {
+		// TODO Auto-generated method stub
+		return this.listOperarios;
+	}
 }
