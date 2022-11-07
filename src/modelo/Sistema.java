@@ -145,6 +145,16 @@ public class Sistema {
 			throw new MesaInvalidaException("La combinacion de comensales - numero de mesa es invalido");
 	}
 	
+	
+	
+	public void agregaMozo(Mozo mozo) {
+		mozos.add(mozo);
+	}
+	
+	public void borrarMozo(Mozo mozo) {
+		mozos.remove(mozo);
+	}
+	
 	/**
 	 * 
 	 * <b>PreCond:</b> numeroMesa debe ser mayor a 0. <br>
@@ -188,9 +198,10 @@ public class Sistema {
 			throw new ContraseniaLongitudInvalidaException();
 	} 
 	
-	public void borrarMozo(Mozo mozo) {
-		mozos.remove(mozo);
+	public void borraOperario(Operario operario) {
+		operarios.remove(operario);
 	}
+	
 	
 	//cambio el login, ue no se pase un operario, sino nombre de usuario y contrasenia
 	
