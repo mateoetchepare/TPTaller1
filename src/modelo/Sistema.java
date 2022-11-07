@@ -180,7 +180,7 @@ public class Sistema {
 		String contrasenia = operario.getPassword();
 		char ch;
 		if (contrasenia.length() >= 6 && contrasenia.length() <= 12) {
-			while (i < contrasenia.length() && (mayus != true && numero != true)) {
+			while (i < contrasenia.length() && (mayus != true || numero != true)) {
 				ch = contrasenia.charAt(i);
 				if( Character.isDigit(ch)) {
 					numero = true;
@@ -190,7 +190,7 @@ public class Sistema {
 				}
 				i++;
 			}
-			if (mayus == numero == true) {
+			if (mayus && numero) {
 				operarios.add(operario);
 			} else
 				throw new ContraseniaReqNoCumplidosException();

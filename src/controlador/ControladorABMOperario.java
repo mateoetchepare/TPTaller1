@@ -37,6 +37,7 @@ public class ControladorABMOperario implements ActionListener{
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
+			
 		}
 		else if(e.getActionCommand().equals("Sacar")) {
 			if(this.vista.getListOperarios().getSelectedValue()!=null) {
