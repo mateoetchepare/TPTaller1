@@ -18,7 +18,6 @@ public interface IVistaOperario {
 	JList<Mesa> getListMesas();
 	JList<Mozo> getListMozos();
 	
-	boolean getSeleccionado();
 	JButton getBtnVerMesa();
 	
 	void emergenteNoHaySeleccion();

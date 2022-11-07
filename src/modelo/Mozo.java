@@ -13,12 +13,11 @@ public class Mozo implements Serializable{
 	private int hijos;
 	private LocalDate nacimiento;
 	
-	public Mozo(int hijos, LocalDate nacimiento) {
+	public Mozo(String nombreYApellido, int hijos, LocalDate nacimiento) {
+		this.nombreYApellido = nombreYApellido;
 		this.hijos = hijos;
 		this.nacimiento = nacimiento; // chequear >18
 	}
-
-	public Mozo() {}
 	
 	public ArrayList<Mesa> getMesas() {
 		return mesas;

@@ -291,12 +291,6 @@ public class VentanaOperario extends JFrame implements IVistaOperario, MouseList
 	}
 
 	@Override
-	public boolean getSeleccionado() {
-		// TODO Auto-generated method stub
-		return this.seleccionado;
-	}
-
-	@Override
 	public JButton getBtnVerMesa() {
 		// TODO Auto-generated method stub
 		return this.btnVerMesa;

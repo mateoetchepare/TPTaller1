@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -161,7 +162,14 @@ public class VentanaInicial extends JFrame implements IVistaInicial{
 		return this.textFieldSueldo.getText();
 	}
 
-	
+	public void muestraError(String msg) {
+		JOptionPane.showMessageDialog(this, msg);
+		this.textContrasenia.setText("");
+		this.textFieldNombreApellido.setText("");
+		this.textFieldRestaurante.setText("");
+		this.textFieldSueldo.setText("");
+		this.textRepetirContrasenia.setText("");
+	}
 	
 
 }

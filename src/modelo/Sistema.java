@@ -145,6 +145,16 @@ public class Sistema {
 			throw new MesaInvalidaException("La combinacion de comensales - numero de mesa es invalido");
 	}
 	
+	
+	
+	public void agregaMozo(Mozo mozo) {
+		mozos.add(mozo);
+	}
+	
+	public void borrarMozo(Mozo mozo) {
+		mozos.remove(mozo);
+	}
+	
 	/**
 	 * 
 	 * <b>PreCond:</b> numeroMesa debe ser mayor a 0. <br>
@@ -164,7 +174,7 @@ public class Sistema {
 			throw new MesaInvalidaException("La mesa no existe");
 	}
 
-	public void agregaOperario(Operario operario) throws UsuarioNuevoInvalidoException{ // falta plantear la creacion del PRIMER operario
+	public void agregaOperario(Operario operario) throws ContraseniaReqNoCumplidosException, ContraseniaLongitudInvalidaException{ 
 		int i = 0;
 		boolean mayus = false, numero = false;
 		String contrasenia = operario.getPassword();
@@ -186,9 +196,12 @@ public class Sistema {
 				throw new ContraseniaReqNoCumplidosException();
 		} else
 			throw new ContraseniaLongitudInvalidaException();
-	} // falta verificar que sea el admin, porque sino un operario no puede anadir a otro operario
-	// de todos modos esto se puede llegar a hacer con la ventana, que solo aparezca el  boton si es admin
-
+	} 
+	
+	public void borraOperario(Operario operario) {
+		operarios.remove(operario);
+	}
+	
 	
 	//cambio el login, ue no se pase un operario, sino nombre de usuario y contrasenia
 	
@@ -401,19 +414,15 @@ public class Sistema {
 			total = total + auxTotal;
 		}
 
-
-		/// AGREGO///
 		Mesa mesa=null;
 		int aux=0;
 		
 		while(i<this.mesas.size() && mesa==null) {
 			if(comanda.getNumeroMesa()==this.mesas.get(aux).getNumeroMesa())
 				mesa=this.mesas.get(aux);
-		}//en teoria mesa no puede ser null porue la comanda se crea en una mesa, asegurando ue la encuentra
-		///////////////
-		Factura factura = new Factura(/*comanda.getMesa()*/mesa, comanda.getPedidos(), total, formaDePago, promosAplicadas);
-		//comanda.getMesa().setEstado("libre"); //Se pone en estado libre desde la ventana solo cuando se 
-		//cierra la mesa
+		} 
+		Factura factura = new Factura(mesa, comanda.getPedidos(), total, formaDePago, promosAplicadas);
+		mesa.setEstado("libre");
 		comandas.remove(comanda);
 	}
 	

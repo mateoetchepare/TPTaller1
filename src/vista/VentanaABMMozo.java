@@ -7,18 +7,27 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import modelo.Mozo;
+
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.JScrollPane;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
+
 import java.awt.GridLayout;
+import java.awt.event.ActionListener;
+
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
+
 import java.awt.FlowLayout;
 import javax.swing.JRadioButton;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 
-public class VentanaABMMozo extends JFrame {
+public class VentanaABMMozo extends JFrame implements IVistaABMMozo{
 
 	private JPanel contentPane;
 	private JLabel labelTitulo;
@@ -178,6 +187,51 @@ public class VentanaABMMozo extends JFrame {
 		
 		this.list = new JList();
 		this.scrollPane.setViewportView(this.list);
+		this.list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 	}
 
+	@Override
+	public void addActionListener(ActionListener listener) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void actualizarLista() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public String getNombre() {
+		return this.textFieldNombre.getText();
+	}
+
+	@Override
+	public String getApellido() {
+		return this.textFieldApellido.getText();
+	}
+
+	@Override
+	public int getCantHijos() {
+		return Integer.parseInt(this.textFieldHijos.getText());
+	}
+
+	@Override
+	public String getFechaNacimiento() {
+		return this.textFieldFecha.getText();
+	}
+	
+	public void muestraError(String msg) {
+		JOptionPane.showMessageDialog(this, msg);
+		this.textFieldApellido.setText("");
+		this.textFieldFecha.setText("");
+		this.textFieldHijos.setText("");
+		this.textFieldNombre.setText("");
+	}
+	
+	public Mozo getMozo() {
+		return (Mozo) this.list.getSelectedValue();
+	}
+	
 }
