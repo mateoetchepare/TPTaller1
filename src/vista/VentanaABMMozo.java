@@ -82,7 +82,7 @@ public class VentanaABMMozo extends JFrame implements IVistaABMMozo{
 	 */
 	public VentanaABMMozo() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 600, 400);
 		this.contentPane = new JPanel();
 		this.contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(this.contentPane);

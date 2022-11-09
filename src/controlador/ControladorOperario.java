@@ -10,6 +10,7 @@ import modelo.Mesa;
 import modelo.Mozo;
 import modelo.Operario;
 import modelo.Sistema;
+import persistencia.Persistir;
 import vista.IVistaOperario;
 import vista.VentanaABMMozo;
 import vista.VentanaABMOperario;
@@ -64,7 +65,10 @@ public class ControladorOperario implements ActionListener {
 					this.operario.asignarMesa(this.vista.getListMozos().getSelectedValue(), this.vista.getListMesas().getSelectedValue());
 				} catch (MozoInvalidoException e1) {
 					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					this.vista.emergenteMozoNoActivo();
+				} catch (MesaDeshabilitadaException e1) {
+					// TODO Auto-generated catch block
+					this.vista.emergenteMesaDeshabilitada();
 				}
 				
 			}else if (e.getActionCommand().equals("Productos / Promociones")) {
@@ -92,6 +96,7 @@ public class ControladorOperario implements ActionListener {
 				ControladorLogin controladorLogin=new ControladorLogin(ventanaLogin);
 				ventanaLogin.setVisible(true);
 				//DEBERIA PERSISTIR????
+				Persistir.escribirSistema();
 				
 				
 			}else if (e.getActionCommand().equals("Modificar")) {

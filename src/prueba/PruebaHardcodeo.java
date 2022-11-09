@@ -78,7 +78,7 @@ public class PruebaHardcodeo {
 		
 		
 		//HACER PERSISTENCIA EN CONTROLADOR OPERARIO CUANDO CIERRA SESION
-		//Persistir.escribirSistema();
+		Persistir.escribirSistema();
 		
 	}
 

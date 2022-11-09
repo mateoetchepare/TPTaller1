@@ -29,5 +29,5 @@ public interface IVistaOperario {
 	void vistaAdmin(boolean admin);
 	
 	JRadioButton getEstadoMozo();
-	
+	void emergenteMozoNoActivo();
 }

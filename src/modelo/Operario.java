@@ -83,7 +83,7 @@ public class Operario implements Serializable{
 		mozo.agregaMesa(numeroMesa);
 	}*/
 	
-	public void asignarMesa(Mozo mozo,Mesa mesa) throws MozoInvalidoException {
+	public void asignarMesa(Mozo mozo,Mesa mesa) throws MozoInvalidoException, MesaDeshabilitadaException {
 		mozo.agregarMesa(mesa);//falta la exception
 	}
 	

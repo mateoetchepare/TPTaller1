@@ -5,11 +5,12 @@ import java.util.ArrayList;
 //import java.util.GregorianCalendar;
 import java.util.Iterator;
 
+import excepciones.MesaDeshabilitadaException;
 import excepciones.MozoInvalidoException;
 
 
 public class Mozo implements Serializable{
-	private transient ArrayList<Mesa> mesas = new ArrayList<Mesa>(); //no se persiste
+	private ArrayList<Mesa> mesas = new ArrayList<Mesa>(); //no se persiste
 	private String nombreYApellido;
 	private transient String estado; // 0 (activo), 1(de franco), 2 (ausente) //no se persiste
 	private int hijos;
@@ -73,10 +74,10 @@ public class Mozo implements Serializable{
 			throw new MesaInvalidaException("La mesa ya pertenece al mozo");
 	}*/
 	
-	public void agregarMesa(Mesa mesa) throws MozoInvalidoException{
+	public void agregarMesa(Mesa mesa) throws MozoInvalidoException,MesaDeshabilitadaException{
 		boolean yaAsignada=false;
 		
-		if (this.getEstado() == "activo") {
+		if (this.getEstado() == "Activo") {
 			Iterator<Mozo> itMozo= Sistema.getInstancia().getMozos().iterator();
 			while(itMozo.hasNext() && !yaAsignada) {
 				if(itMozo.next().getMesas().contains(mesa)) {//algun mozo ya tiene esta mesa asignada

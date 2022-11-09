@@ -32,6 +32,9 @@ public class Prueba {
 		Persistir.leerSistema();
 		System.out.println(Sistema.getInstancia().getOperarios().size());
 		
+		if(Sistema.getInstancia().getMozos().get(0).getMesas()==null)
+			System.out.println("Array mesas es null");
+		
 		if(Sistema.getInstancia().getOperarios().isEmpty()) {
 			//creacion total del sistema
 		}

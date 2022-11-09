@@ -337,5 +337,12 @@ public class VentanaOperario extends JFrame implements IVistaOperario, MouseList
 		return rb;
 	}
 	
+
+	@Override
+	public void emergenteMozoNoActivo() {
+		// TODO Auto-generated method stub
+		JOptionPane.showMessageDialog(this,"No se puede asignar, el mozo no esta activo");
+	}
+	
 	
 }

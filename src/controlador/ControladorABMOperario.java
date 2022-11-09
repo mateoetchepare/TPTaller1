@@ -2,7 +2,6 @@ package controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
 
 import excepciones.ContraseniaLongitudInvalidaException;
 import excepciones.ContraseniaReqNoCumplidosException;
@@ -11,7 +10,7 @@ import modelo.Operario;
 import modelo.Sistema;
 import vista.IVistaABMOperario;
 import vista.IVistaOperario;
-import vista.VentanaMesa;
+import vista.VentanaABMOperario;
 
 public class ControladorABMOperario implements ActionListener{
 	IVistaABMOperario vista=null;
@@ -66,8 +65,10 @@ public class ControladorABMOperario implements ActionListener{
 				;//emergente no se selecciono operario a sacar
 		}
 		else if(e.getActionCommand().equals("Listo")) {
+			System.out.println("SE PRESIONA BOTON LISTO");
 			this.vistaOperario.actualizarListas();
-			VentanaMesa v = (VentanaMesa) this.vista;
+			
+			VentanaABMOperario v = (VentanaABMOperario) this.vista;
 			v.setVisible(false);
 			this.vistaOperario.setVisible(true);
 		}
