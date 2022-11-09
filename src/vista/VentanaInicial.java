@@ -3,6 +3,8 @@ package vista;
 import java.awt.EventQueue;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -13,7 +15,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
-public class VentanaInicial extends JFrame implements IVistaInicial{
+public class VentanaInicial extends JFrame implements IVistaInicial, KeyListener{
 
 	private JPanel contentPane;
 	private JLabel labelTitulo;
@@ -123,6 +125,14 @@ public class VentanaInicial extends JFrame implements IVistaInicial{
 		this.btnConfirmar = new JButton("Confirmar");
 		this.panelBoton.add(this.btnConfirmar);
 		
+		this.btnConfirmar.setEnabled(false);
+		
+		this.textContrasenia.addKeyListener(this);
+		this.textFieldNombreApellido.addKeyListener(this);
+		this.textFieldRestaurante.addKeyListener(this);
+		this.textFieldSueldo.addKeyListener(this);
+		this.textRepetirContrasenia.addKeyListener(this);
+		
 		
 	}
 
@@ -169,6 +179,28 @@ public class VentanaInicial extends JFrame implements IVistaInicial{
 		this.textFieldRestaurante.setText("");
 		this.textFieldSueldo.setText("");
 		this.textRepetirContrasenia.setText("");
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		if (!this.textFieldNombreApellido.getText().isEmpty() && !this.textFieldRestaurante.getText().isEmpty() && 
+				!this.textFieldSueldo.getText().isEmpty() && !this.textContrasenia.getText().isEmpty() && !this.textRepetirContrasenia.getText().isEmpty()) {
+			this.btnConfirmar.setEnabled(true);
+		}
+		else
+			this.btnConfirmar.setEnabled(false);
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 

@@ -19,6 +19,10 @@ import javax.swing.JOptionPane;
 
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
@@ -29,7 +33,7 @@ import javax.swing.ButtonGroup;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 
-public class VentanaABMMozo extends JFrame implements IVistaABMMozo{
+public class VentanaABMMozo extends JFrame implements IVistaABMMozo, KeyListener, MouseListener{
 
 	private JPanel contentPane;
 	private JLabel labelTitulo;
@@ -193,6 +197,11 @@ public class VentanaABMMozo extends JFrame implements IVistaABMMozo{
 		this.list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		this.modeloListaMozos=new DefaultListModel<Mozo>();
 		this.list.setModel(modeloListaMozos);
+		
+		this.btnAgregar.setEnabled(false);
+		this.btnListo.setEnabled(true);
+		this.btnModificar.setEnabled(false);
+		this.btnSacar.setEnabled(false);
 	}
 
 	@Override
@@ -252,6 +261,70 @@ public class VentanaABMMozo extends JFrame implements IVistaABMMozo{
 	public JList<Mozo> getListMozos() {
 		// TODO Auto-generated method stub
 		return this.list;
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		if (!this.textFieldApellido.getText().isEmpty() && !this.textFieldFecha.getText().isEmpty() && !this.textFieldHijos.getText().isEmpty()
+				&& !this.textFieldNombre.getText().isEmpty()) {
+			this.btnAgregar.setEnabled(true);
+		}
+		else
+			this.btnAgregar.setEnabled(false);
+		if (!this.textFieldHijos.getText().isEmpty() && !this.list.isSelectionEmpty()) {
+			this.btnModificar.setEnabled(true);
+		}
+		else
+			this.btnModificar.setEnabled(false);
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		if (!this.textFieldHijos.getText().isEmpty() && !this.list.isSelectionEmpty()) {
+			this.btnModificar.setEnabled(true);
+		}
+		else
+			this.btnModificar.setEnabled(false);
+		if (!this.list.isSelectionEmpty())
+			this.btnSacar.setEnabled(true);
+		else
+			this.btnSacar.setEnabled(false);
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	
