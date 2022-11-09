@@ -30,7 +30,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.JRadioButton;
 import javax.swing.ButtonGroup;
 
-public class VentanaMesa extends JFrame implements KeyListener,IVistaMesa {
+public class VentanaMesa extends JFrame implements MouseListener, KeyListener,IVistaMesa {
 
 	private JPanel contentPane;
 	private JLabel LabelTitulo;
@@ -210,28 +210,30 @@ public class VentanaMesa extends JFrame implements KeyListener,IVistaMesa {
 		this.btnCerrarMesa = new JButton("Cerrar Mesa");
 		this.panel_4.add(this.btnCerrarMesa);
 		
+		this.btnCerrarMesa.setEnabled(false);
+	    this.listProductos.addMouseListener(this);
+	    this.listComanda.addMouseListener(this);
 	
 	}
 
 	public void keyPressed(KeyEvent e) {
 	}
 	public void keyReleased(KeyEvent e) {
-		if(this.textFieldCantidad.getText().length()>0 && this.listProductos.getSelectedValue()!=null) {
+		if(!this.listProductos.isSelectionEmpty() && !this.textFieldCantidad.getText().isEmpty()) {
 			this.btnAgregar.setEnabled(true);
-			
-		}
-		else {
-			this.btnAgregar.setEnabled(false);
-			
-		}
-		if(this.textFieldCantidad.getText().length()>0 && this.listComanda.getSelectedValue()!=null) {
+			this.btnSacar.setEnabled(true);
 			this.btnModificar.setEnabled(true);
 		}
 		else {
+			this.btnAgregar.setEnabled(false);
+			this.btnSacar.setEnabled(false);
 			this.btnModificar.setEnabled(false);
 		}
-		if(this.listComanda.getSelectedValue()!=null)
-			this.btnSacar.setEnabled(true);
+		if (this.rdbtnCuentaDNI.isSelected() || this.rdbtnEfectivo.isSelected() || this.rdbtnMercadoPago.isSelected() 
+				|| this.rdbtnTarjeta.isSelected())
+			this.btnCerrarMesa.setEnabled(true);
+		else
+			this.btnCerrarMesa.setEnabled(false);
 	}
 	public void keyTyped(KeyEvent e) {
 	}
@@ -277,16 +279,18 @@ public class VentanaMesa extends JFrame implements KeyListener,IVistaMesa {
 		JOptionPane.showMessageDialog(this,"No hay seleccionado pedido de la comanda");
 		
 	}
+	
+	@Override
 	public void mouseClicked(MouseEvent e) {
-		if(this.listProductos.getSelectedValue()!=null) {
-			this.btnAgregar.setVisible(true);
-			this.btnSacar.setVisible(true);
-			this.btnModificar.setVisible(true);
+		if(!this.listProductos.isSelectionEmpty() && !this.textFieldCantidad.getText().isEmpty()) {
+			this.btnAgregar.setEnabled(true);
+			this.btnSacar.setEnabled(true);
+			this.btnModificar.setEnabled(true);
 		}
 		else {
-			this.btnAgregar.setVisible(false);
-			this.btnSacar.setVisible(false);
-			this.btnModificar.setVisible(false);
+			this.btnAgregar.setEnabled(false);
+			this.btnSacar.setEnabled(false);
+			this.btnModificar.setEnabled(false);
 		}
 	}
 	
@@ -316,9 +320,33 @@ public class VentanaMesa extends JFrame implements KeyListener,IVistaMesa {
 	@Override
 	public void completarTitulo(int numeroMesa,String estado) {
 		String titulo=null;
-		titulo="Mesa Nº "+numeroMesa+", estado: "+estado;
+		titulo="Mesa Nï¿½ "+numeroMesa+", estado: "+estado;
 		this.LabelTitulo.setText(titulo);
 
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 

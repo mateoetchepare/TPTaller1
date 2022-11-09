@@ -198,6 +198,11 @@ public class VentanaABMMozo extends JFrame implements IVistaABMMozo, KeyListener
 		this.modeloListaMozos=new DefaultListModel<Mozo>();
 		this.list.setModel(modeloListaMozos);
 		
+		this.textFieldApellido.addKeyListener(this);
+		this.textFieldFecha.addKeyListener(this);
+		this.textFieldHijos.addKeyListener(this);
+		this.textFieldNombre.addKeyListener(this);
+		
 		this.btnAgregar.setEnabled(false);
 		this.btnListo.setEnabled(true);
 		this.btnModificar.setEnabled(false);
