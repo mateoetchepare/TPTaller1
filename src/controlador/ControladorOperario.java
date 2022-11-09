@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import excepciones.EstadoInvalidoMozoException;
 import excepciones.MesaDeshabilitadaException;
+import excepciones.MozoInvalidoException;
 import modelo.Mesa;
 import modelo.Mozo;
 import modelo.Operario;
@@ -59,7 +60,12 @@ public class ControladorOperario implements ActionListener {
 				
 			}else if (e.getActionCommand().equals("Asignar")) {
 				System.out.println("Se presiono boton asignar");
-				this.operario.asignarMesa(this.vista.getListMozos().getSelectedValue(), this.vista.getListMesas().getSelectedValue());
+				try {
+					this.operario.asignarMesa(this.vista.getListMozos().getSelectedValue(), this.vista.getListMesas().getSelectedValue());
+				} catch (MozoInvalidoException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				
 			}else if (e.getActionCommand().equals("Productos / Promociones")) {
 				System.out.println("BOTON PRODUCTO/PROMOCION");

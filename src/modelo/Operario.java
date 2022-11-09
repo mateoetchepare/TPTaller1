@@ -7,6 +7,7 @@ import excepciones.ContraseniaReqNoCumplidosException;
 import excepciones.EstadoInvalidoMozoException;
 import excepciones.MesaDeshabilitadaException;
 import excepciones.MesaInvalidaException;
+import excepciones.MozoInvalidoException;
 import excepciones.ProductoEnComandaException;
 
 public class Operario implements Serializable{
@@ -82,7 +83,7 @@ public class Operario implements Serializable{
 		mozo.agregaMesa(numeroMesa);
 	}*/
 	
-	public void asignarMesa(Mozo mozo,Mesa mesa) {
+	public void asignarMesa(Mozo mozo,Mesa mesa) throws MozoInvalidoException {
 		mozo.agregarMesa(mesa);//falta la exception
 	}
 	

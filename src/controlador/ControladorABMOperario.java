@@ -4,6 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 
+import excepciones.ContraseniaLongitudInvalidaException;
+import excepciones.ContraseniaReqNoCumplidosException;
 import excepciones.UsuarioNuevoInvalidoException;
 import modelo.Operario;
 import modelo.Sistema;
@@ -50,7 +52,15 @@ public class ControladorABMOperario implements ActionListener{
 		}
 		else if(e.getActionCommand().equals("Modificar")) {
 			if(this.vista.getListOperarios().getSelectedValue()!=null) {//ver ue exceptions se lanzan y generar emergente
-				this.vista.getListOperarios().getSelectedValue().setPassword(this.vista.getPassword());
+				try {
+					this.vista.getListOperarios().getSelectedValue().setPassword(this.vista.getPassword());
+				} catch (ContraseniaReqNoCumplidosException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (ContraseniaLongitudInvalidaException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 			else
 				;//emergente no se selecciono operario a sacar
