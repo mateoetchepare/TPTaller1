@@ -32,6 +32,8 @@ public class ControladorInicial implements ActionListener{
 					vista.muestraError(e1.getMessage());
 				} catch (ContraseniaLongitudInvalidaException e2) {
 					vista.muestraError(e2.getMessage());
+				} catch (UsuarioNuevoInvalidoException e3) {
+					vista.muestraError(e3.getMessage());
 				}
 			} else
 				vista.muestraError("Ingrese un sueldo mayor a 0");

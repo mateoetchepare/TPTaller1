@@ -174,8 +174,8 @@ public class Sistema {
 			throw new MesaInvalidaException("La mesa no existe");
 	}
 
-	public void agregaOperario(Operario operario) throws ContraseniaReqNoCumplidosException, ContraseniaLongitudInvalidaException{ 
-		int i = 0;
+	public void agregaOperario(Operario operario) throws ContraseniaReqNoCumplidosException, ContraseniaLongitudInvalidaException, UsuarioNuevoInvalidoException{ 
+		int i = 0, j;
 		boolean mayus = false, numero = false;
 		String contrasenia = operario.getPassword();
 		char ch;
@@ -191,7 +191,14 @@ public class Sistema {
 				i++;
 			}
 			if (mayus && numero) {
-				operarios.add(operario);
+				j = operarios.size();
+				while (i < j && operarios.get(i).getNombreUsuario() != operario.getNombreUsuario()) {
+					i++;
+				}
+				if (i < j)
+					operarios.add(operario);
+				else
+					throw new UsuarioNuevoInvalidoException("El nombre de usuario ya esta en uso, ingrese uno diferente");
 			} else
 				throw new ContraseniaReqNoCumplidosException();
 		} else
@@ -203,7 +210,6 @@ public class Sistema {
 	}
 	
 	
-	//cambio el login, ue no se pase un operario, sino nombre de usuario y contrasenia
 	
 	/**
 	 * 
@@ -247,44 +253,6 @@ public class Sistema {
 	 * <b>PostCond:</b> devuelve una mesa si en efecto habia una libre para ocuparse
 	 *
 	 */
-/*
-	public Mesa condicionesUsoDeMesa(int cantComensales) throws MesaInvalidaException{
-		int i = 0, j, h = 0, k;
-		boolean mozoActivo = false;
-		j = mesas.size();
-		k = mozos.size();
-		if (j == 0) {
-			throw new MesaInvalidaException("No hay mesas habilitadas");
-		} else
-			if (productos.size() == 0) {
-				throw new MesaInvalidaException("No hay productos en stock");
-				// else si no hay promos vigentes
-			}
-		while (!mozoActivo) {
-			while (i<j && (mesas.get(i).getComensales() >= cantComensales || mesas.get(i).getEstado() != "libre")) 
-				i++;
-			if (i<j) {
-				while (h < k && (mozos.get(i).getEstado()!="activo" && mozos.get(i).mesaACargo(mesas.get(i)) != false)) // hay algun mozo a cargo de la mesa y q este libre?
-					h++;
-				if (mozos.get(i).getEstado()!="activo" && mozos.get(i).mesaACargo(mesas.get(i)) != false) // si el mozo esta libre y tiene la mesa a cargo
-					mozoActivo = true;
-			}
-		}
-		if (mozoActivo) {
-			return mesas.get(i);
-		} else
-			throw new MesaInvalidaException("No se encontro un mozo libre a cargo de la mesa o no habia una mesa libre con esas caracteristicas");
-	} 
-	*/
-	
-	/* public Mozo retornaMozo(Mozo mozo) throws MozoInvalidoException {
-		if (mozos.contains(mozo)) {
-			int indice = mozos.indexOf(mozo);
-			return mozos.get(indice);
-		} else
-			throw new MozoInvalidoException();	
-	}
-	*/ // estp crep q lo hice al pedo ( ahora aclaro en discord ) 
 	
 	public int retornaStock(Producto  producto){ // 
 			int indice = productos.indexOf(producto);
