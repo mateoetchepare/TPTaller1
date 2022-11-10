@@ -286,13 +286,13 @@ public class VentanaPromociones extends JFrame {
 		this.panelBotones2 = new JPanel();
 		this.panelTemporales.add(this.panelBotones2);
 		
-		this.btnAgregarTemp = new JButton("Agregar");
+		this.btnAgregarTemp = new JButton("Agregar1");
 		this.panelBotones2.add(this.btnAgregarTemp);
 		
-		this.btnActivarTemp = new JButton("Activar");
+		this.btnActivarTemp = new JButton("Activar1");
 		this.panelBotones2.add(this.btnActivarTemp);
 		
-		this.btnDesactivarTemp = new JButton("Desactivar");
+		this.btnDesactivarTemp = new JButton("Desactivar1");
 		this.panelBotones2.add(this.btnDesactivarTemp);
 		
 		this.labelTitulo = new JLabel("Promociones");
