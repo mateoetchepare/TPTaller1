@@ -41,7 +41,13 @@ public class PromocionProd extends Promocion {
 	public void setProducto(Producto producto) {
 		this.producto = producto;
 	}
+	
+	
 
+	/**
+	 * @param aplicaDosPorUno
+	 * @throws PromoProdInvalidaException se lanza si se quiere desactivar que la promocion sea por cantidad si ya NO es de dos por uno o VICEVERSA
+	 */
 	public void setAplicaDosPorUno(boolean aplicaDosPorUno) throws PromoProdInvalidaException{
 		if (this.isAplicaDtoPorCantidad() == false && aplicaDosPorUno == false) {
 			throw new PromoProdInvalidaException();
@@ -49,6 +55,10 @@ public class PromocionProd extends Promocion {
 			this.aplicaDosPorUno = aplicaDosPorUno;
 	}
 
+	/**
+	 * @param aplicaDtoPorCantidad
+	 * @throws PromoProdInvalidaException se lanza si se quiere desactivar que la promocion sea por cantidad si ya NO es de dos por uno o VICEVERSA
+	 */
 	public void setAplicaDtoPorCantidad(boolean aplicaDtoPorCantidad) throws PromoProdInvalidaException{
 		if (this.isAplicaDosPorUno() == false && aplicaDtoPorCantidad == false) {
 			throw new PromoProdInvalidaException();

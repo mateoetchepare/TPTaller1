@@ -43,6 +43,11 @@ public class Operario implements Serializable{
 		return password;
 	}
 	
+	/**
+	 * @param password
+	 * @throws ContraseniaReqNoCumplidosException se lanza si la contrasenia no tiene al menos un numero y una mayuscula
+	 * @throws ContraseniaLongitudInvalidaException se lanza si la contrasenia no tiene entre 6 y 12 caracteres
+	 */
 	public void setPassword(String password) throws ContraseniaReqNoCumplidosException, ContraseniaLongitudInvalidaException { 
 		char ch;
 		int i = 0;
@@ -74,14 +79,10 @@ public class Operario implements Serializable{
 		this.activo = activo;
 	}
 	
-	public void seteaEstadoMozo(Mozo mozo, String estado) throws EstadoInvalidoMozoException {
+	public void seteaEstadoMozo(Mozo mozo, String estado)  {
 		mozo.setEstado(estado);
 	}
 	
-	/* CAMBIO EL METODO ABAJO, LO DEJO COMENTADO POR LAS DUDAS
-	 * public void asignaMesas(Mozo mozo, int numeroMesa) throws MesaInvalidaException{
-		mozo.agregaMesa(numeroMesa);
-	}*/
 	
 	public void asignarMesa(Mozo mozo,Mesa mesa) throws MozoInvalidoException, MesaDeshabilitadaException {
 		mozo.agregarMesa(mesa);//falta la exception

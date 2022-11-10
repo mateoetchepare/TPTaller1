@@ -120,11 +120,13 @@ public class Sistema {
 	}	
 	
 	/**
-	 *	Metodo encargado de crear una mesa nueva para el restaurant
+	 * @param mesa
+	 * @throws MesaInvalidaException si se quiere ingresar una mesa con numero de mesa ya existente o la combinacion de comensales - nro de mesa es invalido <br>
+	 *	Metodo encargado de crear una mesa nueva para el restaurant <br>
 	 *  
 	 * <b>PostCond:</b> Devuelve una mesa valida nueva en caso de que el numero ingresado no este usado previamente <br>
 	 * por otra mesa y que la combinacion de numero de comensales y numero de mesa sea valido
-	 *
+	 * 
 	 */
 
 	public void agregaMesa(Mesa mesa) throws MesaInvalidaException{
@@ -156,24 +158,11 @@ public class Sistema {
 	}
 	
 	/**
-	 * 
-	 * <b>PreCond:</b> numeroMesa debe ser mayor a 0. <br>
-	 * <b>PostCond:</b> debe devolver una mesa, si el numero ingresado corresponde a una mesa valida
-	 *
+	 * @param operario <br>
+	 * @throws ContraseniaReqNoCumplidosException si la contrasenia no contiene al menos un numero y una mayuscula <br>
+	 * @throws ContraseniaLongitudInvalidaException si la contrasenia no tiene una longitud entre 6 y 12 caracteres <br>
+	 * @throws UsuarioNuevoInvalidoException si se quiere agregar un nombre de usuario que ya existe en el sistema
 	 */
-	
-	public Mesa retornaMesa(int numeroMesa) throws MesaInvalidaException{
-		int i=0, j;
-		j = mesas.size();
-		while (i<j && mesas.get(i).getNumeroMesa() != numeroMesa) {
-			i++;
-		}
-		if (i<j) 
-			return mesas.get(i);
-		else
-			throw new MesaInvalidaException("La mesa no existe");
-	}
-
 	public void agregaOperario(Operario operario) throws ContraseniaReqNoCumplidosException, ContraseniaLongitudInvalidaException, UsuarioNuevoInvalidoException{ 
 		int i = 0, j;
 		boolean mayus = false, numero = false;
@@ -265,6 +254,13 @@ public class Sistema {
 		comanda.getMesa().setEstado("ocupada");
 	}*/
 	
+	
+	
+	/**
+	 * @param producto <br>
+	 * @throws ProductoEnComandaException
+	 * La excepcion se lanzara si se intenta eliminar un producto que fue pedido por alguna comanda que no ha sido cerrada aun
+	 */
 	public void eliminaProducto(Producto producto) throws ProductoEnComandaException{ // usar un try en el controlador
 		boolean alMenosUnaComanda = false;
 		int i = 0, j;
@@ -283,8 +279,17 @@ public class Sistema {
 	
 	
 	
+	/**
+	 * @param producto
+	 * @throws ProductoExistenteException si ingresa un producto con un id que ya es usado previamente <br>
+	 * @throws ProductoPreciosInvalidosException  si ingresa un producto con un precio de venta menor al precio de costo
+	 */
 	public void nuevoProducto(Producto producto) throws ProductoExistenteException, ProductoPreciosInvalidosException{
-		if (!productos.contains(producto))
+		int i = 0, j;
+		j = productos.size();
+		while (i < j && productos.get(i).getId() != producto.getId())
+			i++;
+		if (i < j)
 			if (producto.getPrecioCosto() <= producto.getPrecioVenta() && producto.getPrecioCosto() > 0 && producto.getPrecioVenta() > 0 )
 				productos.add(producto);
 			else
@@ -321,9 +326,9 @@ public class Sistema {
 		
 	
 	/**
-	 * Genera la factura de la comanda luego de cerrarse la comanda
+	 * Genera la factura de la comanda luego de cerrarse la comanda <br>
 	 * <b>PreCond:</b> la formaDePago debe ser una formaDePago valida. <br>
-	 * <b>PostCond:</b> debe crearse la factura correctamente y guardarse en sistema
+	 * <b>PostCond:</b> debe crearse la factura correctamente y guardarse en sistema <br>
 	 *
 	 */
 	public void facturarComanda(Comanda comanda, String formaDePago) {
