@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import excepciones.MesaDeshabilitadaException;
+import excepciones.MesaYaAsignadaException;
 import excepciones.MozoInvalidoException;
 
 
@@ -74,7 +75,7 @@ public class Mozo implements Serializable{
 			throw new MesaInvalidaException("La mesa ya pertenece al mozo");
 	}*/
 	
-	public void agregarMesa(Mesa mesa) throws MozoInvalidoException,MesaDeshabilitadaException{
+	public void agregarMesa(Mesa mesa) throws MozoInvalidoException,MesaDeshabilitadaException, MesaYaAsignadaException{
 		boolean yaAsignada=false;
 		
 		if (this.getEstado() == "Activo") {
@@ -85,7 +86,7 @@ public class Mozo implements Serializable{
 				}
 			}
 			if(yaAsignada) {
-				System.out.println("La mesa ya esta asignada a un mozo");//hacer exception
+				throw new MesaYaAsignadaException();
 			}
 			else {
 				this.mesas.add(mesa);

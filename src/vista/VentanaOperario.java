@@ -343,6 +343,11 @@ public class VentanaOperario extends JFrame implements IVistaOperario, MouseList
 		// TODO Auto-generated method stub
 		JOptionPane.showMessageDialog(this,"No se puede asignar, el mozo no esta activo");
 	}
+
+	@Override
+	public void emergenteMesaAsignada(String msg) {
+		JOptionPane.showMessageDialog(this, msg);
+	}
 	
 	
 }

@@ -174,11 +174,7 @@ public class VentanaInicial extends JFrame implements IVistaInicial, KeyListener
 
 	public void muestraError(String msg) {
 		JOptionPane.showMessageDialog(this, msg);
-		this.textContrasenia.setText("");
-		this.textFieldNombreApellido.setText("");
-		this.textFieldRestaurante.setText("");
-		this.textFieldSueldo.setText("");
-		this.textRepetirContrasenia.setText("");
+		actualizaCampos();
 	}
 
 	@Override

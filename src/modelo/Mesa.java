@@ -58,6 +58,9 @@ public class Mesa implements Serializable{
 		this.habilitado=true;
 	}
 	
+	/**
+	 * @throws MesaDeshabilitadaException se lanza si se quiere deshabilitar la mesa y esta ocupada previammente
+	 */
 	public void deshabilitar() throws MesaDeshabilitadaException{
 		if(this.estado.equals("libre"))
 			this.habilitado=false;

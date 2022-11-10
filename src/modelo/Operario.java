@@ -6,6 +6,7 @@ import excepciones.ContraseniaLongitudInvalidaException;
 import excepciones.ContraseniaReqNoCumplidosException;
 import excepciones.MesaDeshabilitadaException;
 import excepciones.MesaInvalidaException;
+import excepciones.MesaYaAsignadaException;
 import excepciones.MozoInvalidoException;
 import excepciones.ProductoEnComandaException;
 
@@ -70,7 +71,14 @@ public class Operario implements Serializable{
 			throw new ContraseniaLongitudInvalidaException();
 	}
 	
-	public void asignarMesa(Mozo mozo,Mesa mesa) throws MozoInvalidoException, MesaDeshabilitadaException {
+	/**
+	 * @param mozo
+	 * @param mesa
+	 * @throws MozoInvalidoException se lanza si se le asigna un mozo que esta de franco o ausente
+	 * @throws MesaDeshabilitadaException se lanza si la mesa esta deshabilitada
+	 * @throws MesaYaAsignadaException se lanza si la mesa ya le fue asignada a otro mozo
+	 */
+	public void asignarMesa(Mozo mozo,Mesa mesa) throws MozoInvalidoException, MesaDeshabilitadaException, MesaYaAsignadaException {
 		mozo.agregarMesa(mesa);//falta la exception
 	}
 
@@ -89,6 +97,12 @@ public class Operario implements Serializable{
 	public void habilitarMesa(Mesa mesa) {
 		mesa.habilitar();
 	}
+	
+	
+	/**
+	 * @param mesa
+	 * @throws MesaDeshabilitadaException se lanza si la mesa esta deshabilitada previamente
+	 */
 	public void deshabilitarMesa(Mesa mesa) throws MesaDeshabilitadaException {
 		mesa.deshabilitar();
 	}

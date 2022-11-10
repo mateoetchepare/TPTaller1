@@ -39,13 +39,16 @@ public class Comanda implements Serializable{
 		return estado;
 	}
 	
-	//revisar y poner el setEstado de mesa en otro lado
+	
+	/**
+	 * @param estado
+	 * @throws CierreComandaException se lanza si se quiere cerrar la comanda y ya estaba cerrada
+	 */
 	public void setEstado(String estado) throws CierreComandaException{
-		if (this.estado == "cerrada "&& estado == "cerrada") 
+		if (this.estado == "cerrada" && estado == "cerrada") 
 			throw new CierreComandaException();
 		else {
 			this.estado = estado;
-			//this.mesa.setEstado("libre");
 		}
 	}
 	
@@ -86,6 +89,11 @@ public class Comanda implements Serializable{
 	}
 	
 	//Cambio no paso un pedido sino un producto y la cantidad
+	/**
+	 * @param producto
+	 * @param cant
+	 * @throws PedidoInvalidoException se lanza si la cantidad solicitada del producto es mayor a la que hay en stock
+	 */
 	public void agregaPedido(Producto producto,int cant) throws PedidoInvalidoException{
 		int stock;
 			stock = Sistema.getInstancia().retornaStock(producto);

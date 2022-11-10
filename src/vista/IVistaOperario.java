@@ -25,7 +25,7 @@ public interface IVistaOperario {
 	
 	void emergenteMesaDeshabilitada();
 	void emergenteMesaOcupada();
-	
+	void emergenteMesaAsignada(String msg);
 	void vistaAdmin(boolean admin);
 	
 	JRadioButton getEstadoMozo();

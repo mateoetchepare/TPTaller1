@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import excepciones.MesaDeshabilitadaException;
+import excepciones.MesaYaAsignadaException;
 import excepciones.MozoInvalidoException;
 import modelo.Mesa;
 import modelo.Mozo;
@@ -68,6 +69,8 @@ public class ControladorOperario implements ActionListener {
 				} catch (MesaDeshabilitadaException e1) {
 					// TODO Auto-generated catch block
 					this.vista.emergenteMesaDeshabilitada();
+				} catch (MesaYaAsignadaException e3) {
+					this.vista.emergenteMesaAsignada(e3.getMessage());
 				}
 				
 			}else if (e.getActionCommand().equals("Productos / Promociones")) {
