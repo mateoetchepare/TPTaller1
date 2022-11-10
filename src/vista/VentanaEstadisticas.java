@@ -12,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.JList;
 import javax.swing.JButton;
+import javax.swing.JTextPane;
 
 public class VentanaEstadisticas extends JFrame {
 
@@ -20,8 +21,12 @@ public class VentanaEstadisticas extends JFrame {
 	private JLabel labelMozos;
 	private JPanel panelCentral;
 	private JList listMozos;
+	private JPanel panelBotonera;
 	private JButton btnVerificar;
-	private JPanel panel;
+	private JButton btnListo;
+	private JScrollPane scrollPane_1;
+	private JLabel labelEstadisticas;
+	private JTextPane textPane;
 
 	/**
 	 * Launch the application.
@@ -65,11 +70,24 @@ public class VentanaEstadisticas extends JFrame {
 		this.contentPane.add(this.panelCentral, BorderLayout.CENTER);
 		this.panelCentral.setLayout(new BorderLayout(0, 0));
 		
-		this.btnVerificar = new JButton("Verificar");
-		this.panelCentral.add(this.btnVerificar, BorderLayout.SOUTH);
+		this.panelBotonera = new JPanel();
+		this.panelCentral.add(this.panelBotonera, BorderLayout.SOUTH);
 		
-		this.panel = new JPanel();
-		this.panelCentral.add(this.panel, BorderLayout.SOUTH);
+		this.btnVerificar = new JButton("Verificar");
+		this.panelBotonera.add(this.btnVerificar);
+		
+		this.btnListo = new JButton("Listo");
+		this.panelBotonera.add(this.btnListo);
+		
+		this.scrollPane_1 = new JScrollPane();
+		this.panelCentral.add(this.scrollPane_1, BorderLayout.CENTER);
+		
+		this.labelEstadisticas = new JLabel("Estadisticas");
+		this.labelEstadisticas.setHorizontalAlignment(SwingConstants.CENTER);
+		this.scrollPane_1.setColumnHeaderView(this.labelEstadisticas);
+		
+		this.textPane = new JTextPane();
+		this.scrollPane_1.setViewportView(this.textPane);
 	}
 
 }
