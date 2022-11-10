@@ -87,6 +87,7 @@ public class VentanaEstadisticas extends JFrame {
 		this.scrollPane_1.setColumnHeaderView(this.labelEstadisticas);
 		
 		this.textPane = new JTextPane();
+		this.textPane.setEditable(false);
 		this.scrollPane_1.setViewportView(this.textPane);
 	}
 
