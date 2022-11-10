@@ -75,6 +75,12 @@ public class Mozo implements Serializable{
 			throw new MesaInvalidaException("La mesa ya pertenece al mozo");
 	}*/
 	
+	/**
+	 * @param mesa
+	 * @throws MozoInvalidoException se lanza si el mozo no esta en estado activo
+	 * @throws MesaDeshabilitadaException se lanza si 
+	 * @throws MesaYaAsignadaException se lanza si la mesa ya habia sido asignada previamente al mozo
+	 */
 	public void agregarMesa(Mesa mesa) throws MozoInvalidoException,MesaDeshabilitadaException, MesaYaAsignadaException{
 		boolean yaAsignada=false;
 		
@@ -89,7 +95,10 @@ public class Mozo implements Serializable{
 				throw new MesaYaAsignadaException();
 			}
 			else {
-				this.mesas.add(mesa);
+				if (mesa.getHabilitado() == true)
+					this.mesas.add(mesa);
+				else
+					throw new MesaDeshabilitadaException("La mesa esta deshabilitada");
 				System.out.println("Se agrego la mesa al mozo");
 			}
 		} else
