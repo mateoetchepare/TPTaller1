@@ -10,4 +10,6 @@ public interface IVistaInicial {
 	String getNombreApellido();
 	String getSueldo();
 	void muestraError(String msg);
+	void actualizaBotones();
+	void actualizaCampos();
 }

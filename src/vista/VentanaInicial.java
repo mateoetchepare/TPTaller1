@@ -202,6 +202,20 @@ public class VentanaInicial extends JFrame implements IVistaInicial, KeyListener
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void actualizaBotones() {
+		this.btnConfirmar.setEnabled(false);
+	}
+
+	@Override
+	public void actualizaCampos() {
+		this.textContrasenia.setText("");
+		this.textFieldNombreApellido.setText("");
+		this.textFieldRestaurante.setText("");
+		this.textFieldSueldo.setText("");
+		this.textRepetirContrasenia.setText("");
+	}
 	
 
 }

@@ -23,5 +23,6 @@ public interface IVistaMesa {
 	void emergenteProductoNoSeleccionado();
 	
 	void completarTitulo(int numeroMesa,String estado);
-	
+	void actualizaBotones();
+	void actualizaCampos();
 }

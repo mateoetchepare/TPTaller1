@@ -62,7 +62,8 @@ public class ControladorMesa implements ActionListener {
 			} catch (NumberFormatException exception) {
 				this.vista.emergenteCantidadInvalida();
 			}
-
+			vista.actualizaBotones();
+			vista.actualizaCampos();
 		}else if (e.getActionCommand().equals("Sacar")) {
 			if(this.vista.getListComanda().getSelectedValue()!=null) {
 				this.mesa.getComanda().sacarPedido(this.vista.getListComanda().getSelectedValue());
@@ -70,7 +71,8 @@ public class ControladorMesa implements ActionListener {
 			else {
 				this.vista.emergentePedidoNoSeleccionado();
 			}
-			
+			vista.actualizaBotones();
+			vista.actualizaCampos();
 		}else if (e.getActionCommand().equals("Listo")) {
 			this.vistaOperario.actualizarListas();
 			VentanaMesa v = (VentanaMesa) this.vista;

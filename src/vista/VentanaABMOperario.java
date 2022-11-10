@@ -300,4 +300,22 @@ public class VentanaABMOperario extends JFrame implements IVistaABMOperario, Key
 	public void muestraError(String msg) {
 		JOptionPane.showMessageDialog(this, msg);
 	}
+
+	@Override
+	public void actualizaBotones() {
+		this.btnAgregar.setEnabled(false);
+		this.btnListo.setEnabled(true);
+		this.btnModificar.setEnabled(false);
+		this.btnSacar.setEnabled(false);
+	}
+
+	@Override
+	public void actualizaCampos() {
+		this.textFieldApellido.setText("");
+		this.textFieldNombre.setText("");
+		this.textFieldPassword.setText("");
+		this.textFieldUsername.setText("");
+	}
+	
+	
 }

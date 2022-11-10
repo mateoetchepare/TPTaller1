@@ -87,6 +87,8 @@ public class ControladorLogin implements ActionListener {
 				//throws usuarioIncorrectoException()
 				System.out.println("no se encontro al usuario");
 			}*/ 
+			vista.actualizaBotones();
+			vista.actualizaCampos();
 		}
 	}
 }

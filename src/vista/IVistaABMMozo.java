@@ -19,5 +19,6 @@ public interface IVistaABMMozo {
 		void muestraError(String msg);
 		DefaultListModel<Mozo> getModeloListaMozos();
 		JList<Mozo> getListMozos();
-		
+		void actualizaBotones();
+		void actualizaCampos();
 	}

@@ -210,9 +210,10 @@ public class VentanaMesa extends JFrame implements MouseListener, KeyListener,IV
 		this.btnCerrarMesa = new JButton("Cerrar Mesa");
 		this.panel_4.add(this.btnCerrarMesa);
 		
-		this.btnCerrarMesa.setEnabled(false);
-	    this.listProductos.addMouseListener(this);
-	    this.listComanda.addMouseListener(this);
+		actualizaBotones();
+		
+		this.listComanda.addMouseListener(this);
+		this.listProductos.addMouseListener(this);
 	
 	}
 
@@ -221,12 +222,12 @@ public class VentanaMesa extends JFrame implements MouseListener, KeyListener,IV
 	public void keyReleased(KeyEvent e) {
 		if(!this.listProductos.isSelectionEmpty() && !this.textFieldCantidad.getText().isEmpty()) {
 			this.btnAgregar.setEnabled(true);
-			this.btnSacar.setEnabled(true);
+			//this.btnSacar.setEnabled(true);
 			this.btnModificar.setEnabled(true);
 		}
 		else {
 			this.btnAgregar.setEnabled(false);
-			this.btnSacar.setEnabled(false);
+			//this.btnSacar.setEnabled(false);
 			this.btnModificar.setEnabled(false);
 		}
 	}
@@ -279,20 +280,23 @@ public class VentanaMesa extends JFrame implements MouseListener, KeyListener,IV
 	public void mouseClicked(MouseEvent e) {
 		if(!this.listProductos.isSelectionEmpty() && !this.textFieldCantidad.getText().isEmpty()) {
 			this.btnAgregar.setEnabled(true);
-			this.btnSacar.setEnabled(true);
+			//this.btnSacar.setEnabled(true);
 			this.btnModificar.setEnabled(true);
 		}
 		else {
 			this.btnAgregar.setEnabled(false);
-			this.btnSacar.setEnabled(false);
+			//this.btnSacar.setEnabled(false);
 			this.btnModificar.setEnabled(false);
 		}
-		if (this.rdbtnCuentaDNI.isSelected() || this.rdbtnEfectivo.isSelected() || this.rdbtnMercadoPago.isSelected() && 
-				this.listComanda.getFirstVisibleIndex()==-1 // esto es si la lista esta vacia
-				|| this.rdbtnTarjeta.isSelected())
+		if ((this.rdbtnCuentaDNI.isSelected() || this.rdbtnEfectivo.isSelected() || this.rdbtnMercadoPago.isSelected() 
+				|| this.rdbtnTarjeta.isSelected()) && this.listComanda.getFirstVisibleIndex()!=-1)
 			this.btnCerrarMesa.setEnabled(true);
 		else
 			this.btnCerrarMesa.setEnabled(false);
+		if (!this.listComanda.isSelectionEmpty()) 
+			this.btnSacar.setEnabled(true); 
+		else
+			this.btnSacar.setEnabled(false);
 	}
 	
 	
@@ -348,6 +352,24 @@ public class VentanaMesa extends JFrame implements MouseListener, KeyListener,IV
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public void actualizaBotones() {
+		this.btnAgregar.setEnabled(false);
+		this.btnCerrarMesa.setEnabled(false);
+		this.btnListo.setEnabled(true);
+		this.btnModificar.setEnabled(false);
+		this.btnSacar.setEnabled(false);
+		this.rdbtnCuentaDNI.setDisabledSelectedIcon(null);
+		this.rdbtnEfectivo.setDisabledSelectedIcon(null);
+		this.rdbtnMercadoPago.setDisabledSelectedIcon(null);
+		this.rdbtnTarjeta.setDisabledSelectedIcon(null);
+	}
+
+	@Override
+	public void actualizaCampos() {
+		this.textFieldCantidad.setText("");
 	}
 	
 

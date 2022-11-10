@@ -42,6 +42,8 @@ public class ControladorABMOperario implements ActionListener{
 			} catch (UsuarioNuevoInvalidoException e3) {
 				vista.muestraError(e3.getMessage());
 			}
+			vista.actualizaBotones();
+			vista.actualizaCampos();
 		}
 
 		else if(e.getActionCommand().equals("Sacar")) {
@@ -49,6 +51,8 @@ public class ControladorABMOperario implements ActionListener{
 				Sistema.getInstancia().getOperarios().remove(this.vista.getListOperarios().getSelectedValue());
 
 			}
+			vista.actualizaBotones();
+			vista.actualizaCampos();
 		}
 		else if(e.getActionCommand().equals("Modificar")) {
 			if(this.vista.getListOperarios().getSelectedValue()!=null) {//ver ue exceptions se lanzan y generar emergente
@@ -60,6 +64,8 @@ public class ControladorABMOperario implements ActionListener{
 					vista.muestraError(e2.getMessage());
 				}
 			}
+			vista.actualizaBotones();
+			vista.actualizaCampos();
 		}
 		else if(e.getActionCommand().equals("Listo")) {
 			System.out.println("SE PRESIONA BOTON LISTO");

@@ -37,6 +37,8 @@ public class ControladorInicial implements ActionListener{
 				}
 			} else
 				vista.muestraError("Ingrese un sueldo mayor a 0");
+			vista.actualizaBotones();
+			vista.actualizaCampos();
 		}
 	}
 

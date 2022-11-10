@@ -10,6 +10,8 @@ import modelo.Operario;
 import modelo.Sistema;
 import vista.IVistaABMMozo;
 import vista.IVistaOperario;
+import vista.VentanaABMMozo;
+import vista.VentanaABMOperario;
 
 public class ControladorABMMozo implements ActionListener{
 	private IVistaABMMozo vista = null;
@@ -48,10 +50,14 @@ public class ControladorABMMozo implements ActionListener{
 					vista.muestraError("El mozo debe ser mayor a 18");
 			} else
 				vista.muestraError("Ingrese una cantidad de hijos valida y una fecha de nacimiento valida");
+			vista.actualizaBotones();
+			vista.actualizaCampos();
 		} else 
 			if (e.getActionCommand().equals("Sacar")) {
 				System.out.println("BOTON SACAR");
 				Sistema.getInstancia().borrarMozo(vista.getMozo());
+				vista.actualizaBotones();
+				vista.actualizaCampos();
 		} else 
 			if (e.getActionCommand().equals("Modificar")) { // esto solo va a poder ser presionado cambiandole la cantidad de hijos
 				System.out.println("BOTON MODIFICAR");
@@ -60,7 +66,15 @@ public class ControladorABMMozo implements ActionListener{
 					m.setHijos(vista.getCantHijos());
 				else
 					vista.muestraError("No es posible modificar por un numero de hijos negativo");
-			}
+				vista.actualizaCampos();
+				vista.actualizaBotones();
+			} else
+				if (e.getActionCommand().equals("Listo")) {
+					this.vista.actualizarLista();
+					VentanaABMMozo v = (VentanaABMMozo) this.vista;
+					v.setVisible(false);
+					this.vistaOperario.setVisible(true);
+				}
 		actualizarListas();
 	}
 	

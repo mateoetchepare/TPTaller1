@@ -10,4 +10,6 @@ public interface IVistaLogin {
 	void emergenteUsuarioIncorecto();
 	void emergetneContraseniaIncorrecta();
 	void emergenteUsuarioInactivo();
+	void actualizaBotones();
+	void actualizaCampos();
 }

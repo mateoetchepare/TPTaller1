@@ -203,10 +203,9 @@ public class VentanaABMMozo extends JFrame implements IVistaABMMozo, KeyListener
 		this.textFieldHijos.addKeyListener(this);
 		this.textFieldNombre.addKeyListener(this);
 		
-		this.btnAgregar.setEnabled(false);
-		this.btnListo.setEnabled(true);
-		this.btnModificar.setEnabled(false);
-		this.btnSacar.setEnabled(false);
+		actualizaBotones();
+		
+		this.list.addMouseListener(this);
 	}
 
 	@Override
@@ -215,7 +214,6 @@ public class VentanaABMMozo extends JFrame implements IVistaABMMozo, KeyListener
 		this.btnListo.addActionListener(listener);
 		this.btnModificar.addActionListener(listener);
 		this.btnSacar.addActionListener(listener);
-		
 	}
 
 	@Override
@@ -246,10 +244,7 @@ public class VentanaABMMozo extends JFrame implements IVistaABMMozo, KeyListener
 	
 	public void muestraError(String msg) {
 		JOptionPane.showMessageDialog(this, msg);
-		this.textFieldApellido.setText("");
-		this.textFieldFecha.setText("");
-		this.textFieldHijos.setText("");
-		this.textFieldNombre.setText("");
+		actualizaCampos();
 	}
 	
 	public Mozo getMozo() {
@@ -332,5 +327,17 @@ public class VentanaABMMozo extends JFrame implements IVistaABMMozo, KeyListener
 		
 	}
 	
+	public void actualizaBotones() {
+		this.btnAgregar.setEnabled(false);
+		this.btnListo.setEnabled(true);
+		this.btnModificar.setEnabled(false);
+		this.btnSacar.setEnabled(false);
+	}
 	
+	public void actualizaCampos() {
+		this.textFieldApellido.setText("");
+		this.textFieldFecha.setText("");
+		this.textFieldHijos.setText("");
+		this.textFieldNombre.setText("");
+	}
 }

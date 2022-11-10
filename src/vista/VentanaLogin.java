@@ -189,4 +189,15 @@ public class VentanaLogin extends JFrame implements KeyListener, IVistaLogin {
 	public void emergenteUsuarioInactivo() {
 		JOptionPane.showMessageDialog(this,"El operario NO esta activo, no puede ingresar al sistema. Consulte con el administrador");
 	}
+
+	@Override
+	public void actualizaBotones() {
+		this.btnLogin.setEnabled(false);
+	}
+
+	@Override
+	public void actualizaCampos() {
+		this.textFieldContrasenia.setText("");
+		this.textFieldUsuario.setText("");
+	}
 }
