@@ -229,11 +229,6 @@ public class VentanaMesa extends JFrame implements MouseListener, KeyListener,IV
 			this.btnSacar.setEnabled(false);
 			this.btnModificar.setEnabled(false);
 		}
-		if (this.rdbtnCuentaDNI.isSelected() || this.rdbtnEfectivo.isSelected() || this.rdbtnMercadoPago.isSelected() 
-				|| this.rdbtnTarjeta.isSelected())
-			this.btnCerrarMesa.setEnabled(true);
-		else
-			this.btnCerrarMesa.setEnabled(false);
 	}
 	public void keyTyped(KeyEvent e) {
 	}
@@ -292,6 +287,12 @@ public class VentanaMesa extends JFrame implements MouseListener, KeyListener,IV
 			this.btnSacar.setEnabled(false);
 			this.btnModificar.setEnabled(false);
 		}
+		if (this.rdbtnCuentaDNI.isSelected() || this.rdbtnEfectivo.isSelected() || this.rdbtnMercadoPago.isSelected() && 
+				this.listComanda.getFirstVisibleIndex()==-1 // esto es si la lista esta vacia
+				|| this.rdbtnTarjeta.isSelected())
+			this.btnCerrarMesa.setEnabled(true);
+		else
+			this.btnCerrarMesa.setEnabled(false);
 	}
 	
 	

@@ -13,6 +13,7 @@ import modelo.Pedido;
 
 import javax.swing.JScrollPane;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.GridLayout;
@@ -259,6 +260,10 @@ public class VentanaABMOperario extends JFrame implements IVistaABMOperario, Key
 		else {
 			this.btnAgregar.setEnabled(false);
 		}
+		if(this.listOperarios.getSelectedValue()!=null &&(this.textFieldPassword.getText().length()>0))
+			this.btnModificar.setEnabled(true);
+		else
+			this.btnModificar.setEnabled(false);
 	}
 	public void keyTyped(KeyEvent e) {
 	}
@@ -289,5 +294,10 @@ public class VentanaABMOperario extends JFrame implements IVistaABMOperario, Key
 	public JList getListOperarios() {
 		// TODO Auto-generated method stub
 		return this.listOperarios;
+	}
+
+	@Override
+	public void muestraError(String msg) {
+		JOptionPane.showMessageDialog(this, msg);
 	}
 }

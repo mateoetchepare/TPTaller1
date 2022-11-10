@@ -4,6 +4,10 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.GridLayout;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -15,7 +19,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
-public class VentanaProductoPromocion extends JFrame {
+public class VentanaProductoPromocion extends JFrame implements MouseListener, KeyListener{
 
 	private JPanel contentPane;
 	private JPanel panelProducto;
@@ -196,6 +200,76 @@ public class VentanaProductoPromocion extends JFrame {
 		this.labelListPromociones = new JLabel("Promociones");
 		this.labelListPromociones.setHorizontalAlignment(SwingConstants.CENTER);
 		this.scrollPane_1.setColumnHeaderView(this.labelListPromociones);
+		
+		this.btnAgregar.setEnabled(false);
+		this.btnModificar.setEnabled(false);
+		this.btnSacar.setEnabled(false);
 	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		if (!this.textFieldID.getText().isEmpty() && !this.textFieldNombreProducto.getText().isEmpty() && 
+				!this.textFieldPrecioCompra.getText().isEmpty() && !this.textFieldPrecioVenta.getText().isEmpty()) {
+			this.btnAgregar.setEnabled(true);
+		}
+		else
+			this.btnAgregar.setEnabled(false);
+		if (!this.listProductos.isSelectionEmpty() && (!this.textFieldID.getText().isEmpty() || !this.textFieldNombreProducto.getText().isEmpty() 
+				|| !this.textFieldPrecioCompra.getText().isEmpty() || !this.textFieldPrecioVenta.getText().isEmpty())) {
+			this.btnModificar.setEnabled(true);
+		} else
+			this.btnModificar.setEnabled(false);
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		if (!this.listProductos.isSelectionEmpty()) {
+			this.btnSacar.setEnabled(true);
+		} else
+			this.btnSacar.setEnabled(false);
+		if (!this.listProductos.isSelectionEmpty() && (!this.textFieldID.getText().isEmpty() || !this.textFieldNombreProducto.getText().isEmpty() 
+				|| !this.textFieldPrecioCompra.getText().isEmpty() || !this.textFieldPrecioVenta.getText().isEmpty())) {
+			this.btnModificar.setEnabled(true);
+		} else
+			this.btnModificar.setEnabled(false);
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
 
 }

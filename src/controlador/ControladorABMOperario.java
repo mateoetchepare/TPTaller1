@@ -29,53 +29,50 @@ public class ControladorABMOperario implements ActionListener{
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
+
 		if(e.getActionCommand().equals("Agregar")) {
-			
+
 			Operario operario = new Operario(this.vista.getUsername(),this.vista.getPassword(),this.vista.getNombre() + this.vista.getApellido());
 			try {
 				Sistema.getInstancia().agregaOperario(operario);
-			} catch (UsuarioNuevoInvalidoException e1) { //ver ue exceptions se lanzan y generar emergente
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+			} catch (ContraseniaReqNoCumplidosException e1) {
+				vista.muestraError(e1.getMessage());
+			} catch (ContraseniaLongitudInvalidaException e2) {
+				vista.muestraError(e2.getMessage());
+			} catch (UsuarioNuevoInvalidoException e3) {
+				vista.muestraError(e3.getMessage());
 			}
-			
 		}
+
 		else if(e.getActionCommand().equals("Sacar")) {
 			if(this.vista.getListOperarios().getSelectedValue()!=null) {
 				Sistema.getInstancia().getOperarios().remove(this.vista.getListOperarios().getSelectedValue());
-				
+
 			}
-			else
-				;//emergente no se selecciono operario a sacar
 		}
 		else if(e.getActionCommand().equals("Modificar")) {
 			if(this.vista.getListOperarios().getSelectedValue()!=null) {//ver ue exceptions se lanzan y generar emergente
 				try {
 					this.vista.getListOperarios().getSelectedValue().setPassword(this.vista.getPassword());
 				} catch (ContraseniaReqNoCumplidosException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} catch (ContraseniaLongitudInvalidaException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					vista.muestraError(e1.getMessage());
+				} catch (ContraseniaLongitudInvalidaException e2) {
+					vista.muestraError(e2.getMessage());
 				}
 			}
-			else
-				;//emergente no se selecciono operario a sacar
 		}
 		else if(e.getActionCommand().equals("Listo")) {
 			System.out.println("SE PRESIONA BOTON LISTO");
 			this.vistaOperario.actualizarListas();
-			
+
 			VentanaABMOperario v = (VentanaABMOperario) this.vista;
 			v.setVisible(false);
 			this.vistaOperario.setVisible(true);
 		}
 		this.actualizarListas();
-		
+
 	}
-	
+
 	public void actualizarListas() {
 		this.vista.getModeloListaOperarios().clear();
 		for (Operario operario : Sistema.getInstancia().getOperarios()) {

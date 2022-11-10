@@ -15,4 +15,5 @@ public interface IVistaABMOperario {
 	String getNombre();
 	String getApellido();
 	JList<Operario> getListOperarios();
+	void muestraError(String msg);
 }
