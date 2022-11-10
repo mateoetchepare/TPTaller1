@@ -62,8 +62,7 @@ public class Mesa implements Serializable{
 		if(this.estado.equals("libre"))
 			this.habilitado=false;
 		else {
-			System.out.println("No se puede deshabilitar mesa porue esta ocupada");//agregar exception
-			throw new MesaDeshabilitadaException();
+			throw new MesaDeshabilitadaException("No se puede deshabilitar mesa porue esta ocupada");
 		}
 	}
 	public boolean getHabilitado() {

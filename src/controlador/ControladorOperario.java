@@ -3,7 +3,6 @@ package controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import excepciones.EstadoInvalidoMozoException;
 import excepciones.MesaDeshabilitadaException;
 import excepciones.MozoInvalidoException;
 import modelo.Mesa;
@@ -102,15 +101,8 @@ public class ControladorOperario implements ActionListener {
 			}else if (e.getActionCommand().equals("Modificar")) {
 				System.out.println("BOTON MODIFICAR");
 				//toma elemento de la lista mozo y el radio button seleccionado y le cambia estado
-				try {
-					this.operario.seteaEstadoMozo(this.vista.getListMozos().getSelectedValue(), this.vista.getEstadoMozo().getText());
-				} catch (EstadoInvalidoMozoException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace(); //no deberia lanzar nunca esta exception
-				}
+				this.operario.seteaEstadoMozo(this.vista.getListMozos().getSelectedValue(), this.vista.getEstadoMozo().getText());
 				this.actualizarListas();	
-				
-				
 			}
 			
 

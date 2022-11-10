@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 import excepciones.ContraseniaLongitudInvalidaException;
 import excepciones.ContraseniaReqNoCumplidosException;
-import excepciones.EstadoInvalidoMozoException;
 import excepciones.MesaDeshabilitadaException;
 import excepciones.MesaInvalidaException;
 import excepciones.MozoInvalidoException;
@@ -70,6 +69,10 @@ public class Operario implements Serializable{
 		} else
 			throw new ContraseniaLongitudInvalidaException();
 	}
+	
+	public void asignarMesa(Mozo mozo,Mesa mesa) throws MozoInvalidoException, MesaDeshabilitadaException {
+		mozo.agregarMesa(mesa);//falta la exception
+	}
 
 	public boolean isActivo() {
 		return activo;
@@ -81,11 +84,6 @@ public class Operario implements Serializable{
 	
 	public void seteaEstadoMozo(Mozo mozo, String estado)  {
 		mozo.setEstado(estado);
-	}
-	
-	
-	public void asignarMesa(Mozo mozo,Mesa mesa) throws MozoInvalidoException, MesaDeshabilitadaException {
-		mozo.agregarMesa(mesa);//falta la exception
 	}
 	
 	public void habilitarMesa(Mesa mesa) {
