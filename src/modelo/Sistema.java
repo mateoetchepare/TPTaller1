@@ -301,25 +301,25 @@ public class Sistema {
 	public void diaActualAlEspanol() {
 		switch (fecha.getDayOfWeek()) {
 		case SUNDAY:
-			this.diaActual = "domingo";
+			this.diaActual = "Domingo";
 			break;
 		case MONDAY:
-			this.diaActual = "lunes";
+			this.diaActual = "Lunes";
 			break;
 		case TUESDAY:
-			this.diaActual = "martes";
+			this.diaActual = "Martes";
 			break;
 		case WEDNESDAY:
-			this.diaActual = "miercoles";
+			this.diaActual = "Miercoles";
 			break;
 		case THURSDAY:
-			this.diaActual = "jueves";
+			this.diaActual = "Jueves";
 			break;
 		case FRIDAY:
-			this.diaActual = "viernes";
+			this.diaActual = "Viernes";
 			break;
 		case SATURDAY:
-			this.diaActual = "sabado";
+			this.diaActual = "Sabado";
 			break;
 		}
 	}
@@ -341,7 +341,7 @@ public class Sistema {
 
 		j = promociones.size();
 		while (i<j) {
-			if (promociones.get(i).isActivo() && promociones.get(i).getDiasDePromo() == this.diaActual) { //  && promociones.get(i).getDiasDePromo()) ///////COMO MIER... ME FIJO SI EL DIA ACTUAL ES IGUAL AL DIA DE LA PROMO?
+			if (promociones.get(i).isActivo() && promociones.get(i).contieneDiaDePromo(this.diaActual)) { //  && promociones.get(i).getDiasDePromo()) ///////COMO MIER... ME FIJO SI EL DIA ACTUAL ES IGUAL AL DIA DE LA PROMO?
 				if (promociones.get(i) instanceof PromocionProd) {
 					PromocionProd aux = (PromocionProd) promociones.get(i);
 					if (comanda.contieneProducto(aux.getProducto())) {

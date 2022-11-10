@@ -33,5 +33,12 @@ public class Promocion implements Serializable{
 		this.diasDePromo.remove(dia);
 	}
 
-
+	public boolean contieneDiaDePromo(String dia) {
+		if (diasDePromo.contains(dia)) {
+			return true;
+		}
+		else
+			return false;
+	}
+	
 }	
