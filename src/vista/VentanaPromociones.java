@@ -301,6 +301,16 @@ public class VentanaPromociones extends JFrame {
 		
 		this.btnListo = new JButton("Listo");
 		this.contentPane.add(this.btnListo, BorderLayout.SOUTH);
+		
 	}
-
+	
+	
+	public void actualizaBotones() {
+		this.btnAgregarDia.setEnabled(false);
+		this.btnActivar.setEnabled(false);
+		this.btnAgregar.setEnabled(false);
+		this.btnActivarTemp.setEnabled(false);
+		this.btnDesactivar.setEnabled(false);
+		this.btnDesactivarTemp.setEnabled(false);
+	}
 }
