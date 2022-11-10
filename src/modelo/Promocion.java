@@ -1,10 +1,11 @@
 package modelo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Promocion implements Serializable{
 	private boolean activo;
-	private String diasDePromo;
+	private ArrayList<String> diasDePromo=new ArrayList<String>();
 	
 	public Promocion() {}
 	
@@ -17,12 +18,19 @@ public class Promocion implements Serializable{
 		this.activo = activo;
 	}
 
-	public String getDiasDePromo() {
+	public ArrayList<String> getDiasDePromo() {
 		return diasDePromo;
 	}
 
-	public void setDiasDePromo(String diasDePromo) {
+	public void setDiasDePromo(ArrayList<String> diasDePromo) {
 		this.diasDePromo = diasDePromo;
+	}
+	
+	public void agregarDiaPromo(String dia) {
+		this.diasDePromo.add(dia); //revisar ue sea un dia valido y no repetido
+	}
+	public void sacarDiaPromo(String dia) {
+		this.diasDePromo.remove(dia);
 	}
 
 

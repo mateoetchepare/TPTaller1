@@ -50,7 +50,7 @@ public class VentanaOperario extends JFrame implements IVistaOperario, MouseList
 	private JButton btnDeshabilitar;
 	private JButton btnVerMesa;
 	private JButton btnAsignarMozo;
-	private JButton btnProductosPromociones;
+	private JButton btnProductos;
 	private JButton btnAgregarOperario;
 	private JButton btnCerrarSecion;
 	boolean seleccionado=false;
@@ -60,6 +60,7 @@ public class VentanaOperario extends JFrame implements IVistaOperario, MouseList
 	private JRadioButton rdbtnAusente;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private JButton btnMozos;
+	private JButton btnPromociones;
 
 	/**
 	 * Launch the application.
@@ -127,8 +128,11 @@ public class VentanaOperario extends JFrame implements IVistaOperario, MouseList
 		this.btnAsignarMozo.setEnabled(false);
 		this.panelCentral.add(this.btnAsignarMozo);
 		
-		this.btnProductosPromociones = new JButton("Productos / Promociones");
-		this.panelCentral.add(this.btnProductosPromociones);
+		this.btnProductos = new JButton("Productos ");
+		this.panelCentral.add(this.btnProductos);
+		
+		this.btnPromociones = new JButton("Promociones");
+		this.panelCentral.add(this.btnPromociones);
 		
 		this.btnAgregarOperario = new JButton("Operario ");
 		this.panelCentral.add(this.btnAgregarOperario);
@@ -214,7 +218,7 @@ public class VentanaOperario extends JFrame implements IVistaOperario, MouseList
 		this.btnDeshabilitar.addActionListener(listener);
 		this.btnVerMesa.addActionListener(listener);
 		this.btnAsignarMozo.addActionListener(listener);
-		this.btnProductosPromociones.addActionListener(listener);
+		this.btnProductos.addActionListener(listener);
 		this.btnAgregarOperario.addActionListener(listener);
 		this.btnMozos.addActionListener(listener);
 		this.btnEstadisticas.addActionListener(listener);

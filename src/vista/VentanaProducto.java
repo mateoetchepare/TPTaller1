@@ -18,14 +18,13 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import java.awt.FlowLayout;
 
-public class VentanaProductoPromocion extends JFrame implements MouseListener, KeyListener{
+public class VentanaProducto extends JFrame implements MouseListener, KeyListener{
 
 	private JPanel contentPane;
 	private JPanel panelProducto;
-	private JPanel panelPromocion;
 	private JLabel labelProducto;
-	private JLabel labelPromocion;
 	private JPanel panelProductoPrincipal;
 	private JScrollPane scrollPane;
 	private JList listProductos;
@@ -50,10 +49,7 @@ public class VentanaProductoPromocion extends JFrame implements MouseListener, K
 	private JButton btnAgregar;
 	private JButton btnSacar;
 	private JButton btnModificar;
-	private JPanel panelDatosPromocion;
-	private JScrollPane scrollPane_1;
-	private JList listPromociones;
-	private JLabel labelListPromociones;
+	private JButton btnListo;
 
 	/**
 	 * Launch the application.
@@ -62,7 +58,7 @@ public class VentanaProductoPromocion extends JFrame implements MouseListener, K
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					VentanaProductoPromocion frame = new VentanaProductoPromocion();
+					VentanaProducto frame = new VentanaProducto();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -74,13 +70,13 @@ public class VentanaProductoPromocion extends JFrame implements MouseListener, K
 	/**
 	 * Create the frame.
 	 */
-	public VentanaProductoPromocion() {
+	public VentanaProducto() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 526, 318);
+		setBounds(100, 100, 600, 320);
 		this.contentPane = new JPanel();
 		this.contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(this.contentPane);
-		this.contentPane.setLayout(new GridLayout(2, 0, 0, 0));
+		this.contentPane.setLayout(new BorderLayout(0, 0));
 		
 		this.panelProducto = new JPanel();
 		this.contentPane.add(this.panelProducto);
@@ -179,31 +175,12 @@ public class VentanaProductoPromocion extends JFrame implements MouseListener, K
 		this.panelBotoneraProductos.add(this.btnModificar);
 		
 		
-		this.panelPromocion = new JPanel();
-		this.contentPane.add(this.panelPromocion);
-		this.panelPromocion.setLayout(new BorderLayout(0, 0));
-		
-		this.labelPromocion = new JLabel("Promociones");
-		this.labelPromocion.setHorizontalAlignment(SwingConstants.CENTER);
-		this.panelPromocion.add(this.labelPromocion, BorderLayout.NORTH);
-		
-		this.panelDatosPromocion = new JPanel();
-		this.panelPromocion.add(this.panelDatosPromocion, BorderLayout.CENTER);
-		
-		this.scrollPane_1 = new JScrollPane();
-		this.panelPromocion.add(this.scrollPane_1, BorderLayout.WEST);
-		this.scrollPane_1.setPreferredSize(new Dimension(150,50));
-		
-		this.listPromociones = new JList();
-		this.scrollPane_1.setViewportView(this.listPromociones);
-		
-		this.labelListPromociones = new JLabel("Promociones");
-		this.labelListPromociones.setHorizontalAlignment(SwingConstants.CENTER);
-		this.scrollPane_1.setColumnHeaderView(this.labelListPromociones);
-		
 		this.btnAgregar.setEnabled(false);
 		this.btnModificar.setEnabled(false);
 		this.btnSacar.setEnabled(false);
+		
+		this.btnListo = new JButton("Listo");
+		this.contentPane.add(this.btnListo, BorderLayout.SOUTH);
 	}
 
 	@Override
