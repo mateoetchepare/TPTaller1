@@ -8,6 +8,7 @@ import excepciones.MesaDeshabilitadaException;
 import excepciones.MesaInvalidaException;
 import excepciones.MesaYaAsignadaException;
 import excepciones.MozoInvalidoException;
+import excepciones.NoHayPromosActivasException;
 import excepciones.ProductoEnComandaException;
 
 public class Operario implements Serializable{
@@ -94,7 +95,7 @@ public class Operario implements Serializable{
 		mozo.setEstado(estado);
 	}
 	
-	public void habilitarMesa(Mesa mesa) {
+	public void habilitarMesa(Mesa mesa) throws NoHayPromosActivasException{
 		mesa.habilitar();
 	}
 	

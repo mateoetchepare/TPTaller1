@@ -119,6 +119,18 @@ public class Sistema {
 		return operarios;
 	}	
 	
+	public boolean alMenos2PromosProd() {
+		int i = 0, j, cont = 0;
+		diaActualAlEspanol();
+		j = promociones.size();
+		while ( i < j && cont < 2) {
+			if (promociones.get(i) instanceof PromocionProd && promociones.get(i).isActivo() && promociones.get(i).contieneDiaDePromo(this.diaActual))
+				cont++;
+			i++;
+		}
+		return cont == 2;
+	}
+	
 	/**
 	 * @param mesa
 	 * @throws MesaInvalidaException si se quiere ingresar una mesa con numero de mesa ya existente o la combinacion de comensales - nro de mesa es invalido <br>
@@ -338,6 +350,8 @@ public class Sistema {
 		ArrayList<Promocion> promosAplicadas = new ArrayList<Promocion>();
 		boolean acumulable = false, hayPromoTemp=false;
 		double porcDesc=0;
+		
+		diaActualAlEspanol();
 
 		j = promociones.size();
 		while (i<j) {

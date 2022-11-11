@@ -7,7 +7,9 @@ public class Promocion implements Serializable{
 	private boolean activo;
 	private ArrayList<String> diasDePromo=new ArrayList<String>();
 	
-	public Promocion() {}
+	public Promocion() {
+		
+	}
 	
 
 	public boolean isActivo() {

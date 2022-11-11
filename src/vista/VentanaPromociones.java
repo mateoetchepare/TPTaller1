@@ -8,6 +8,11 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.GridLayout;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.JTextArea;
@@ -17,8 +22,9 @@ import javax.swing.JRadioButton;
 import javax.swing.JButton;
 import javax.swing.ButtonGroup;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 
-public class VentanaPromociones extends JFrame {
+public class VentanaPromociones extends JFrame implements KeyListener, MouseListener {
 
 	private JPanel contentPane;
 	private JPanel panelPrincipal;
@@ -302,15 +308,224 @@ public class VentanaPromociones extends JFrame {
 		this.btnListo = new JButton("Listo");
 		this.contentPane.add(this.btnListo, BorderLayout.SOUTH);
 		
+		this.textFieldCantidadMinima.addKeyListener(this);
+		this.textFieldDescuento.addKeyListener(this);
+		this.textFieldNombre.addKeyListener(this);
+		this.textFieldPrecioUnitario.addKeyListener(this);
+		
+		this.listProductos.addMouseListener(this);
+		this.listProductos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		this.listPromProd.addMouseListener(this);
+		this.listPromProd.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		this.listPromTemp.addMouseListener(this);
+		this.listPromTemp.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		
+		actualizaBotones();
+		actualizaCampos();
+	}
+	
+	public void actualizaCampos() {
+		this.textFieldCantidadMinima.setText("");
+		this.textFieldDescuento.setText("");
+		this.textFieldNombre.setText("");
+		this.textFieldPrecioUnitario.setText("");
 	}
 	
 	
 	public void actualizaBotones() {
+		this.btnAgregarTemp.setEnabled(false);
 		this.btnAgregarDia.setEnabled(false);
 		this.btnActivar.setEnabled(false);
 		this.btnAgregar.setEnabled(false);
 		this.btnActivarTemp.setEnabled(false);
 		this.btnDesactivar.setEnabled(false);
 		this.btnDesactivarTemp.setEnabled(false);
+		this.rdbtnAcumulable.setDisabledSelectedIcon(null);
+		this.rdbtnCuentaDNI.setDisabledSelectedIcon(null);
+		this.rdbtnDomingo.setDisabledSelectedIcon(null);
+		this.rdbtnDosPorUno.setDisabledSelectedIcon(null);
+		this.rdbtnEfectivo.setDisabledSelectedIcon(null);
+		this.rdbtnJueves.setDisabledSelectedIcon(null);
+		this.rdbtnMartes.setDisabledSelectedIcon(null);
+		this.rdbtnMiercoles.setDisabledSelectedIcon(null);
+		this.rdbtnMP.setDisabledSelectedIcon(null);
+		this.rdbtnPorCantidad.setDisabledSelectedIcon(null);
+		this.rdbtnSabado.setDisabledSelectedIcon(null);
+		this.rdbtnTarjeta.setDisabledSelectedIcon(null);
+		this.rdbtnViernes.setDisabledSelectedIcon(null);
+		this.rdrdbtnLunes.setDisabledSelectedIcon(null);
 	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		if (!this.textFieldCantidadMinima.getText().isEmpty() && 
+				!this.textFieldPrecioUnitario.getText().isEmpty() && (this.rdbtnDosPorUno.isSelected() || 
+						!this.rdbtnPorCantidad.isSelected())) {
+			this.btnAgregar.setEnabled(true);
+		}
+		else {
+			this.btnAgregar.setEnabled(false);
+		}
+		if (!this.textFieldNombre.getText().isEmpty() && (this.rdbtnCuentaDNI.isSelected() || this.rdbtnEfectivo.isSelected() ||
+				this.rdbtnMP.isSelected() || this.rdbtnTarjeta.isSelected())) {
+			this.btnAgregarTemp.setEnabled(true);
+		} 
+		else {
+			this.btnAgregarTemp.setEnabled(false);
+		}
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		if (!this.listPromProd.isSelectionEmpty()) {
+			this.btnDesactivar.setEnabled(true);
+			this.btnActivar.setEnabled(true);
+		}
+		else {
+			this.btnDesactivar.setEnabled(false);
+			this.btnActivar.setEnabled(false);
+		}
+		if (!this.listPromTemp.isSelectionEmpty()) {
+			this.btnDesactivarTemp.setEnabled(true);
+			this.btnActivarTemp.setEnabled(true);
+		}
+		else {
+			this.btnDesactivarTemp.setEnabled(false);
+			this.btnActivarTemp.setEnabled(false);
+		}
+		
+		if (!this.textFieldCantidadMinima.getText().isEmpty() && 
+				!this.textFieldPrecioUnitario.getText().isEmpty() && (this.rdbtnDosPorUno.isSelected() || 
+						!this.rdbtnPorCantidad.isSelected())) {
+			this.btnAgregar.setEnabled(true);
+		}
+		else {
+			this.btnAgregar.setEnabled(false);
+		}
+		if (!this.textFieldNombre.getText().isEmpty() && (this.rdbtnCuentaDNI.isSelected() || this.rdbtnEfectivo.isSelected() ||
+				this.rdbtnMP.isSelected() || this.rdbtnTarjeta.isSelected())) {
+			this.btnAgregarTemp.setEnabled(true);
+		} 
+		else {
+			this.btnAgregarTemp.setEnabled(false);
+		}
+		
+		if (this.rdbtnDomingo.isSelected() || this.rdrdbtnLunes.isSelected() ||
+				this.rdbtnMartes.isSelected() || this.rdbtnMiercoles.isSelected() || this.rdbtnJueves.isSelected() ||
+				this.rdbtnViernes.isSelected() || this.rdbtnSabado.isSelected() && (!this.listPromProd.isSelectionEmpty() ||
+						!this.listPromTemp.isSelectionEmpty())) {
+			this.btnAgregarDia.setEnabled(true);
+		} 
+		else
+			this.btnAgregarDia.setEnabled(false);
+			
+	}
+	
+	/*
+	(this.rdbtnDomingo.isSelected() || this.rdrdbtnLunes.isSelected() ||
+						this.rdbtnMartes.isSelected() || this.rdbtnMiercoles.isSelected() || this.rdbtnJueves.isSelected() ||
+						this.rdbtnViernes.isSelected() || this.rdbtnSabado.isSelected())
+	 */
+	 
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public String getTextFieldCantidadMinima() {
+		return textFieldCantidadMinima.getText();
+	}
+
+	public String getTextFieldPrecioUnitario() {
+		return textFieldPrecioUnitario.getText();
+	}
+
+	public String getTextFieldNombre() {
+		return textFieldNombre.getText();
+	}
+
+	public String getTextFieldDescuento() {
+		return textFieldDescuento.getText();
+	}
+	
+	public JRadioButton getMetodoDePago() {
+		if (this.rdbtnCuentaDNI.isSelected()) 
+			return this.rdbtnCuentaDNI;
+		else
+			if (this.rdbtnEfectivo.isSelected())
+				return this.rdbtnEfectivo;
+			else
+				if (this.rdbtnTarjeta.isSelected())
+					return this.rdbtnTarjeta;
+				else
+					if (this.rdbtnMP.isSelected())
+						return this.rdbtnMP;
+		return rdbtnEfectivo;
+	}
+	
+	public JRadioButton getTipoPromo() {
+		if (this.rdbtnDosPorUno.isSelected())
+			return this.rdbtnDosPorUno;
+		else
+			if (this.rdbtnPorCantidad.isSelected())
+				return this.rdbtnPorCantidad;
+		return this.rdbtnPorCantidad;
+	}
+	
+	public JRadioButton getDiaPromo() {
+		if (this.rdrdbtnLunes.isSelected())
+			return this.rdrdbtnLunes;
+		else
+			if (this.rdbtnMartes.isSelected())
+				return this.rdbtnMartes;
+			else
+				if (this.rdbtnMiercoles.isSelected())
+					return this.rdbtnMiercoles;
+				else
+					if (this.rdbtnJueves.isSelected())
+						return this.rdbtnJueves;
+					else
+						if (this.rdbtnViernes.isSelected())
+							return this.rdbtnViernes;
+						else
+							if (this.rdbtnSabado.isSelected())
+								return this.rdbtnSabado;
+							else
+								if (this.rdbtnDomingo.isSelected())
+									return this.rdbtnDomingo;
+		return this.rdrdbtnLunes;
+	}
+	
 }

@@ -3,6 +3,7 @@ package modelo;
 import java.io.Serializable;
 
 import excepciones.MesaDeshabilitadaException;
+import excepciones.NoHayPromosActivasException;
 
 public class Mesa implements Serializable{
 	private int numeroMesa;
@@ -54,8 +55,14 @@ public class Mesa implements Serializable{
 			System.out.println("la mesa ya esta ocupada");//agregar exception
 	}
 	
-	public void habilitar() {
-		this.habilitado=true;
+	/**
+	 * @throws NoHayPromosActivasException se lanza si no hay al menos dos promociones de productos
+	 */
+	public void habilitar() throws NoHayPromosActivasException{
+		if (Sistema.getInstancia().alMenos2PromosProd())
+			this.habilitado=true;
+		else
+			throw new NoHayPromosActivasException();
 	}
 	
 	/**
@@ -65,7 +72,7 @@ public class Mesa implements Serializable{
 		if(this.estado.equals("libre"))
 			this.habilitado=false;
 		else {
-			throw new MesaDeshabilitadaException("No se puede deshabilitar mesa porue esta ocupada");
+			throw new MesaDeshabilitadaException("No se puede deshabilitar mesa porque esta ocupada");
 		}
 	}
 	public boolean getHabilitado() {

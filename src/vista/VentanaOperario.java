@@ -352,6 +352,12 @@ public class VentanaOperario extends JFrame implements IVistaOperario, MouseList
 	public void emergenteMesaAsignada(String msg) {
 		JOptionPane.showMessageDialog(this, msg);
 	}
+
+	@Override
+	public void emergenteNoPromos(String msg) {
+		JOptionPane.showMessageDialog(this, msg);
+		
+	}
 	
 	
 }

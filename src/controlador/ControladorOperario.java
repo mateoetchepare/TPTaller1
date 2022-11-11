@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import excepciones.MesaDeshabilitadaException;
 import excepciones.MesaYaAsignadaException;
 import excepciones.MozoInvalidoException;
+import excepciones.NoHayPromosActivasException;
 import modelo.Mesa;
 import modelo.Mozo;
 import modelo.Operario;
@@ -35,7 +36,11 @@ public class ControladorOperario implements ActionListener {
 	
 	
 			if (e.getActionCommand().equals("Habilitar")) {
-				this.operario.habilitarMesa(this.vista.getListMesas().getSelectedValue());
+				try {
+					this.operario.habilitarMesa(this.vista.getListMesas().getSelectedValue());
+				} catch (NoHayPromosActivasException e1) {
+					this.vista.emergenteNoPromos(e1.getMessage());
+				}
 				this.actualizarListas();
 
 			} else if (e.getActionCommand().equals("Deshabilitar")) {
