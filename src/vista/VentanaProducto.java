@@ -223,13 +223,15 @@ public class VentanaProducto extends JFrame implements MouseListener, KeyListene
 	@Override
 	public void keyReleased(KeyEvent e) {
 		if (!this.textFieldID.getText().isEmpty() && !this.textFieldNombreProducto.getText().isEmpty() && 
-				!this.textFieldPrecioCompra.getText().isEmpty() && !this.textFieldPrecioVenta.getText().isEmpty()) {
+				!this.textFieldPrecioCompra.getText().isEmpty() && !this.textFieldPrecioVenta.getText().isEmpty() &&
+				!this.textFieldStock.getText().isEmpty()) {
 			this.btnAgregar.setEnabled(true);
 		}
 		else
 			this.btnAgregar.setEnabled(false);
 		if (!this.listProductos.isSelectionEmpty() && (!this.textFieldID.getText().isEmpty() || !this.textFieldNombreProducto.getText().isEmpty() 
-				|| !this.textFieldPrecioCompra.getText().isEmpty() || !this.textFieldPrecioVenta.getText().isEmpty())) {
+				|| (!this.textFieldPrecioCompra.getText().isEmpty() && !this.textFieldPrecioVenta.getText().isEmpty()) || 
+				!this.textFieldStock.getText().isEmpty())) {
 			this.btnModificar.setEnabled(true);
 		} else
 			this.btnModificar.setEnabled(false);
@@ -288,6 +290,12 @@ public class VentanaProducto extends JFrame implements MouseListener, KeyListene
 		return textFieldPrecioVenta.getText();
 	}
 	
+	
+	
+	public String getTextFieldStock() {
+		return textFieldStock.getText();
+	}
+
 	public Producto getProducto() {
 		return (Producto) this.listProductos.getSelectedValue();
 	}
