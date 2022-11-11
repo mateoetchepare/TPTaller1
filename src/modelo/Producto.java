@@ -70,30 +70,23 @@ public class Producto implements Cloneable, Serializable{
 		return precioCosto;
 	}
 
-	/**
-	 * @param precioCosto
-	 * @throws ProductoPreciosInvalidosException se lanza si se le quiere setear al producto un precio de costo mayor al precio de venta
-	 */
-	public void setPrecioCosto(double precioCosto) throws ProductoPreciosInvalidosException{
-		if (precioCosto<=this.precioVenta) {
-			this.precioCosto = precioCosto;
-		} else
-			throw new ProductoPreciosInvalidosException();
-	}
 
 	public double getPrecioVenta() {
 		return precioVenta;
 	}
-
+	
 	/**
+	 * @param precioCompra
 	 * @param precioVenta
-	 * @throws ProductoPreciosInvalidosException se lanza si se le quiere setear un precio de venta menor al precio de costo
+	 * @throws ProductoPreciosInvalidosException se lanza si alguno de los precios ingresados son menores a 0 o el precio de compra es mayor al de venta
 	 */
-	public void setPrecioVenta(double precioVenta) throws ProductoPreciosInvalidosException{
-		if (precioVenta>=this.precioCosto) {
+	public void setPrecios(double precioCompra, double precioVenta) throws ProductoPreciosInvalidosException{
+		if (precioCompra > 0 && precioVenta > 0 && precioCompra <= precioVenta) {
+			this.precioCosto = precioCompra; 
 			this.precioVenta = precioVenta;
-		} else
+		} else {
 			throw new ProductoPreciosInvalidosException();
+		}
 	}
 
 	@Override

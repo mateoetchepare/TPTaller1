@@ -179,7 +179,7 @@ public class Sistema {
 	public void borrarMozo(Mozo mozo) {
 		mozos.remove(mozo);
 	}
-
+	
 	/**
 	 * @param operario <br>
 	 * @throws ContraseniaReqNoCumplidosException   si la contrasenia no contiene al
@@ -290,7 +290,7 @@ public class Sistema {
 	public void eliminaProducto(Producto producto) throws ProductoEnComandaException { // usar un try en el controlador
 		boolean alMenosUnaComanda = false;
 		int i = 0, j;
-		j = comandas.size(); // NO VALIDO SI CONTIENE PORQUE SE VA A PICKEAR DESDE UNA LISTA
+		j = comandas.size(); 
 		while (i < j && alMenosUnaComanda == false) {
 			if (comandas.get(i).contieneProducto(producto))
 				alMenosUnaComanda = true;

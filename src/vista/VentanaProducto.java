@@ -12,6 +12,7 @@ import java.awt.event.MouseListener;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
@@ -290,8 +291,6 @@ public class VentanaProducto extends JFrame implements MouseListener, KeyListene
 		return textFieldPrecioVenta.getText();
 	}
 	
-	
-	
 	public String getTextFieldStock() {
 		return textFieldStock.getText();
 	}
@@ -300,4 +299,8 @@ public class VentanaProducto extends JFrame implements MouseListener, KeyListene
 		return (Producto) this.listProductos.getSelectedValue();
 	}
 
+	public void muestraError(String msg) {
+		JOptionPane.showMessageDialog(this, msg);
+	}
+	
 }
