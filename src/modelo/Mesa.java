@@ -12,6 +12,8 @@ public class Mesa implements Serializable{
 	private transient boolean habilitado; //agrego para poder habilitar o desabilitar mesa mas alla 
 	//de si esta ocupada o no 
 	Comanda comanda=null;
+	private String nombreMozo=null;
+	
 	
 	public Mesa() {}
 	
@@ -20,6 +22,14 @@ public class Mesa implements Serializable{
 		this.comensales = comensales;
 		this.estado = "libre";
 		this.habilitado=false;
+	}
+
+	public String getNombreMozo() {
+		return nombreMozo;
+	}
+
+	public void setNombreMozo(String nombreMozo) {
+		this.nombreMozo = nombreMozo;
 	}
 
 	public void setNumeroMesa(int numeroMesa) {

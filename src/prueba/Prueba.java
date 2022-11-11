@@ -1,11 +1,12 @@
 package prueba;
 
+import controlador.ControladorEstadisticas;
 import controlador.ControladorLogin;
-import excepciones.UsuarioNuevoInvalidoException;
-import modelo.Operario;
 import modelo.Sistema;
 import persistencia.Persistir;
+import vista.VentanaEstadisticas;
 import vista.VentanaLogin;
+import vista.VentanaOperario;
 
 public class Prueba {
 
@@ -25,7 +26,11 @@ public class Prueba {
 		}
 		
 		Persistir.escribirSistema();*/
-		lanzarSistema();
+		//lanzarSistema();
+		Persistir.leerSistema();
+		VentanaEstadisticas ventanaEstadisticas=new VentanaEstadisticas();
+		ControladorEstadisticas controladorEstadisticas=new ControladorEstadisticas(ventanaEstadisticas,new VentanaOperario());
+		ventanaEstadisticas.setVisible(true);
 	}
 	
 	private static void lanzarSistema() {

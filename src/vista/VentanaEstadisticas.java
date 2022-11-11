@@ -3,18 +3,25 @@ package vista;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
+import javax.swing.DefaultListModel;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-import javax.swing.JList;
-import javax.swing.JButton;
 import javax.swing.JTextPane;
+import javax.swing.ListSelectionModel;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
 
-public class VentanaEstadisticas extends JFrame {
+import modelo.Mozo;
+
+public class VentanaEstadisticas extends JFrame implements IVistaEstadisticas, MouseListener{
 
 	private JPanel contentPane;
 	private JScrollPane scrollPane;
@@ -27,6 +34,8 @@ public class VentanaEstadisticas extends JFrame {
 	private JScrollPane scrollPane_1;
 	private JLabel labelEstadisticas;
 	private JTextPane textPane;
+	private DefaultListModel<Mozo> modeloListaMozos;
+	private JButton btnMayorMenorVenta;
 
 	/**
 	 * Launch the application.
@@ -64,7 +73,11 @@ public class VentanaEstadisticas extends JFrame {
 		this.scrollPane.setColumnHeaderView(this.labelMozos);
 		
 		this.listMozos = new JList();
+		this.listMozos.addMouseListener(this);
+		this.listMozos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		this.scrollPane.setViewportView(this.listMozos);
+		this.modeloListaMozos=new DefaultListModel<Mozo>();
+		this.listMozos.setModel(modeloListaMozos);
 		
 		this.panelCentral = new JPanel();
 		this.contentPane.add(this.panelCentral, BorderLayout.CENTER);
@@ -74,7 +87,11 @@ public class VentanaEstadisticas extends JFrame {
 		this.panelCentral.add(this.panelBotonera, BorderLayout.SOUTH);
 		
 		this.btnVerificar = new JButton("Verificar");
+		this.btnVerificar.setEnabled(false);
 		this.panelBotonera.add(this.btnVerificar);
+		
+		this.btnMayorMenorVenta = new JButton("Mayor/Menor venta");
+		this.panelBotonera.add(this.btnMayorMenorVenta);
 		
 		this.btnListo = new JButton("Listo");
 		this.panelBotonera.add(this.btnListo);
@@ -91,4 +108,37 @@ public class VentanaEstadisticas extends JFrame {
 		this.scrollPane_1.setViewportView(this.textPane);
 	}
 
+	@Override
+	public void addActionListener(ActionListener listener) {
+		this.btnListo.addActionListener(listener);
+		this.btnVerificar.addActionListener(listener);
+		this.btnMayorMenorVenta.addActionListener(listener);
+	}
+
+	public void mouseClicked(MouseEvent e) {
+		if(this.listMozos.getSelectedValue()!=null)
+			this.btnVerificar.setEnabled(true);
+		else
+			this.btnVerificar.setEnabled(false);
+	}
+	public void mouseEntered(MouseEvent e) {
+	}
+	public void mouseExited(MouseEvent e) {
+	}
+	public void mousePressed(MouseEvent e) {
+	}
+	public void mouseReleased(MouseEvent e) {
+	}
+
+	@Override
+	public DefaultListModel<Mozo> getModeloListaMozos() {
+		// TODO Auto-generated method stub
+		return this.modeloListaMozos;
+	}
+
+	@Override
+	public JList<Mozo> getListMozos() {
+		// TODO Auto-generated method stub
+		return this.listMozos;
+	}
 }

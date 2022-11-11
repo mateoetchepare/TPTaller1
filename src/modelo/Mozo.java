@@ -95,8 +95,10 @@ public class Mozo implements Serializable{
 				throw new MesaYaAsignadaException();
 			}
 			else {
-				if (mesa.getHabilitado() == true)
+				if (mesa.getHabilitado() == true) {
+					mesa.setNombreMozo(nombreYApellido);
 					this.mesas.add(mesa);
+				}
 				else
 					throw new MesaDeshabilitadaException("La mesa esta deshabilitada");
 				System.out.println("Se agrego la mesa al mozo");

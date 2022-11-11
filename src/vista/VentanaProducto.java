@@ -54,6 +54,9 @@ public class VentanaProducto extends JFrame implements MouseListener, KeyListene
 	private JButton btnSacar;
 	private JButton btnModificar;
 	private JButton btnListo;
+	private JPanel panelStock;
+	private JLabel labelStock;
+	private JTextField textFieldStock;
 
 	/**
 	 * Launch the application.
@@ -107,7 +110,7 @@ public class VentanaProducto extends JFrame implements MouseListener, KeyListene
 		
 		this.panelDatosProducto = new JPanel();
 		this.panelProductoPrincipal.add(this.panelDatosProducto, BorderLayout.CENTER);
-		this.panelDatosProducto.setLayout(new GridLayout(4, 0, 0, 0));
+		this.panelDatosProducto.setLayout(new GridLayout(5, 0, 0, 0));
 		
 		this.panelNombre = new JPanel();
 		this.panelDatosProducto.add(this.panelNombre);
@@ -134,6 +137,16 @@ public class VentanaProducto extends JFrame implements MouseListener, KeyListene
 		this.textFieldID = new JTextField();
 		this.panel_1.add(this.textFieldID);
 		this.textFieldID.setColumns(10);
+		
+		this.panelStock = new JPanel();
+		this.panelDatosProducto.add(this.panelStock);
+		
+		this.labelStock = new JLabel("Stock:");
+		this.panelStock.add(this.labelStock);
+		
+		this.textFieldStock = new JTextField();
+		this.panelStock.add(this.textFieldStock);
+		this.textFieldStock.setColumns(10);
 		
 		this.panelPrecio = new JPanel();
 		this.panelDatosProducto.add(this.panelPrecio);

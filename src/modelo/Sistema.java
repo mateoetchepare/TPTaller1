@@ -421,6 +421,39 @@ public class Sistema {
 		return pedidosClonados;
 	}
 	
+	public String estadisticas(Mozo mozo) {
+		String cadena=null;
+		
+		for(Factura factura : this.facturas) {
+			if(factura.getMesa().getNombreMozo().equals(mozo.getNombreYApellido())) {
+				
+			}
+		}
+		
+		
+		return null;
+	}
+	
+	public String mayorMenorVenta() {
+		String cadena=null;
+		String nombreMozoMenor=null;
+		String nombreMozoMayor=null;
+		double mayorMonto=0;
+		double menorMonto=99999999;
+		
+		for(Factura factura : this.facturas) {
+			if(factura.getTotal()>mayorMonto) {
+				mayorMonto=factura.getTotal();
+				nombreMozoMayor=factura.getMesa().getNombreMozo();
+			}
+			if(factura.getTotal()<menorMonto) {
+				menorMonto=factura.getTotal();
+				nombreMozoMenor=factura.getMesa().getNombreMozo();
+			}
+		}
+		
+		return null;
+	}
 }
 
 

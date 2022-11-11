@@ -80,7 +80,7 @@ public class Operario implements Serializable{
 	 * @throws MesaYaAsignadaException se lanza si la mesa ya le fue asignada a otro mozo
 	 */
 	public void asignarMesa(Mozo mozo,Mesa mesa) throws MozoInvalidoException, MesaDeshabilitadaException, MesaYaAsignadaException {
-		mozo.agregarMesa(mesa);//falta la exception
+		mozo.agregarMesa(mesa);
 	}
 
 	public boolean isActivo() {
