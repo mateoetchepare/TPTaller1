@@ -34,7 +34,7 @@ public class ControladorEstadisticas implements ActionListener{
 			System.out.println("BOTON VERIFICAR");
 			try {
 				if(this.vista.getListMozos().getSelectedValue()!=null)
-					Sistema.getInstancia().estadisticas(this.vista.getListMozos().getSelectedValue());
+					this.vista.escribirEstadistica(Sistema.getInstancia().estadisticas(this.vista.getListMozos().getSelectedValue()));
 				else
 					this.vista.emergenteSinSeleccion();
 			} catch (MozoSinVentasException e1) {
@@ -44,7 +44,7 @@ public class ControladorEstadisticas implements ActionListener{
 		}
 		else if(e.getActionCommand().equals("Mayor/Menor venta")) {
 			try {
-				Sistema.getInstancia().mayorMenorVenta();
+				this.vista.escribirEstadistica(Sistema.getInstancia().mayorMenorVenta());			
 			} catch (NoHayFacturasException e1) {
 				// TODO Auto-generated catch block
 				this.vista.emergenteSinFacturas();

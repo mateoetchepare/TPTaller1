@@ -36,13 +36,13 @@ public class Sistema {
 	// persistencia XML constructor vacio y todos los geter y seters
 	// Agregue todas las cosas necesarias para hacer persistencia XML y termine
 	// usando bin
-	public Sistema() {
-
-	}
+	
 
 	public ArrayList<Mozo> getMozos() {
 		return mozos;
 	}
+
+
 
 	public void setMozos(ArrayList<Mozo> mozos) {
 		this.mozos = mozos;
@@ -113,8 +113,10 @@ public class Sistema {
 	}
 
 	public static Sistema getInstancia() {
-		if (instancia == null)
+		if (instancia == null) {
 			instancia = new Sistema();
+			instancia.fecha=LocalDate.now();
+		}
 		return instancia;
 	}
 

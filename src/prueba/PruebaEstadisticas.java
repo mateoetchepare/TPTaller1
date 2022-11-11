@@ -2,12 +2,16 @@ package prueba;
 
 import java.util.ArrayList;
 
+import controlador.Controlador;
+import controlador.ControladorEstadisticas;
 import excepciones.MozoSinVentasException;
 import excepciones.NoHayFacturasException;
 import modelo.Factura;
 import modelo.Mesa;
 import modelo.Mozo;
 import modelo.Sistema;
+import vista.VentanaEstadisticas;
+import vista.VentanaOperario;
 
 public class PruebaEstadisticas {
 
@@ -55,6 +59,10 @@ public class PruebaEstadisticas {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		VentanaEstadisticas ventana= new VentanaEstadisticas();
+		ControladorEstadisticas controlador=new ControladorEstadisticas(ventana,new VentanaOperario());
+		ventana.setVisible(true);
 	}
-
+	
+	
 }

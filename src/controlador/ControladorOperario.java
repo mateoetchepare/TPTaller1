@@ -15,6 +15,7 @@ import persistencia.Persistir;
 import vista.IVistaOperario;
 import vista.VentanaABMMozo;
 import vista.VentanaABMOperario;
+import vista.VentanaEstadisticas;
 import vista.VentanaLogin;
 import vista.VentanaMesa;
 
@@ -93,7 +94,10 @@ public class ControladorOperario implements ActionListener {
 				ventanaABMMozo.setVisible(true);
 			}else if (e.getActionCommand().equals("Estadisticas")) {
 				System.out.println("BOTON ESTADISTICAS");
-				
+				this.vista.setVisible(false);
+				VentanaEstadisticas ventanaEstadisticas=new VentanaEstadisticas();
+				ControladorEstadisticas controladorEstadisitcas= new ControladorEstadisticas(ventanaEstadisticas,this.vista);
+				ventanaEstadisticas.setVisible(true);
 			}else if (e.getActionCommand().equals("Cerrar Sesion")) {
 				System.out.println("BOTON CERRAR SESION");
 				

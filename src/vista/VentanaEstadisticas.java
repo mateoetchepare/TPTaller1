@@ -59,7 +59,7 @@ public class VentanaEstadisticas extends JFrame implements IVistaEstadisticas, M
 	 */
 	public VentanaEstadisticas() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 600, 300);
 		this.contentPane = new JPanel();
 		this.contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(this.contentPane);
@@ -147,7 +147,7 @@ public class VentanaEstadisticas extends JFrame implements IVistaEstadisticas, M
 	public void escribirEstadistica(String estadistica) {
 		// TODO Auto-generated method stub
 		String cadena=this.textPane.getText();
-		this.textPane.setText(cadena+"\n"+estadistica);
+		this.textPane.setText(cadena+estadistica+"\n");
 	}
 
 	@Override
