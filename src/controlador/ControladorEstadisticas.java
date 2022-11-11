@@ -3,6 +3,8 @@ package controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import excepciones.MozoSinVentasException;
+import excepciones.NoHayFacturasException;
 import modelo.Mozo;
 import modelo.Sistema;
 import vista.IVistaEstadisticas;
@@ -30,9 +32,23 @@ public class ControladorEstadisticas implements ActionListener{
 		}
 		else if(e.getActionCommand().equals("Verificar")){
 			System.out.println("BOTON VERIFICAR");
+			try {
+				if(this.vista.getListMozos().getSelectedValue()!=null)
+					Sistema.getInstancia().estadisticas(this.vista.getListMozos().getSelectedValue());
+				else
+					this.vista.emergenteSinSeleccion();
+			} catch (MozoSinVentasException e1) {
+				// TODO Auto-generated catch block
+				this.vista.emergenteMozoSinFacturas();
+			}
 		}
 		else if(e.getActionCommand().equals("Mayor/Menor venta")) {
-			
+			try {
+				Sistema.getInstancia().mayorMenorVenta();
+			} catch (NoHayFacturasException e1) {
+				// TODO Auto-generated catch block
+				this.vista.emergenteSinFacturas();
+			}
 		}
 		
 	}

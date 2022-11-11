@@ -11,4 +11,9 @@ public interface IVistaEstadisticas {
 	void addActionListener(ActionListener listener);
 	DefaultListModel<Mozo> getModeloListaMozos();
 	JList<Mozo> getListMozos();
+	void escribirEstadistica(String estadistica);
+	
+	void emergenteSinFacturas();
+	void emergenteMozoSinFacturas();
+	void emergenteSinSeleccion();
 }

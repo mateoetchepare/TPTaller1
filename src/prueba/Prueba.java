@@ -31,6 +31,7 @@ public class Prueba {
 		VentanaEstadisticas ventanaEstadisticas=new VentanaEstadisticas();
 		ControladorEstadisticas controladorEstadisticas=new ControladorEstadisticas(ventanaEstadisticas,new VentanaOperario());
 		ventanaEstadisticas.setVisible(true);
+		
 	}
 	
 	private static void lanzarSistema() {

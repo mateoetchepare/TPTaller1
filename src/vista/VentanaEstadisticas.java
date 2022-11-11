@@ -12,6 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
@@ -141,4 +142,33 @@ public class VentanaEstadisticas extends JFrame implements IVistaEstadisticas, M
 		// TODO Auto-generated method stub
 		return this.listMozos;
 	}
+
+	@Override
+	public void escribirEstadistica(String estadistica) {
+		// TODO Auto-generated method stub
+		String cadena=this.textPane.getText();
+		this.textPane.setText(cadena+"\n"+estadistica);
+	}
+
+	@Override
+	public void emergenteSinFacturas() {
+		// TODO Auto-generated method stub
+		JOptionPane.showMessageDialog(this,"El sistema no posee facturas para calcular estadisticas");
+		
+	}
+
+	@Override
+	public void emergenteMozoSinFacturas() {
+		// TODO Auto-generated method stub
+		JOptionPane.showMessageDialog(this,"El mozo seleccionado no tiene ventas asociadas para sus estadisticas");
+	}
+
+	@Override
+	public void emergenteSinSeleccion() {
+		// TODO Auto-generated method stub
+		JOptionPane.showMessageDialog(this,"No hay un mozo seleccionado");
+		
+	}
+	
+	
 }

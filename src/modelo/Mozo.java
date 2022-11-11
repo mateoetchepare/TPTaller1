@@ -17,6 +17,10 @@ public class Mozo implements Serializable{
 	private int hijos;
 	private LocalDate nacimiento;
 	
+	public Mozo(String nombre) {
+		this.nombreYApellido=nombre;
+	}
+	
 	public Mozo(String nombreYApellido, int hijos, LocalDate nacimiento) {
 		this.nombreYApellido = nombreYApellido;
 		this.hijos = hijos;
