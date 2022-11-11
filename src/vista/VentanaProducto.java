@@ -16,7 +16,11 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+
+import modelo.Producto;
+
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 import javax.swing.JButton;
 import java.awt.FlowLayout;
 
@@ -175,12 +179,20 @@ public class VentanaProducto extends JFrame implements MouseListener, KeyListene
 		this.panelBotoneraProductos.add(this.btnModificar);
 		
 		
+		this.textFieldID.addKeyListener(this);
+		this.textFieldNombreProducto.addKeyListener(this);
+		this.textFieldPrecioCompra.addKeyListener(this);
+		this.textFieldPrecioVenta.addKeyListener(this);
+		
 		this.btnAgregar.setEnabled(false);
 		this.btnModificar.setEnabled(false);
 		this.btnSacar.setEnabled(false);
 		
 		this.btnListo = new JButton("Listo");
 		this.contentPane.add(this.btnListo, BorderLayout.SOUTH);
+		
+		this.listProductos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		this.listProductos.addMouseListener(this);
 	}
 
 	@Override
@@ -246,7 +258,25 @@ public class VentanaProducto extends JFrame implements MouseListener, KeyListene
 		// TODO Auto-generated method stub
 		
 	}
+
+	public String getTextFieldNombreProducto() {
+		return textFieldNombreProducto.getText();
+	}
+
+	public String getTextFieldPrecioCompra() {
+		return textFieldPrecioCompra.getText();
+	}
+
+	public String getTextFieldID() {
+		return textFieldID.getText();
+	}
+
+	public String getTextFieldPrecioVenta() {
+		return textFieldPrecioVenta.getText();
+	}
 	
-	
+	public Producto getProducto() {
+		return (Producto) this.listProductos.getSelectedValue();
+	}
 
 }
