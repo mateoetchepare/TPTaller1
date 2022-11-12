@@ -17,6 +17,9 @@ public class TotalVentaMozo {
 		return total;
 	}
 	
+	/**
+	 * @<b> PreCond: </b> el total debe ser mayor a 0
+	 */
 	public void sumarVenta(double total) {
 		this.total+=total;
 	}
