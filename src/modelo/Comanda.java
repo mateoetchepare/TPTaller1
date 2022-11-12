@@ -24,6 +24,7 @@ public class Comanda implements Serializable{
 		this.estado = "abierta";
 		this.pedidos = null;
 		this.numeroMesa = num;
+		this.pedidos=new ArrayList<Pedido>();
 	}
 	
 	public void setPedidos(ArrayList<Pedido> pedidos) {

@@ -87,8 +87,11 @@ public class PromocionProd extends Promocion {
 		for(String dia:this.getDiasDePromo()) {
 			dias+="-"+dia+" ";
 		}
-		//if(this.aplicaDosPorUno)
-			return  "2x1 "/*, dias= "+dias*/;
+		if(this.aplicaDosPorUno)
+			return  "2x1 "+this.producto.getNombre()+", dias= "+dias;
+		else
+			return "Descuento por cantidad producto= "+this.producto.getNombre()+", precio unitario= "+
+		this.dtoPorCantidad_PrecioUnitario+", cantidad minima= "+this.dtoPorCantidad_CantMinima+", dias= "+dias;
 	}
 	
 }

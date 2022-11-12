@@ -56,37 +56,13 @@ public class ControladorPromocion implements ActionListener {
 		} else if (e.getActionCommand().equals("Agregar")) {
 			if (this.vista.getListProductos().getSelectedValue() != null) {
 				if (this.vista.getTipo() != null) {
-				/*	PromocionProd promProd = new PromocionProd();
-					promProd.setActivo(false);
-					if (this.vista.getTipo().getText().equals("2x1")) {
-						promProd.setAplicaDosPorUno(true);
-						promProd.setAplicaDtoPorCantidad(false);
-						promProd.setProducto(this.vista.getListProductos().getSelectedValue());
-						Sistema.getInstancia().agregarPromocion(new PromocionProd());
-					} else {
-						promProd.setAplicaDosPorUno(false);
-						promProd.setAplicaDtoPorCantidad(true);
-						if (this.vista.getCantidadMin().length() > 0 && this.vista.getPrecioUnitario().length() > 0) {
-							try {
-								cantMinima = Integer.parseInt(this.vista.getCantidadMin());
-								precioUnitario = Integer.parseInt(this.vista.getPrecioUnitario());
-								promProd.setDtoPorCantidad_CantMinima(cantMinima);
-								promProd.setDtoPorCantidad_PrecioUnitario(precioUnitario);
-								promProd.setProducto(this.vista.getListProductos().getSelectedValue());
-								Sistema.getInstancia().agregarPromocion(new PromocionProd());
-							}catch (NumberFormatException exc) {
-								this.vista.emergenteNoEsNumero();// emergente ingrese valores numericos enteros
-							}
-
-					} else
-						this.vista.emergenteCamposPromProdIncompletos();
-					
-					}*/
+				
 					if (this.vista.getCantidadMin().length() > 0 && this.vista.getPrecioUnitario().length() > 0) {
 						try {
 							cantMinima = Integer.parseInt(this.vista.getCantidadMin());
 							precioUnitario = Integer.parseInt(this.vista.getPrecioUnitario());
 							PromocionProd promProd = new PromocionProd();
+							promProd.setProducto(this.vista.getListProductos().getSelectedValue());
 							promProd.setActivo(false);
 							promProd.setDtoPorCantidad_PrecioUnitario(precioUnitario);
 							promProd.setDtoPorCantidad_CantMinima(cantMinima);
@@ -99,8 +75,9 @@ public class ControladorPromocion implements ActionListener {
 									promProd.setAplicaDtoPorCantidad(true);
 								}
 							
-							promProd.setProducto(this.vista.getListProductos().getSelectedValue());
-							Sistema.getInstancia().agregarPromocion(new PromocionProd());
+							
+							System.out.println(this.vista.getListProductos().getSelectedValue());
+							Sistema.getInstancia().agregarPromocion(promProd);
 						} catch (NumberFormatException exc) {
 							this.vista.emergenteNoEsNumero();// emergente ingrese valores numericos enteros
 						} catch (PrecioUnitarioInvalidoException e2) {

@@ -101,6 +101,7 @@ public class ControladorMesa implements ActionListener {
 		}
 
 		this.vista.getModeloListaComanda().clear();
+		
 		for (Pedido pedido : this.mesa.getComanda().getPedidos()) {
 			this.vista.getModeloListaComanda().addElement(pedido);
 		}

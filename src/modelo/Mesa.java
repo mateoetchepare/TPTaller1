@@ -57,12 +57,13 @@ public class Mesa implements Serializable{
 	}
 
 	public void ocuparMesa() {
-		if(this.estado=="libre") {
+
+		if(this.estado.equals("libre")) {
 			this.estado="ocupado";
-			this.comanda=new Comanda();
+			this.comanda=new Comanda(this.numeroMesa);
 		}
 		else
-			System.out.println("la mesa ya esta ocupada");//agregar exception
+			System.out.println(this.estado);//agregar exception
 	}
 	
 	/**
