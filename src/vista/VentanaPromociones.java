@@ -223,10 +223,12 @@ public class VentanaPromociones extends JFrame implements KeyListener, MouseList
 		this.panelTipo.add(this.labelTipoPromo);
 		
 		this.rdbtnDosPorUno = new JRadioButton("2x1");
+		this.rdbtnDosPorUno.addMouseListener(this);
 		buttonGroup.add(this.rdbtnDosPorUno);
 		this.panelTipo.add(this.rdbtnDosPorUno);
 		
 		this.rdbtnPorCantidad = new JRadioButton("Por cantidad");
+		this.rdbtnPorCantidad.addMouseListener(this);
 		buttonGroup.add(this.rdbtnPorCantidad);
 		this.panelTipo.add(this.rdbtnPorCantidad);
 		
@@ -436,9 +438,9 @@ public class VentanaPromociones extends JFrame implements KeyListener, MouseList
 			this.btnActivarTemp.setEnabled(false);
 		}
 		
-		if (!this.textFieldCantidadMinima.getText().isEmpty() && 
-				!this.textFieldPrecioUnitario.getText().isEmpty() && (this.rdbtnDosPorUno.isSelected() || 
-						!this.rdbtnPorCantidad.isSelected())) {
+		if ((!this.textFieldCantidadMinima.getText().isEmpty() && 
+				!this.textFieldPrecioUnitario.getText().isEmpty() && this.rdbtnPorCantidad.isSelected())|| 
+				this.rdbtnDosPorUno.isSelected()) {
 			this.btnAgregar.setEnabled(true);
 		}
 		else {

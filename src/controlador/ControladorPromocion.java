@@ -55,7 +55,7 @@ public class ControladorPromocion implements ActionListener {
 		} else if (e.getActionCommand().equals("Agregar")) {
 			if (this.vista.getListProductos().getSelectedValue() != null) {
 				if (this.vista.getTipo() != null) {
-					PromocionProd promProd = new PromocionProd();
+				/*	PromocionProd promProd = new PromocionProd();
 					promProd.setActivo(false);
 					if (this.vista.getTipo().getText().equals("2x1")) {
 						promProd.setAplicaDosPorUno(true);
@@ -80,8 +80,8 @@ public class ControladorPromocion implements ActionListener {
 					} else
 						this.vista.emergenteCamposPromProdIncompletos();
 					
-					}
-					/*if (this.vista.getCantidadMin().length() > 0 && this.vista.getPrecioUnitario().length() > 0) {
+					}*/
+					if (this.vista.getCantidadMin().length() > 0 && this.vista.getPrecioUnitario().length() > 0) {
 						try {
 							cantMinima = Integer.parseInt(this.vista.getCantidadMin());
 							precioUnitario = Integer.parseInt(this.vista.getPrecioUnitario());
@@ -106,7 +106,7 @@ public class ControladorPromocion implements ActionListener {
 
 					} else
 						this.vista.emergenteCamposPromProdIncompletos();// emergente completarlos campos cantidad minima y precio unitario
-				*/} else
+				} else
 					this.vista.emergenteNoHaySeleccionTipo();// emergente seleccione tipo de promocion por producto
 
 			} else

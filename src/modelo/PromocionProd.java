@@ -77,6 +77,14 @@ public class PromocionProd extends Promocion {
 		this.dtoPorCantidad_PrecioUnitario = dtoPorCantidad_PrecioUnitario;
 	}
 	
-	
+	@Override
+	public String toString() {
+		String dias="";
+		for(String dia:this.getDiasDePromo()) {
+			dias+="-"+dia+" ";
+		}
+		//if(this.aplicaDosPorUno)
+			return  "2x1 "/*, dias= "+dias*/;
+	}
 	
 }
