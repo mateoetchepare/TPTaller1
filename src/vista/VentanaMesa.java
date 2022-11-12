@@ -179,18 +179,22 @@ public class VentanaMesa extends JFrame implements MouseListener, KeyListener,IV
 		this.panelBotonera.add(this.panelFormaPago);
 		
 		this.rdbtnEfectivo = new JRadioButton("Efectivo");
+		this.rdbtnEfectivo.addMouseListener(this);
 		buttonGroup.add(this.rdbtnEfectivo);
 		this.panelFormaPago.add(this.rdbtnEfectivo);
 		
 		this.rdbtnTarjeta = new JRadioButton("Tarjeta");
+		this.rdbtnTarjeta.addMouseListener(this);
 		buttonGroup.add(this.rdbtnTarjeta);
 		this.panelFormaPago.add(this.rdbtnTarjeta);
 		
 		this.rdbtnMercadoPago = new JRadioButton("Mercado Pago");
+		this.rdbtnMercadoPago.addMouseListener(this);
 		buttonGroup.add(this.rdbtnMercadoPago);
 		this.panelFormaPago.add(this.rdbtnMercadoPago);
 		
 		this.rdbtnCuentaDNI = new JRadioButton("Cuenta DNI");
+		this.rdbtnCuentaDNI.addMouseListener(this);
 		buttonGroup.add(this.rdbtnCuentaDNI);
 		this.panelFormaPago.add(this.rdbtnCuentaDNI);
 		
@@ -208,6 +212,7 @@ public class VentanaMesa extends JFrame implements MouseListener, KeyListener,IV
 		this.panelFinal.add(this.panel_4);
 		
 		this.btnCerrarMesa = new JButton("Cerrar Mesa");
+		this.btnCerrarMesa.addMouseListener(this);
 		this.panel_4.add(this.btnCerrarMesa);
 		
 		actualizaBotones();
