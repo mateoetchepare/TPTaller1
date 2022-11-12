@@ -376,6 +376,20 @@ public class VentanaMesa extends JFrame implements MouseListener, KeyListener,IV
 	public void actualizaCampos() {
 		this.textFieldCantidad.setText("");
 	}
+
+	@Override
+	public JRadioButton getFormaPago() {
+		JRadioButton rb=null;
+		if(this.rdbtnEfectivo.isSelected())
+			rb=this.rdbtnEfectivo;
+		else if(this.rdbtnTarjeta.isSelected())
+			rb=this.rdbtnTarjeta;
+		else if(this.rdbtnCuentaDNI.isSelected())
+			rb=this.rdbtnCuentaDNI;
+		else if(this.rdbtnMercadoPago.isSelected())
+			rb=this.rdbtnMercadoPago;
+		return rb;
+	}
 	
 
 	

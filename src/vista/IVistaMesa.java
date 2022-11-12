@@ -4,6 +4,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
+import javax.swing.JRadioButton;
 
 import modelo.Pedido;
 import modelo.Producto;
@@ -25,4 +26,5 @@ public interface IVistaMesa {
 	void completarTitulo(int numeroMesa,String estado);
 	void actualizaBotones();
 	void actualizaCampos();
+	JRadioButton getFormaPago();
 }

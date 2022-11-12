@@ -10,7 +10,7 @@ public class Pedido implements Cloneable, Serializable{
 	
 	@Override
 	public Object clone() {
-		Pedido p = null;
+		Pedido p= null;
 		try {
 			p.producto = (Producto) producto.clone();
 			p.cantidad = (int) super.clone();

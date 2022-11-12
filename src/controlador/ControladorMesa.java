@@ -84,11 +84,21 @@ public class ControladorMesa implements ActionListener {
 			//establecer esta de la mesa como libre
 			//volver a vista operario
 			
-			this.mesa.setEstado("libre");// no usar este metodo, es para probar funcionalidad
-			this.vistaOperario.actualizarListas();
-			VentanaMesa v = (VentanaMesa) this.vista;
-			v.setVisible(false);
-			this.vistaOperario.setVisible(true);
+			
+			
+			//this.mesa.setEstado("libre");// no usar este metodo, es para probar funcionalidad
+			if( this.vista.getFormaPago()!=null) {
+				Sistema.getInstancia().facturarComanda(this.mesa.getComanda(), this.vista.getFormaPago().getText());
+				this.mesa.setEstado("libre");
+				this.vistaOperario.actualizarListas();
+				VentanaMesa v = (VentanaMesa) this.vista;
+				v.setVisible(false);
+				this.vistaOperario.setVisible(true);
+			}
+			else
+				;//emergente no hay seleccion de forma de pago
+			
+			
 		}
 		
 		this.actualizarListas();
