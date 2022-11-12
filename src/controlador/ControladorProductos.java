@@ -8,13 +8,16 @@ import excepciones.ProductoExistenteException;
 import excepciones.ProductoPreciosInvalidosException;
 import modelo.Producto;
 import modelo.Sistema;
+import vista.IVistaOperario;
 import vista.VentanaProducto;
 
 public class ControladorProductos implements ActionListener{
 	VentanaProducto vista;
+	IVistaOperario vistaOperario;
 	
-	public ControladorProductos() {
+	public ControladorProductos(VentanaProducto vista, IVistaOperario vistaOperario) {
 		this.vista = vista;
+		this.vistaOperario=vistaOperario;
 	}
 
 	@Override

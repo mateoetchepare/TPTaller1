@@ -3,28 +3,34 @@ package vista;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import java.awt.GridLayout;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-import javax.swing.JTextArea;
-import javax.swing.JScrollPane;
-import javax.swing.JList;
-import javax.swing.JRadioButton;
-import javax.swing.JButton;
 import javax.swing.ButtonGroup;
+import javax.swing.DefaultListModel;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
 
-public class VentanaPromociones extends JFrame implements KeyListener, MouseListener {
+import modelo.Producto;
+import modelo.PromocionProd;
+import modelo.PromocionTemp;
+
+public class VentanaPromociones extends JFrame implements KeyListener, MouseListener,IVistaPromocion {
 
 	private JPanel contentPane;
 	private JPanel panelPrincipal;
@@ -86,6 +92,9 @@ public class VentanaPromociones extends JFrame implements KeyListener, MouseList
 	private JLabel labelPromTemporales;
 	private JLabel labelDescuento;
 	private JTextField textFieldDescuento;
+	private DefaultListModel<Producto> modeloListaProductos;
+	private DefaultListModel<PromocionProd> modeloListaPromProd;
+	private DefaultListModel<PromocionTemp> modeloListaPromTemp;
 
 	/**
 	 * Launch the application.
@@ -108,7 +117,7 @@ public class VentanaPromociones extends JFrame implements KeyListener, MouseList
 	 */
 	public VentanaPromociones() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 850, 400);
+		setBounds(100, 100, 950, 450);
 		this.contentPane = new JPanel();
 		this.contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(this.contentPane);
@@ -322,6 +331,16 @@ public class VentanaPromociones extends JFrame implements KeyListener, MouseList
 		
 		actualizaBotones();
 		actualizaCampos();
+		
+		this.modeloListaProductos=new DefaultListModel<Producto>();
+		this.listProductos.setModel(modeloListaProductos);
+		
+		this.modeloListaPromProd=new DefaultListModel<PromocionProd>();
+		this.listPromProd.setModel(modeloListaPromProd);
+		
+		this.modeloListaPromTemp=new DefaultListModel<PromocionTemp>();
+		this.listPromTemp.setModel(modeloListaPromTemp);
+		
 	}
 	
 	public void actualizaCampos() {
@@ -464,68 +483,197 @@ public class VentanaPromociones extends JFrame implements KeyListener, MouseList
 		
 	}
 
-	public String getTextFieldCantidadMinima() {
-		return textFieldCantidadMinima.getText();
+
+	@Override
+	public void addActionListener(ActionListener listener) {
+		this.btnAgregarTemp.addActionListener(listener);
+		this.btnAgregarDia.addActionListener(listener);
+		this.btnActivar.addActionListener(listener);
+		this.btnAgregar.addActionListener(listener);
+		this.btnActivarTemp.addActionListener(listener);
+		this.btnDesactivar.addActionListener(listener);
+		this.btnDesactivarTemp.addActionListener(listener);
+		this.btnListo.addActionListener(listener);
 	}
 
-	public String getTextFieldPrecioUnitario() {
-		return textFieldPrecioUnitario.getText();
+	@Override
+	public DefaultListModel<Producto> getModeloListaProductos() {
+		// TODO Auto-generated method stub
+		return this.modeloListaProductos;
 	}
 
-	public String getTextFieldNombre() {
-		return textFieldNombre.getText();
+	@Override
+	public DefaultListModel<PromocionProd> getModeloListaPromProd() {
+		// TODO Auto-generated method stub
+		return this.modeloListaPromProd;
 	}
 
-	public String getTextFieldDescuento() {
-		return textFieldDescuento.getText();
+	@Override
+	public DefaultListModel<PromocionTemp> getModeloListaPromTemp() {
+		// TODO Auto-generated method stub
+		return this.modeloListaPromTemp;
 	}
-	
-	public JRadioButton getMetodoDePago() {
-		if (this.rdbtnCuentaDNI.isSelected()) 
-			return this.rdbtnCuentaDNI;
-		else
-			if (this.rdbtnEfectivo.isSelected())
-				return this.rdbtnEfectivo;
-			else
-				if (this.rdbtnTarjeta.isSelected())
-					return this.rdbtnTarjeta;
-				else
-					if (this.rdbtnMP.isSelected())
-						return this.rdbtnMP;
-		return rdbtnEfectivo;
+
+	@Override
+	public JList<Producto> getListProductos() {
+		// TODO Auto-generated method stub
+		return this.listProductos;
 	}
-	
-	public JRadioButton getTipoPromo() {
-		if (this.rdbtnDosPorUno.isSelected())
-			return this.rdbtnDosPorUno;
-		else
-			if (this.rdbtnPorCantidad.isSelected())
-				return this.rdbtnPorCantidad;
-		return this.rdbtnPorCantidad;
+
+	@Override
+	public JList<PromocionProd> getListPromProd() {
+		// TODO Auto-generated method stub
+		return this.listPromProd;
 	}
-	
-	public JRadioButton getDiaPromo() {
-		if (this.rdrdbtnLunes.isSelected())
-			return this.rdrdbtnLunes;
+
+	@Override
+	public JList<PromocionTemp> getListPromTemp() {
+		// TODO Auto-generated method stub
+		return this.listPromTemp;
+	}
+
+	@Override
+	public ArrayList<JRadioButton> getDias() {
+		ArrayList<JRadioButton> dias=new ArrayList<JRadioButton>();
+		if(this.rdrdbtnLunes.isSelected())
+			dias.add(this.rdrdbtnLunes);
+		if(this.rdbtnMartes.isSelected())
+			dias.add(this.rdbtnMartes);
+		if(this.rdbtnMiercoles.isSelected())
+			dias.add(this.rdbtnMiercoles);
+		if(this.rdbtnJueves.isSelected())
+			dias.add(this.rdbtnJueves);
+		if(this.rdbtnViernes.isSelected())
+			dias.add(this.rdbtnViernes);
+		if(this.rdbtnSabado.isSelected())
+			dias.add(this.rdbtnSabado);
+		if(this.rdbtnDomingo.isSelected())
+			dias.add(this.rdbtnDomingo);
+		
+		return dias;
+	}
+
+	@Override
+	public JRadioButton getTipo() {
+		JRadioButton rb=null;
+		if(this.rdbtnDosPorUno.isSelected())
+			rb=this.rdbtnDosPorUno;
+		else if(this.rdbtnPorCantidad.isSelected())
+			rb=this.rdbtnPorCantidad;
+		
+		return rb;
+	}
+
+	@Override
+	public String getCantidadMin() {
+		// TODO Auto-generated method stub
+		return this.textFieldCantidadMinima.getText();
+	}
+
+	@Override
+	public String getPrecioUnitario() {
+		// TODO Auto-generated method stub
+		return this.textFieldPrecioUnitario.getText();
+	}
+
+	@Override
+	public String getNombre() {
+		// TODO Auto-generated method stub
+		return this.textFieldNombre.getText();
+	}
+
+	@Override
+	public JRadioButton getAcumulable() {
+		if(this.rdbtnAcumulable.isSelected())
+			return this.rdbtnAcumulable;
 		else
-			if (this.rdbtnMartes.isSelected())
-				return this.rdbtnMartes;
-			else
-				if (this.rdbtnMiercoles.isSelected())
-					return this.rdbtnMiercoles;
-				else
-					if (this.rdbtnJueves.isSelected())
-						return this.rdbtnJueves;
-					else
-						if (this.rdbtnViernes.isSelected())
-							return this.rdbtnViernes;
-						else
-							if (this.rdbtnSabado.isSelected())
-								return this.rdbtnSabado;
-							else
-								if (this.rdbtnDomingo.isSelected())
-									return this.rdbtnDomingo;
-		return this.rdrdbtnLunes;
+			return null;
+	}
+
+	@Override
+	public String getDescuento() {
+		// TODO Auto-generated method stub
+		return this.textFieldDescuento.getText();
+	}
+
+	@Override
+	public JRadioButton getFormaPago() {
+		JRadioButton rb=null;
+		if(this.rdbtnEfectivo.isSelected())
+			rb=this.rdbtnEfectivo;
+		else if(this.rdbtnTarjeta.isSelected())
+			rb=this.rdbtnTarjeta;
+		else if(this.rdbtnCuentaDNI.isSelected())
+			rb=this.rdbtnCuentaDNI;
+		else if(this.rdbtnMP.isSelected())
+			rb=this.rdbtnMP;
+		
+		return rb;
+	}
+
+	@Override
+	public void emergenteNoHaySeleccionPromocion() {
+		JOptionPane.showMessageDialog(this,"Seleccione una promocion para agregarle los dias");
+	}
+
+	@Override
+	public void emergenteNoHayDiasSeleccionados() {
+		JOptionPane.showMessageDialog(this,"Seleccione los dias a agregar");
+	}
+
+	@Override
+	public void emergenteNoTieneTipo() {
+		JOptionPane.showMessageDialog(this,"La promo tiene ue tener un tipo");
+	}
+
+	@Override
+	public void emergenteNoEsNumero() {
+		JOptionPane.showMessageDialog(this,"Numero mal ingresado, ingrese un numero entero");
+	}
+
+	@Override
+	public void emergenteCamposPromProdIncompletos() {
+		JOptionPane.showMessageDialog(this,"Complete los campos de cantidad minima y precio");
+	}
+
+	@Override
+	public void emergenteNoHaySeleccionTipo() {
+		JOptionPane.showMessageDialog(this,"Seleccione el tipo de la promocion");
+	}
+
+	@Override
+	public void emergenteNoHayProductoSeleccionado() {
+		JOptionPane.showMessageDialog(this,"Seleccione un producto para agregarlo a la promocion");
+	}
+
+	@Override
+	public void emergenteNoHayPromProdSelecionado() {
+		JOptionPane.showMessageDialog(this,"Seleccione una promocion por producto de la lista");
+	}
+
+	@Override
+	public void emergenteNoEsNumeroValido() {
+		JOptionPane.showMessageDialog(this,"Numero mal ingesado, ingrese un numero entre 1 y 100");
+	}
+
+	@Override
+	public void emergenteNoHayFormaPago() {
+		JOptionPane.showMessageDialog(this,"Seleccione una forma de pago");
+	}
+
+	@Override
+	public void emergenteCampoNombreVacio() {
+		JOptionPane.showMessageDialog(this,"Complete el campo nombre");
+	}
+
+	@Override
+	public void emergenteCampoDescuentoVacio() {
+		JOptionPane.showMessageDialog(this,"Complete el campo descuento");
+	}
+
+	@Override
+	public void emergenteNoHayPromTempSelecionado() {
+		JOptionPane.showMessageDialog(this,"Seleccione una promocion temporal de la lista");
 	}
 	
 }

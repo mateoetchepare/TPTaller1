@@ -80,7 +80,7 @@ public class VentanaProducto extends JFrame implements MouseListener, KeyListene
 	 */
 	public VentanaProducto() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 600, 320);
+		setBounds(100, 100, 650, 320);
 		this.contentPane = new JPanel();
 		this.contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(this.contentPane);

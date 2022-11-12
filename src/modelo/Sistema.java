@@ -42,7 +42,9 @@ public class Sistema {
 		return mozos;
 	}
 
-
+	public void agregarPromocion(Promocion prom) {
+		this.promociones.add(prom);
+	}
 
 	public void setMozos(ArrayList<Mozo> mozos) {
 		this.mozos = mozos;

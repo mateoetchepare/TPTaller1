@@ -19,14 +19,33 @@ public interface IVistaPromocion {
 	DefaultListModel<PromocionTemp> getModeloListaPromTemp();
 	
 	JList<Producto> getListProductos();
-	JList<PromocionProd> getListListaPromProd();
+	JList<PromocionProd> getListPromProd();
 	JList<PromocionTemp> getListPromTemp();
 	
 	//PROMOCIONES POR PRODUCTO
 	ArrayList<JRadioButton> getDias();
 	JRadioButton getTipo();
-	
+	String getCantidadMin();
+	String getPrecioUnitario();
 	
 	//PROMOCIONES TEMPORALES
-
+	String getNombre();
+	JRadioButton getAcumulable();
+	String getDescuento();
+	JRadioButton getFormaPago();
+	
+	//EMERGENTE
+	void emergenteNoHaySeleccionPromocion();
+	void emergenteNoHayDiasSeleccionados();
+	void emergenteNoTieneTipo();
+	void emergenteNoEsNumero();
+	void emergenteCamposPromProdIncompletos();
+	void emergenteNoHaySeleccionTipo();
+	void emergenteNoHayProductoSeleccionado();
+	void emergenteNoHayPromProdSelecionado();
+	void emergenteNoEsNumeroValido();
+	void emergenteNoHayFormaPago();
+	void emergenteCampoNombreVacio();
+	void emergenteCampoDescuentoVacio();
+	void emergenteNoHayPromTempSelecionado();
 }

@@ -224,6 +224,7 @@ public class VentanaOperario extends JFrame implements IVistaOperario, MouseList
 		this.btnEstadisticas.addActionListener(listener);
 		this.btnCerrarSecion.addActionListener(listener);
 		this.btnModificar.addActionListener(listener);
+		this.btnPromociones.addActionListener(listener);
 		
 	}
 

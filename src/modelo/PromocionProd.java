@@ -43,15 +43,16 @@ public class PromocionProd extends Promocion {
 	}
 	
 	
-
+	//SACO LA EXCEPTION PORUE POR VENTANA NO PUEDE TENER AMBOS FALSOS NI AMBOS VERDADEROS
+	//SINO EN LA CREACION DE LA PROMOCION NO PUEDO SETEARLE EL TIPO
 	/**
 	 * @param aplicaDosPorUno
 	 * @throws PromoProdInvalidaException se lanza si se quiere desactivar que la promocion sea por cantidad si ya NO es de dos por uno o VICEVERSA
 	 */
-	public void setAplicaDosPorUno(boolean aplicaDosPorUno) throws PromoProdInvalidaException{
-		if (this.isAplicaDtoPorCantidad() == false && aplicaDosPorUno == false) {
+	public void setAplicaDosPorUno(boolean aplicaDosPorUno)/* throws PromoProdInvalidaException*/{
+		/*if (this.isAplicaDtoPorCantidad() == false && aplicaDosPorUno == false) {
 			throw new PromoProdInvalidaException();
-		} else
+		} else*/
 			this.aplicaDosPorUno = aplicaDosPorUno;
 	}
 
@@ -59,13 +60,15 @@ public class PromocionProd extends Promocion {
 	 * @param aplicaDtoPorCantidad
 	 * @throws PromoProdInvalidaException se lanza si se quiere desactivar que la promocion sea por cantidad si ya NO es de dos por uno o VICEVERSA
 	 */
-	public void setAplicaDtoPorCantidad(boolean aplicaDtoPorCantidad) throws PromoProdInvalidaException{
-		if (this.isAplicaDosPorUno() == false && aplicaDtoPorCantidad == false) {
+	public void setAplicaDtoPorCantidad(boolean aplicaDtoPorCantidad)/* throws PromoProdInvalidaException*/{
+		/*if (this.isAplicaDosPorUno() == false && aplicaDtoPorCantidad == false) {
 			throw new PromoProdInvalidaException();
-		} else
+		} else*/
 			this.aplicaDtoPorCantidad = aplicaDtoPorCantidad;
 	}
 
+	
+	
 	public void setDtoPorCantidad_CantMinima(int dtoPorCantidad_CantMinima) {
 		this.dtoPorCantidad_CantMinima = dtoPorCantidad_CantMinima;
 	}

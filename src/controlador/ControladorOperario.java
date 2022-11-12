@@ -18,6 +18,8 @@ import vista.VentanaABMOperario;
 import vista.VentanaEstadisticas;
 import vista.VentanaLogin;
 import vista.VentanaMesa;
+import vista.VentanaProducto;
+import vista.VentanaPromociones;
 
 public class ControladorOperario implements ActionListener {
 	private IVistaOperario vista = null;
@@ -79,9 +81,18 @@ public class ControladorOperario implements ActionListener {
 					this.vista.emergenteMesaAsignada(e3.getMessage());
 				}
 				
-			}else if (e.getActionCommand().equals("Productos / Promociones")) {
-				System.out.println("BOTON PRODUCTO/PROMOCION");
-				
+			}else if (e.getActionCommand().equals("Productos ")) {
+				System.out.println("BOTON PRODUCTO");
+				VentanaProducto ventanaProducto=new VentanaProducto();
+				ControladorProductos controladorProducto=new ControladorProductos(ventanaProducto,this.vista);
+				this.vista.setVisible(false);
+				ventanaProducto.setVisible(true);
+			}else if (e.getActionCommand().equals("Promociones")) {
+				System.out.println("BOTON PROMOCION");
+				VentanaPromociones ventanaPromocion=new VentanaPromociones();
+				ControladorPromocion controladorPromocion=new ControladorPromocion(ventanaPromocion,this.vista);
+				this.vista.setVisible(false);
+				ventanaPromocion.setVisible(true);
 			}else if (e.getActionCommand().equals("Operario ")) {
 				System.out.println("BOTON OPERARIOS");
 				VentanaABMOperario ventanaABMOperario=new VentanaABMOperario();
