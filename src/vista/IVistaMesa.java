@@ -27,4 +27,6 @@ public interface IVistaMesa {
 	void actualizaBotones();
 	void actualizaCampos();
 	JRadioButton getFormaPago();
+	
+	void mostrarTotal(double total);
 }

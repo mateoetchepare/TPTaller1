@@ -12,9 +12,10 @@ public class Pedido implements Cloneable, Serializable{
 	public Object clone() {
 		Pedido p= null;
 		try {
+			p =(Pedido)super.clone();
 			p.producto = (Producto) producto.clone();
-			p.cantidad = (int) super.clone();
-			p.fecha = (LocalDate) producto.clone();
+			//p.cantidad = (int) super.clone();
+			p.fecha = LocalDate.now();
 			return p;
 		} catch (CloneNotSupportedException e) {
 			e.printStackTrace();

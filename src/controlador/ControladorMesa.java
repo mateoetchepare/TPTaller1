@@ -88,7 +88,8 @@ public class ControladorMesa implements ActionListener {
 			
 			//this.mesa.setEstado("libre");// no usar este metodo, es para probar funcionalidad
 			if( this.vista.getFormaPago()!=null) {
-				Sistema.getInstancia().facturarComanda(this.mesa.getComanda(), this.vista.getFormaPago().getText());
+				double total=Sistema.getInstancia().facturarComanda(this.mesa.getComanda(), this.vista.getFormaPago().getText());
+				this.vista.mostrarTotal(total);
 				this.mesa.setEstado("libre");
 				this.vistaOperario.actualizarListas();
 				VentanaMesa v = (VentanaMesa) this.vista;

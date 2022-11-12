@@ -390,7 +390,12 @@ public class VentanaMesa extends JFrame implements MouseListener, KeyListener,IV
 			rb=this.rdbtnMercadoPago;
 		return rb;
 	}
-	
 
+	@Override
+	public void mostrarTotal(double total) {
+		JOptionPane.showMessageDialog(this,"Se cerro la mesa, el total a pagares de: "+total);
+	}
+	
+	
 	
 }

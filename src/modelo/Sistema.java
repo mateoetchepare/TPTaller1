@@ -368,12 +368,12 @@ public class Sistema {
 	 * <br>
 	 *
 	 */
-	public void facturarComanda(Comanda comanda, String formaDePago) {
+	public double facturarComanda(Comanda comanda, String formaDePago) {
 		double auxTotal = 0, total = 0;
 		int i = 0, j, h = 0, k;
 		;
 		ArrayList<Pedido> pedidos = clonoArrayList(comanda.getPedidos());// aca voy a dejar los pedidos que NO tengan
-																			// promo
+			System.out.println("ya clono");																// promo
 		ArrayList<Promocion> promosAplicadas = new ArrayList<Promocion>();
 		boolean acumulable = false, hayPromoTemp = false;
 		double porcDesc = 0;
@@ -403,9 +403,9 @@ public class Sistema {
 					}
 				} else {
 					PromocionTemp auxT = (PromocionTemp) promociones.get(i);
-					if (auxT.getFormaPago() == formaDePago) {
+					if (auxT.getFormaPago().equals(formaDePago)) {
 						acumulable = auxT.isEsAcumulable();
-						porcDesc = auxT.getPorcentajeDescuento();
+						porcDesc = 1- auxT.getPorcentajeDescuento()/100;
 						hayPromoTemp = true;
 						promosAplicadas.add(auxT);
 					}
@@ -413,32 +413,41 @@ public class Sistema {
 			}
 			i++;
 		}
-
+		System.out.println("salio el primer while");
 		k = pedidos.size();
 		h = 0;
-
+		System.out.println(k);
 		while (h < k) {
 			total += pedidos.get(h).getCantidad() * pedidos.get(h).getProducto().getPrecioVenta();
+			h++;
 		}
+		System.out.println("salio el segundo while");
 		if (hayPromoTemp) {
 			if (acumulable) {
 				auxTotal *= porcDesc;
 			}
-			total = (total * porcDesc) + auxTotal;
+			else {
+				total = (total * porcDesc) + auxTotal;
+			}		
 		} else {
 			total = total + auxTotal;
 		}
 
 		Mesa mesa = null;
 		int aux = 0;
-
-		while (i < this.mesas.size() && mesa == null) {
+		
+		while (aux < this.mesas.size() && mesa == null) {
 			if (comanda.getNumeroMesa() == this.mesas.get(aux).getNumeroMesa())
 				mesa = this.mesas.get(aux);
+			aux++;
 		}
+		System.out.println("salio el tercer while while");
 		Factura factura = new Factura(mesa, comanda.getPedidos(), total, formaDePago, promosAplicadas);
+		this.facturas.add(factura);
 		mesa.setEstado("libre");
 		comandas.remove(comanda);
+		
+		return total;
 	}
 
 	public ArrayList<Pedido> clonoArrayList(ArrayList<Pedido> pedidos) {
