@@ -125,9 +125,9 @@ public class ControladorOperario implements ActionListener {
 				System.out.println("BOTON MODIFICAR");
 				//toma elemento de la lista mozo y el radio button seleccionado y le cambia estado
 				this.operario.seteaEstadoMozo(this.vista.getListMozos().getSelectedValue(), this.vista.getEstadoMozo().getText());
-				this.actualizarListas();	
+					
 			}
-			
+			this.actualizarListas();
 
 		
 

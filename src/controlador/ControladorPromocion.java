@@ -122,6 +122,7 @@ public class ControladorPromocion implements ActionListener {
 			} else
 				this.vista.emergenteNoHayPromProdSelecionado();// emergente seleccione promocion por producto a desactivar
 		} else if (e.getActionCommand().equals("Agregar1")) {
+			System.out.println("BOTON AGREGAR PROMO TEMP");
 			if (this.vista.getNombre().length() > 0) {
 				if (this.vista.getDescuento().length() > 0) {
 					try {
@@ -135,11 +136,11 @@ public class ControladorPromocion implements ActionListener {
 								promTemp.setFormaPago(this.vista.getFormaPago().getText());
 								promTemp.setNombre(this.vista.getNombre());
 								promTemp.setPorcentajeDescuento(des);
-								if(this.vista.getAcumulable().isSelected()) 
+								if(this.vista.getAcumulable()!=null) 
 									promTemp.setEsAcumulable(true);
 								else
 									promTemp.setEsAcumulable(false);
-								
+								Sistema.getInstancia().agregarPromocion(promTemp);
 							} else
 								this.vista.emergenteNoHayFormaPago();// emergente seleccione forma de pago
 						}

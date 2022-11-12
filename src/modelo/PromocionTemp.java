@@ -30,6 +30,20 @@ public class PromocionTemp extends Promocion {
 	public void setEsAcumulable(boolean esAcumulable) {
 		this.esAcumulable = esAcumulable;
 	}
+	@Override
+	public String toString() {
+		String dias="";
+		for(String dia:this.getDiasDePromo()) {
+			dias+="-"+dia+" ";
+		}
+		if(dias=="") 
+		return   nombre + ", formaPago=" + formaPago + ", Descuento="
+				+ porcentajeDescuento + "% Activa= "+this.isActivo()+ ", sin dias asosiados";
+		else
+			return  nombre + ", formaPago=" + formaPago + ", porcentajeDescuento="
+			+ porcentajeDescuento + ", esAcumulable=" + esAcumulable +
+			"% Activa= "+this.isActivo()+", dias= "+dias;
+	}
 	
 	
 }

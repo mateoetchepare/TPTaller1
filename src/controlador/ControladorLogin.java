@@ -38,17 +38,14 @@ public class ControladorLogin implements ActionListener {
 			} catch (UsuarioIncorrectoException e1) {
 				//e1.printStackTrace();
 				this.vista.emergenteUsuarioIncorecto();
-				System.out.println("usaurio incorrecto");
 			} 
 			catch (ContraseniaIncorrectaException e1) {
 				//e1.printStackTrace();
 				this.vista.emergetneContraseniaIncorrecta();
-				System.out.println("contrasenia incorrecta");
 			}
 			catch (UsuarioInactivoException e1) {
 				//e1.printStackTrace();
 				this.vista.emergenteUsuarioInactivo();
-				System.out.println("usuario inactivo");
 			}catch (CambioObligatorioContraseniaException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -87,8 +84,8 @@ public class ControladorLogin implements ActionListener {
 				//throws usuarioIncorrectoException()
 				System.out.println("no se encontro al usuario");
 			}*/ 
-			vista.actualizaBotones();
-			vista.actualizaCampos();
+			//vista.actualizaBotones();
+			//vista.actualizaCampos();
 		}
 	}
 }

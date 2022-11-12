@@ -4,25 +4,26 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.GridLayout;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import javax.swing.DefaultListModel;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import modelo.Producto;
-
-import javax.swing.JTextField;
-import javax.swing.ListSelectionModel;
-import javax.swing.JButton;
 import java.awt.FlowLayout;
 
 public class VentanaProducto extends JFrame implements MouseListener, KeyListener{
@@ -58,6 +59,7 @@ public class VentanaProducto extends JFrame implements MouseListener, KeyListene
 	private JPanel panelStock;
 	private JLabel labelStock;
 	private JTextField textFieldStock;
+	private DefaultListModel<Producto> modeloListaProductos;
 
 	/**
 	 * Launch the application.
@@ -100,7 +102,7 @@ public class VentanaProducto extends JFrame implements MouseListener, KeyListene
 		
 		this.scrollPane = new JScrollPane();
 		this.panelProductoPrincipal.add(this.scrollPane, BorderLayout.WEST);
-		this.scrollPane.setPreferredSize(new Dimension(150,50));
+		this.scrollPane.setPreferredSize(new Dimension(250,50));
 		
 		this.listProductos = new JList();
 		this.scrollPane.setViewportView(this.listProductos);
@@ -115,7 +117,7 @@ public class VentanaProducto extends JFrame implements MouseListener, KeyListene
 		
 		this.panelNombre = new JPanel();
 		this.panelDatosProducto.add(this.panelNombre);
-		this.panelNombre.setLayout(new GridLayout(0, 4, 0, 0));
+		this.panelNombre.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		this.labelNombreProducto = new JLabel("Nombre: ");
 		this.labelNombreProducto.setHorizontalAlignment(SwingConstants.CENTER);
@@ -128,17 +130,6 @@ public class VentanaProducto extends JFrame implements MouseListener, KeyListene
 		this.panel.add(this.textFieldNombreProducto);
 		this.textFieldNombreProducto.setColumns(10);
 		
-		this.labelID = new JLabel("ID: ");
-		this.labelID.setHorizontalAlignment(SwingConstants.CENTER);
-		this.panelNombre.add(this.labelID);
-		
-		this.panel_1 = new JPanel();
-		this.panelNombre.add(this.panel_1);
-		
-		this.textFieldID = new JTextField();
-		this.panel_1.add(this.textFieldID);
-		this.textFieldID.setColumns(10);
-		
 		this.panelStock = new JPanel();
 		this.panelDatosProducto.add(this.panelStock);
 		
@@ -148,6 +139,20 @@ public class VentanaProducto extends JFrame implements MouseListener, KeyListene
 		this.textFieldStock = new JTextField();
 		this.panelStock.add(this.textFieldStock);
 		this.textFieldStock.setColumns(10);
+		
+		this.labelID = new JLabel("ID: ");
+		this.panelStock.add(this.labelID);
+		this.labelID.setHorizontalAlignment(SwingConstants.CENTER);
+		
+		this.panel_1 = new JPanel();
+		this.panelStock.add(this.panel_1);
+		
+		this.textFieldID = new JTextField();
+		this.panel_1.add(this.textFieldID);
+		this.textFieldID.setColumns(10);
+		
+		
+		this.textFieldID.addKeyListener(this);
 		
 		this.panelPrecio = new JPanel();
 		this.panelDatosProducto.add(this.panelPrecio);
@@ -191,9 +196,6 @@ public class VentanaProducto extends JFrame implements MouseListener, KeyListene
 		
 		this.btnModificar = new JButton("Modificar");
 		this.panelBotoneraProductos.add(this.btnModificar);
-		
-		
-		this.textFieldID.addKeyListener(this);
 		this.textFieldNombreProducto.addKeyListener(this);
 		this.textFieldPrecioCompra.addKeyListener(this);
 		this.textFieldPrecioVenta.addKeyListener(this);
@@ -207,6 +209,8 @@ public class VentanaProducto extends JFrame implements MouseListener, KeyListene
 		
 		this.listProductos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		this.listProductos.addMouseListener(this);
+		this.modeloListaProductos=new DefaultListModel<Producto>();
+		this.listProductos.setModel(modeloListaProductos);
 	}
 
 	@Override
@@ -301,6 +305,18 @@ public class VentanaProducto extends JFrame implements MouseListener, KeyListene
 
 	public void muestraError(String msg) {
 		JOptionPane.showMessageDialog(this, msg);
+	}
+	
+	public void addActionListener(ActionListener listener) {
+		this.btnAgregar.addActionListener(listener);
+		this.btnListo.addActionListener(listener);
+		this.btnModificar.addActionListener(listener);
+		this.btnSacar.addActionListener(listener);
+	}
+	
+	public DefaultListModel<Producto> getModeloListaProductos() {
+		// TODO Auto-generated method stub
+		return this.modeloListaProductos;
 	}
 	
 }

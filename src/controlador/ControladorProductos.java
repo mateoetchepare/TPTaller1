@@ -18,6 +18,8 @@ public class ControladorProductos implements ActionListener{
 	public ControladorProductos(VentanaProducto vista, IVistaOperario vistaOperario) {
 		this.vista = vista;
 		this.vistaOperario=vistaOperario;
+		this.vista.addActionListener(this);
+		actualizarLista();
 	}
 
 	@Override
@@ -69,6 +71,17 @@ public class ControladorProductos implements ActionListener{
 						}
 					}
 				}
+				else if(e.getActionCommand().equals("Listo")) {
+					this.vista.setVisible(false);
+					this.vistaOperario.setVisible(true);
+				}
+		actualizarLista();
+	}
+	public void actualizarLista() {
+		this.vista.getModeloListaProductos().clear();
+		for (Producto producto : Sistema.getInstancia().getProductos()) {
+			this.vista.getModeloListaProductos().addElement(producto);
+		}
 	}
 }
 

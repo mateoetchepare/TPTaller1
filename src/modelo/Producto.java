@@ -91,7 +91,7 @@ public class Producto implements Cloneable, Serializable{
 
 	@Override
 	public String toString() {
-		return "id producto=" + id + ", nombre=" + nombre + ", precio=" + precioVenta ;
+		return "id producto=" + id + ", nombre=" + nombre + ", precio=" + precioVenta +" stock= "+ stock;
 	}
 	
 	

@@ -211,11 +211,12 @@ public class Sistema {
 				i++;
 			}
 			if (mayus && numero) {
+				i=0;
 				j = operarios.size();
 				while (i < j && operarios.get(i).getNombreUsuario() != operario.getNombreUsuario()) {
 					i++;
 				}
-				if (i < j)
+				if (i == j)
 					operarios.add(operario);
 				else
 					throw new UsuarioNuevoInvalidoException(
@@ -318,7 +319,7 @@ public class Sistema {
 		j = productos.size();
 		while (i < j && productos.get(i).getId() != producto.getId())
 			i++;
-		if (i < j)
+		if (i == j)
 			if (producto.getPrecioCosto() <= producto.getPrecioVenta() && producto.getPrecioCosto() > 0
 					&& producto.getPrecioVenta() > 0)
 				productos.add(producto);

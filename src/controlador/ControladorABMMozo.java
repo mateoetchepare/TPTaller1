@@ -39,19 +39,21 @@ public class ControladorABMMozo implements ActionListener{
 					mes= Integer.parseInt(fecha.substring(3, 5));
 					anio= Integer.parseInt(fecha.substring(6, 10));
 					if(dia>0 && dia<=31 && mes>0 && mes<=12 && anio>0 && anio<=9999) {
-						fechaNac = LocalDate.of(dia, mes, anio);
+						fechaNac = LocalDate.of(anio, mes, dia);
 					}
 				}
 			}
 			if (fechaNac != null && vista.getCantHijos()>=0 && vista.getCantHijos()<12) {
 				if (Period.between(fechaNac, LocalDate.now()).getYears() >= 18) {
 					Mozo mozo = new Mozo(vista.getNombre() + vista.getApellido(), vista.getCantHijos(), fechaNac);
+					Sistema.getInstancia().agregaMozo(mozo);
+					vista.actualizaBotones();
+					vista.actualizaCampos();
 				} else
 					vista.muestraError("El mozo debe ser mayor a 18");
 			} else
-				vista.muestraError("Ingrese una cantidad de hijos valida y una fecha de nacimiento valida");
-			vista.actualizaBotones();
-			vista.actualizaCampos();
+				vista.muestraError("Ingrese una cantidad de hijos valida y una fecha de nacimiento valida(dd/mm/yyyy)");
+			
 		} else 
 			if (e.getActionCommand().equals("Sacar")) {
 				System.out.println("BOTON SACAR");
@@ -74,6 +76,7 @@ public class ControladorABMMozo implements ActionListener{
 					VentanaABMMozo v = (VentanaABMMozo) this.vista;
 					v.setVisible(false);
 					this.vistaOperario.setVisible(true);
+					
 				}
 		actualizarListas();
 	}

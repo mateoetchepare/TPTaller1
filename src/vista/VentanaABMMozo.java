@@ -18,6 +18,7 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -186,7 +187,7 @@ public class VentanaABMMozo extends JFrame implements IVistaABMMozo, KeyListener
 		
 		this.scrollPane = new JScrollPane();
 		this.contentPane.add(this.scrollPane, BorderLayout.WEST);
-		this.scrollPane.setPreferredSize(new Dimension(150,50));
+		this.scrollPane.setPreferredSize(new Dimension(275,50));
 		
 		this.labelListaMozos = new JLabel("Mozos");
 		this.labelListaMozos.setHorizontalAlignment(SwingConstants.CENTER);
@@ -301,6 +302,7 @@ public class VentanaABMMozo extends JFrame implements IVistaABMMozo, KeyListener
 			this.btnSacar.setEnabled(true);
 		else
 			this.btnSacar.setEnabled(false);
+		
 	}
 
 	@Override

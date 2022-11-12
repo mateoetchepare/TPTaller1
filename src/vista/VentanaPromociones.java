@@ -146,7 +146,7 @@ public class VentanaPromociones extends JFrame implements KeyListener, MouseList
 		this.panelListas.add(this.scrollPanePromProd);
 		
 		
-		this.labelPromProd = new JLabel("PROMOCIONES P");
+		this.labelPromProd = new JLabel("PROMOCIONES POR PRODUCTO");
 		this.labelPromProd.setHorizontalAlignment(SwingConstants.CENTER);
 		this.scrollPanePromProd.setColumnHeaderView(this.labelPromProd);
 		
@@ -156,7 +156,7 @@ public class VentanaPromociones extends JFrame implements KeyListener, MouseList
 		this.scrollPanePromTemp = new JScrollPane();
 		this.panelListas.add(this.scrollPanePromTemp);
 		
-		this.lblNewLabel = new JLabel("PROMOCIONES T");
+		this.lblNewLabel = new JLabel("PROMOCIONES TEMPORALES");
 		this.lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		this.scrollPanePromTemp.setColumnHeaderView(this.lblNewLabel);
 		
@@ -175,24 +175,31 @@ public class VentanaPromociones extends JFrame implements KeyListener, MouseList
 		this.panelDiasPromos.add(this.labelDiasPromos);
 		
 		this.rdrdbtnLunes = new JRadioButton("Lunes");
+		this.rdrdbtnLunes.addMouseListener(this);
 		this.panelDiasPromos.add(this.rdrdbtnLunes);
 		
 		this.rdbtnMartes = new JRadioButton("Martes");
+		this.rdbtnMartes.addMouseListener(this);
 		this.panelDiasPromos.add(this.rdbtnMartes);
 		
 		this.rdbtnMiercoles = new JRadioButton("Miercoles");
+		this.rdbtnMiercoles.addMouseListener(this);
 		this.panelDiasPromos.add(this.rdbtnMiercoles);
 		
 		this.rdbtnJueves = new JRadioButton("Jueves");
+		this.rdbtnJueves.addMouseListener(this);
 		this.panelDiasPromos.add(this.rdbtnJueves);
 		
 		this.rdbtnViernes = new JRadioButton("Viernes");
+		this.rdbtnViernes.addMouseListener(this);
 		this.panelDiasPromos.add(this.rdbtnViernes);
 		
 		this.rdbtnSabado = new JRadioButton("Sabado");
+		this.rdbtnSabado.addMouseListener(this);
 		this.panelDiasPromos.add(this.rdbtnSabado);
 		
 		this.rdbtnDomingo = new JRadioButton("Domingo");
+		this.rdbtnDomingo.addMouseListener(this);
 		this.panelDiasPromos.add(this.rdbtnDomingo);
 		
 		this.btnAgregarDia = new JButton("Agregar dias");
@@ -206,7 +213,7 @@ public class VentanaPromociones extends JFrame implements KeyListener, MouseList
 		this.panelDatos2.add(this.panelProductos);
 		this.panelProductos.setLayout(new GridLayout(4, 0, 0, 0));
 		
-		this.labelPromProductos = new JLabel("PROMOCIONES PRODUCTOS");
+		this.labelPromProductos = new JLabel("PROMOCIONES POR PRODUCTOS:");
 		this.panelProductos.add(this.labelPromProductos);
 		
 		this.panelTipo = new JPanel();
@@ -256,7 +263,7 @@ public class VentanaPromociones extends JFrame implements KeyListener, MouseList
 		this.panelDatos2.add(this.panelTemporales);
 		this.panelTemporales.setLayout(new GridLayout(4, 0, 0, 0));
 		
-		this.labelPromTemporales = new JLabel("PROMOCIONES TEMPORALES");
+		this.labelPromTemporales = new JLabel("PROMOCIONES TEMPORALES:");
 		this.panelTemporales.add(this.labelPromTemporales);
 		
 		this.panelNombre = new JPanel();
@@ -283,18 +290,22 @@ public class VentanaPromociones extends JFrame implements KeyListener, MouseList
 		this.panelTemporales.add(this.panelFormaPago);
 		
 		this.rdbtnEfectivo = new JRadioButton("Efectivo");
+		this.rdbtnEfectivo.addMouseListener(this);
 		buttonGroup_1.add(this.rdbtnEfectivo);
 		this.panelFormaPago.add(this.rdbtnEfectivo);
 		
 		this.rdbtnTarjeta = new JRadioButton("Tarjeta");
+		this.rdbtnTarjeta.addMouseListener(this);
 		buttonGroup_1.add(this.rdbtnTarjeta);
 		this.panelFormaPago.add(this.rdbtnTarjeta);
 		
 		this.rdbtnCuentaDNI = new JRadioButton("Cuenta DNI");
+		this.rdbtnCuentaDNI.addMouseListener(this);
 		buttonGroup_1.add(this.rdbtnCuentaDNI);
 		this.panelFormaPago.add(this.rdbtnCuentaDNI);
 		
 		this.rdbtnMP = new JRadioButton("Mercado Pago");
+		this.rdbtnMP.addMouseListener(this);
 		buttonGroup_1.add(this.rdbtnMP);
 		this.panelFormaPago.add(this.rdbtnMP);
 		
