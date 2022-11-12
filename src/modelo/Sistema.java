@@ -126,6 +126,9 @@ public class Sistema {
 		return operarios;
 	}
 
+	/**
+	 * @return un booleano para determinar si se puede abrir el restaurant en el dia de la fecha. si es true, SI, y si es false, NO.
+	 */
 	public boolean alMenos2PromosProd() {
 		int i = 0, j, cont = 0;
 		diaActualAlEspanol();
@@ -174,10 +177,16 @@ public class Sistema {
 			throw new MesaInvalidaException("La combinacion de comensales - numero de mesa es invalido");
 	}
 
+	/**
+	 * <b>PreCond:</b> el mozo no puede ser null y debe ser valido
+	 */
 	public void agregaMozo(Mozo mozo) {
 		mozos.add(mozo);
 	}
 
+	/**
+	 * <b>PreCond:</b> el mozo no puede ser null y debe ser valido
+	 */
 	public void borrarMozo(Mozo mozo) {
 		mozos.remove(mozo);
 	}
@@ -227,6 +236,9 @@ public class Sistema {
 			throw new ContraseniaLongitudInvalidaException();
 	}
 
+	/**
+	 * <b>PreCond:</b> el operario no puede ser null y debe ser valido
+	 */
 	public void borraOperario(Operario operario) {
 		operarios.remove(operario);
 	}
@@ -234,8 +246,8 @@ public class Sistema {
 	/**
 	 * 
 	 *
-	 * <b>PostCond:</b> devuelve el operario logueado, si no hay ningun error en el
-	 * tipeo de datos
+	 * <b>PostCond:</b> devuelve el operario logueado, si no hay ningun error en el <br>
+	 * tipeo de datos, es decir, los datos ingresados son los correctos
 	 *
 	 */
 
@@ -260,18 +272,10 @@ public class Sistema {
 		else
 			return operarios.get(i);
 	}
-
-	public boolean unSoloOperario() {
-		return operarios.size() == 1;
-	}
-
+	
 	/**
-	 * 
-	 * <b>PreCond:</b> cantComensales debe ser mayor a 0 <br>
-	 * <b>PostCond:</b> devuelve una mesa si en efecto habia una libre para ocuparse
-	 *
+	 * <b>PreCond:</b> el producto no puede ser null y debe ser valido
 	 */
-
 	public int retornaStock(Producto producto) { //
 		int indice = productos.indexOf(producto);
 		return productos.get(indice).getStock();
@@ -313,6 +317,8 @@ public class Sistema {
 	 * @throws ProductoPreciosInvalidosException si ingresa un producto con un
 	 *                                           precio de venta menor al precio de
 	 *                                           costo
+	 *                                           
+	 * <b>PreCond:</b> producto no debe ser null y debe ser valido
 	 */
 	public void nuevoProducto(Producto producto) throws ProductoExistenteException, ProductoPreciosInvalidosException {
 		int i = 0, j;
@@ -357,7 +363,7 @@ public class Sistema {
 
 	/**
 	 * Genera la factura de la comanda luego de cerrarse la comanda <br>
-	 * <b>PreCond:</b> la formaDePago debe ser una formaDePago valida. <br>
+	 * <b>PreCond:</b> la formaDePago debe ser una formaDePago valida y la comanda debe ser una comanda valida y no null <br>
 	 * <b>PostCond:</b> debe crearse la factura correctamente y guardarse en sistema
 	 * <br>
 	 *
@@ -376,16 +382,7 @@ public class Sistema {
 
 		j = promociones.size();
 		while (i < j) {
-			if (promociones.get(i).isActivo() && promociones.get(i).contieneDiaDePromo(this.diaActual)) { // &&
-																											// promociones.get(i).getDiasDePromo())
-																											// ///////COMO
-																											// MIER...
-																											// ME FIJO
-																											// SI EL DIA
-																											// ACTUAL ES
-																											// IGUAL AL
-																											// DIA DE LA
-																											// PROMO?
+			if (promociones.get(i).isActivo() && promociones.get(i).contieneDiaDePromo(this.diaActual)) { 
 				if (promociones.get(i) instanceof PromocionProd) {
 					PromocionProd aux = (PromocionProd) promociones.get(i);
 					if (comanda.contieneProducto(aux.getProducto())) {
@@ -394,7 +391,7 @@ public class Sistema {
 									* aux.getProducto().getPrecioVenta() / 2);
 						} else if (aux.isAplicaDtoPorCantidad() && (aux.getDtoPorCantidad_CantMinima() > comanda
 								.cantidadDelProducto(aux.getProducto())))
-							auxTotal += aux.getDtoPorCantidad_PrecioUnitario() * aux.getProducto().getPrecioVenta();
+							auxTotal += aux.getDtoPorCantidad_PrecioUnitario() * comanda.cantidadDelProducto(aux.getProducto());
 
 						k = pedidos.size();
 						while (h < k) { // elimino de la lista de productos que no tienen promo
@@ -452,6 +449,10 @@ public class Sistema {
 		return pedidosClonados;
 	}
 
+	/**
+	 * <b>PreCond:</b> el mozo no puede ser null y debe ser valido
+	 * @throws MozoSinVentasException se lanza si el mozo no tiene ninguna venta
+	 */
 	public String estadisticas(Mozo mozo) throws MozoSinVentasException{
 		String cadena = null;
 		int cont=0;
@@ -471,6 +472,10 @@ public class Sistema {
 				+ " de $"+total+" y un promedio de $"+total/cont+" por venta";
 	}
 
+	/**
+	 * 
+	 * @throws NoHayFacturasException se lanza si en el sistema no hay ni una sola factura
+	 */
 	public String mayorMenorVenta() throws NoHayFacturasException {
 		ArrayList<TotalVentaMozo> ventasMozos = new ArrayList<TotalVentaMozo>();
 		String mozoDeFactura = null;

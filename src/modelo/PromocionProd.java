@@ -1,5 +1,6 @@
 package modelo;
 
+import excepciones.PrecioUnitarioInvalidoException;
 import excepciones.PromoProdInvalidaException;
 
 public class PromocionProd extends Promocion {
@@ -73,8 +74,11 @@ public class PromocionProd extends Promocion {
 		this.dtoPorCantidad_CantMinima = dtoPorCantidad_CantMinima;
 	}
 
-	public void setDtoPorCantidad_PrecioUnitario(int dtoPorCantidad_PrecioUnitario) {
-		this.dtoPorCantidad_PrecioUnitario = dtoPorCantidad_PrecioUnitario;
+	public void setDtoPorCantidad_PrecioUnitario(int dtoPorCantidad_PrecioUnitario) throws PrecioUnitarioInvalidoException{
+		if (dtoPorCantidad_PrecioUnitario < this.producto.getPrecioVenta() && dtoPorCantidad_PrecioUnitario > this.producto.getPrecioCosto())
+			this.dtoPorCantidad_PrecioUnitario = dtoPorCantidad_PrecioUnitario;
+		else
+			throw new PrecioUnitarioInvalidoException();
 	}
 	
 	@Override

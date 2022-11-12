@@ -16,6 +16,9 @@ public class Comanda implements Serializable{
 	
 	public Comanda() {}
 	
+	/**
+	 * <b>PreCond:</b> el parametro num debe ser mayor a 0
+	 */
 	public Comanda(int num) {
 		this.fecha = LocalDate.now();
 		this.estado = "abierta";
@@ -41,8 +44,9 @@ public class Comanda implements Serializable{
 	
 	
 	/**
-	 * @param estado
+	 * 
 	 * @throws CierreComandaException se lanza si se quiere cerrar la comanda y ya estaba cerrada
+	 * <b>PreCond:</b> el parametro estado debe ser valido
 	 */
 	public void setEstado(String estado) throws CierreComandaException{
 		if (this.estado == "cerrada" && estado == "cerrada") 
@@ -90,25 +94,24 @@ public class Comanda implements Serializable{
 	
 	//Cambio no paso un pedido sino un producto y la cantidad
 	/**
-	 * @param producto
-	 * @param cant
 	 * @throws PedidoInvalidoException se lanza si la cantidad solicitada del producto es mayor a la que hay en stock
+	 * <b>PreCond:</b> el producto debe ser valido y no null y "cant" mayor a 0
 	 */
 	public void agregaPedido(Producto producto,int cant) throws PedidoInvalidoException{
 		int stock;
-			stock = Sistema.getInstancia().retornaStock(producto);
-			if (stock >= cant) {
-				Pedido pedido=new Pedido(producto,cant);
-				pedidos.add(pedido);
-				pedido.getProducto().restarStock(pedido.getCantidad());
-			}
-			else
-				throw new PedidoInvalidoException(cant,stock);
+		stock = Sistema.getInstancia().retornaStock(producto);
+		if (stock >= cant) {
+			Pedido pedido=new Pedido(producto,cant);
+			pedidos.add(pedido);
+			pedido.getProducto().restarStock(pedido.getCantidad());
+		}
+		else
+			throw new PedidoInvalidoException(cant,stock);
 	}
-	
+
 	public void sacarPedido(Pedido pedido) {
 		if(this.pedidos.contains(pedido))
 			this.pedidos.remove(pedido);
 	}
-	}
-	
+}
+

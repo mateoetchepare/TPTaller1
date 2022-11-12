@@ -48,4 +48,5 @@ public interface IVistaPromocion {
 	void emergenteCampoNombreVacio();
 	void emergenteCampoDescuentoVacio();
 	void emergenteNoHayPromTempSelecionado();
+	void emergentePrecioUnitario(String msg);
 }

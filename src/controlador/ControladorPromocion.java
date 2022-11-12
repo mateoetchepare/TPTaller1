@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JRadioButton;
 
+import excepciones.PrecioUnitarioInvalidoException;
 import excepciones.PromoProdInvalidaException;
 import modelo.Producto;
 import modelo.Promocion;
@@ -87,8 +88,8 @@ public class ControladorPromocion implements ActionListener {
 							precioUnitario = Integer.parseInt(this.vista.getPrecioUnitario());
 							PromocionProd promProd = new PromocionProd();
 							promProd.setActivo(false);
-							promProd.setDtoPorCantidad_CantMinima(cantMinima);
 							promProd.setDtoPorCantidad_PrecioUnitario(precioUnitario);
+							promProd.setDtoPorCantidad_CantMinima(cantMinima);
 							
 								if (this.vista.getTipo().getText().equals("2x1")) {
 									promProd.setAplicaDosPorUno(true);
@@ -102,6 +103,8 @@ public class ControladorPromocion implements ActionListener {
 							Sistema.getInstancia().agregarPromocion(new PromocionProd());
 						} catch (NumberFormatException exc) {
 							this.vista.emergenteNoEsNumero();// emergente ingrese valores numericos enteros
+						} catch (PrecioUnitarioInvalidoException e2) {
+							this.vista.emergentePrecioUnitario(e2.getMessage());
 						}
 
 					} else

@@ -688,5 +688,11 @@ public class VentanaPromociones extends JFrame implements KeyListener, MouseList
 	public void emergenteNoHayPromTempSelecionado() {
 		JOptionPane.showMessageDialog(this,"Seleccione una promocion temporal de la lista");
 	}
+
+	@Override
+	public void emergentePrecioUnitario(String msg) {
+		JOptionPane.showMessageDialog(this, msg);
+		
+	}
 	
 }
