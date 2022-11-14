@@ -8,9 +8,12 @@ import org.junit.Before;
 import org.junit.Test;
 
 import excepciones.CambioObligatorioContraseniaException;
+import excepciones.ContraseniaIncorrectaException;
 import excepciones.ContraseniaLongitudInvalidaException;
 import excepciones.ContraseniaReqNoCumplidosException;
 import excepciones.LoginIncorrectoException;
+import excepciones.UsuarioInactivoException;
+import excepciones.UsuarioIncorrectoException;
 import excepciones.UsuarioNuevoInvalidoException;
 import modelo.Operario;
 import modelo.Sistema;
@@ -39,10 +42,16 @@ public class SistemaTest {
 		
 		try {
 			sistema.loginOperario("LeoMessi10","CopaAmerica1");
-		} catch (LoginIncorrectoException e) {
-			fail("No deberia arrojar excepcion LoginIncorrectoException");
-		} catch (CambioObligatorioContraseniaException e) {
+		} catch (UsuarioIncorrectoException e) {
+			
+		}catch (ContraseniaIncorrectaException e) {
+			fail("No deberia arrojar excepcion ContraseniaIncorrectaException");
+		}catch (UsuarioInactivoException e) {
+			fail("No deberia arrojar excepcion UsuarioInactivoException");
+		}catch (CambioObligatorioContraseniaException e) {
 			fail("No deberia arrojar excepcion CambioObligatorioContraseniaException");
+		}catch (LoginIncorrectoException e) {
+			fail("No deberia arrojar excepcion LoginIncorrectoException");
 		}
 	}
 	
@@ -61,10 +70,16 @@ public class SistemaTest {
 		
 		try {
 			sistema.loginOperario("AngelDimaria11","Traemelaco1");
-		} catch (LoginIncorrectoException e) {
-
-		} catch (CambioObligatorioContraseniaException e) {
+		}catch (UsuarioIncorrectoException e) {
+			
+		}catch (ContraseniaIncorrectaException e) {
+			fail("No deberia arrojar excepcion ContraseniaIncorrectaException");
+		}catch (UsuarioInactivoException e) {
+			fail("No deberia arrojar excepcionUsuarioInactivoException ");
+		}catch (CambioObligatorioContraseniaException e) {
 			fail("No deberia arrojar excepcion CambioObligatorioContraseniaException");
+		}catch (LoginIncorrectoException e) {
+			fail("No deberia arrojar excepcion LoginIncorrectoException");
 		}
 		
 	}
@@ -84,10 +99,16 @@ public class SistemaTest {
 		
 		try {
 			sistema.loginOperario("LeoMessi10","Antonella5");
-		} catch (LoginIncorrectoException e) {
+		} catch (UsuarioIncorrectoException e) {
+			fail("No deberia arrojar excepcion UsuarioIncorrectoException");
+		}catch (ContraseniaIncorrectaException e) {
 			
-		} catch (CambioObligatorioContraseniaException e) {
+		}catch (UsuarioInactivoException e) {
+			fail("No deberia arrojar excepcion UsuarioInactivoException");
+		}catch (CambioObligatorioContraseniaException e) {
 			fail("No deberia arrojar excepcion CambioObligatorioContraseniaException");
+		}catch (LoginIncorrectoException e) {
+			fail("No deberia arrojar excepcion LoginIncorrectoException");
 		}
 		
 	}
@@ -108,10 +129,16 @@ public class SistemaTest {
 		
 		try {
 			sistema.loginOperario("LeoMessi10","CopaAmerica1");
-		} catch (LoginIncorrectoException e) {
+		} catch (UsuarioIncorrectoException e) {
+			fail("No deberia arrojar excepcion UsuarioIncorrectoException");
+		}catch (ContraseniaIncorrectaException e) {
+			fail("No deberia arrojar excepcion ContraseniaIncorrectaException");
+		}catch (UsuarioInactivoException e) {
 			
-		} catch (CambioObligatorioContraseniaException e) {
+		}catch (CambioObligatorioContraseniaException e) {
 			fail("No deberia arrojar excepcion CambioObligatorioContraseniaException");
+		}catch (LoginIncorrectoException e) {
+			fail("No deberia arrojar excepcion LoginIncorrectoException");
 		}
 		
 	}
