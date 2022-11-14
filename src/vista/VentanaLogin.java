@@ -200,4 +200,18 @@ public class VentanaLogin extends JFrame implements KeyListener, IVistaLogin {
 		this.textFieldContrasenia.setText("");
 		this.textFieldUsuario.setText("");
 	}
+
+	public JTextField getTextFieldUsuario() {
+		return textFieldUsuario;
+	}
+
+	public JButton getBtnLogin() {
+		return btnLogin;
+	}
+
+	public JPasswordField getTextFieldContrasenia() {
+		return textFieldContrasenia;
+	}
+	
+	
 }
