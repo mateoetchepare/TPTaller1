@@ -37,7 +37,7 @@ public class TestPersistencia {
 	}
 
 	@Test
-	public void testA_CrearArchivo() {
+	public void testA_CrearArchivoCorrectamente() {
 		Persistir.escribirSistema();	
 		File archivo = new File("Sistema.bin");
 		Assert.assertTrue("Tendria que existir el archivo", archivo.exists());
@@ -59,13 +59,15 @@ public class TestPersistencia {
 	}
 	
 	@Test
-	public void testC_() throws ContraseniaReqNoCumplidosException, ContraseniaLongitudInvalidaException, UsuarioNuevoInvalidoException {
+	public void testC_escrituraYLecturaCorrectaDeElementoDeArrayList() throws ContraseniaReqNoCumplidosException, ContraseniaLongitudInvalidaException, UsuarioNuevoInvalidoException {
 		Operario operario = new Operario("firmanig","Gregorio1","Gregorio Firmani");
 		sist.agregaOperario(operario); 
 		//No se catchea ninguna excepcion ya que para este ejemplo nos aseguramos de crear al Operario correctamente
 		Persistir.escribirSistema();
 		Persistir.leerSistema();
-		Assert.assertEquals("Los operarios deberian ser iguales",sist.getOperarios().get(0),operario);
+		Assert.assertEquals("Los operarios deberian tener un mismo nombre y apellido",sist.getOperarios().get(0).getNombreYApellido(),operario.getNombreYApellido());
+		Assert.assertEquals("Los operarios deberian tener un mismo usuario",sist.getOperarios().get(0).getNombreUsuario(),operario.getNombreUsuario());
+		Assert.assertEquals("Los operarios deberian tener una misma contrasenia",sist.getOperarios().get(0).getPassword(),operario.getPassword());
 		
 	}
 	//Revisar este ultimo caso ya que no funciona
