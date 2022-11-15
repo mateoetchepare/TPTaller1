@@ -114,7 +114,7 @@ public class GuiTestConjuntoConDatos {
 		TestUtils.tipeaTexto("Gregorio9", robot);
 		TestUtils.clickComponent(boton, robot);
 		
-		//Assert.assertTrue("El boton deberia estar habilitado", boton.isEnabled());
+		Assert.assertTrue("El boton deberia estar habilitado", boton.isEnabled());
 		Assert.assertEquals("Deberia haber salido el siguiente mensaje : El operario NO esta activo, no puede ingresar al sistema. Consulte con el administrador ",
 				"El operario NO esta activo, no puede ingresar al sistema. Consulte con el administrador", op.getMensaje());
 		
