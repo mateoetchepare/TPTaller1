@@ -111,7 +111,7 @@ public class GuiTestConjuntoConDatos {
 		TestUtils.clickComponent(usuario, robot);
 		TestUtils.tipeaTexto("firmanig", robot);
 		TestUtils.clickComponent(password, robot);
-		TestUtils.tipeaTexto("Gregorio9", robot);
+		TestUtils.tipeaTexto("Gregorio1", robot);
 		TestUtils.clickComponent(boton, robot);
 		
 		Assert.assertTrue("El boton deberia estar habilitado", boton.isEnabled());
