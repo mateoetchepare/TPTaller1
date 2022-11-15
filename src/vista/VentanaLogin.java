@@ -22,6 +22,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
+import test_Gui.InterfazOptionPanel;
+import test_Gui.MiOptionPane;
 
 public class VentanaLogin extends JFrame implements KeyListener, IVistaLogin {
 
@@ -45,6 +47,7 @@ public class VentanaLogin extends JFrame implements KeyListener, IVistaLogin {
 	private JPanel panel_7;
 	private JButton btnLogin;
 	private JPasswordField textFieldContrasenia;
+	private InterfazOptionPanel optionPanel = new MiOptionPane();
 
 	/**
 	 * Launch the application.
@@ -176,18 +179,22 @@ public class VentanaLogin extends JFrame implements KeyListener, IVistaLogin {
 
 	@Override
 	public void emergenteUsuarioIncorecto() {
-		JOptionPane.showMessageDialog(this,"Usuario no encontrado");
+		this.optionPanel.ShowMessage(null,"Usuario no encontrado");
 		
 	}
 
 	@Override
 	public void emergetneContraseniaIncorrecta() {
-		JOptionPane.showMessageDialog(this,"Contrasenia Incorrecta");
+		this.optionPanel.ShowMessage(null,"Contrasenia Incorrecta");
 	}
 
 	@Override
 	public void emergenteUsuarioInactivo() {
-		JOptionPane.showMessageDialog(this,"El operario NO esta activo, no puede ingresar al sistema. Consulte con el administrador");
+		this.optionPanel.ShowMessage(null,"El operario NO esta activo, no puede ingresar al sistema. Consulte con el administrador");
+	}
+	
+	public void setOptionPanel(InterfazOptionPanel optionPanel) {
+		this.optionPanel = optionPanel;
 	}
 
 	@Override
