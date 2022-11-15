@@ -34,8 +34,6 @@ public class MozoTest {
 		promo2.agregarDiaPromo("Lunes");
 		promo1.agregarDiaPromo("Martes");
 		promo2.agregarDiaPromo("Martes");
-		promo1.setActivo(true);
-		promo2.setActivo(true);
 		this.sistema.setMozos(new ArrayList<Mozo>());
 		this.sistema.setProductos(new ArrayList<Producto>());
 		this.sistema.nuevoProducto(new Producto(12,"Milanesa",120.0,150.0,100));
@@ -104,10 +102,9 @@ public class MozoTest {
 		LocalDate fecha = LocalDate.parse("2001-03-01");
 		Mozo mozo = new Mozo("Gregorio Firmani",5,fecha);
 		this.sistema.agregaMozo(mozo);
-		LocalDate fecha2 = LocalDate.parse("2002-06-04");
-		Mozo mozo2 = new Mozo("Tomas Bedini",0,fecha2);
-		this.sistema.agregaMozo(mozo2);
 		Mesa mesa = new Mesa(1,4);
+		EscenarioParticular escenario = new EscenarioParticular(this.sistema);
+		
 		
 		try {
 			mesa.habilitar();
@@ -115,7 +112,7 @@ public class MozoTest {
 			fail("No deberia lanzarse NoHayPromosActivasException");
 		}
 		
-		mesa.
+		escenario.asignarOtroMozo(mesa);
 		mozo.setEstado("Activo");
 		
 		try {
@@ -123,12 +120,35 @@ public class MozoTest {
 		} catch (MozoInvalidoException e) {
 			fail("No deberia lanzarse MozoInvalidoException");
 		} catch (MesaDeshabilitadaException e) {
+			fail("No deberia lanzarse MesaDeshabilitadaException");
+		} catch (MesaYaAsignadaException e) {
 
+		}	
+		
+	}
+	
+	@Test
+	public void testagregarMesa4() {
+		LocalDate fecha = LocalDate.parse("2001-03-01");
+		Mozo mozo = new Mozo("Gregorio Firmani",5,fecha);
+		this.sistema.agregaMozo(mozo);
+		Mesa mesa = new Mesa(1,4);
+				
+		mesa.setNombreMozo(null);
+		mozo.setEstado("Activo");
+		
+		try {
+			mozo.agregarMesa(mesa);
+		} catch (MozoInvalidoException e) {
+			fail("No deberia lanzarse MozoInvalidoException");
+		} catch (MesaDeshabilitadaException e) {
+			
 		} catch (MesaYaAsignadaException e) {
 			fail("No deberia lanzarse MesaYaAsignadaException");
 		}	
 		
 	}
+		
 
 
 }
