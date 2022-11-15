@@ -105,7 +105,7 @@ public class GuiTestConjuntoConDatos {
 	}
 	
 	@Test
-	public void testB_OperarioInactivo() {
+	public void testC_OperarioInactivo() {
 		admin.setActivo(false);
 		robot.delay(TestUtils.getDelay());
 		TestUtils.clickComponent(usuario, robot);
@@ -123,7 +123,7 @@ public class GuiTestConjuntoConDatos {
 	}
 	
 	@Test
-	public void testC_LoginCorrecto() {
+	public void testD_LoginCorrecto() {
 		robot.delay(TestUtils.getDelay());
 		TestUtils.clickComponent(usuario, robot);
 		TestUtils.tipeaTexto("firmanig", robot);
