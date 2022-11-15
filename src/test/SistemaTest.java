@@ -43,7 +43,7 @@ public class SistemaTest {
 		try {
 			sistema.loginOperario("LeoMessi10","CopaAmerica1");
 		} catch (UsuarioIncorrectoException e) {
-			
+			fail("No deberia arrojar excepcion UsuarioIncorrectoException");
 		}catch (ContraseniaIncorrectaException e) {
 			fail("No deberia arrojar excepcion ContraseniaIncorrectaException");
 		}catch (UsuarioInactivoException e) {
