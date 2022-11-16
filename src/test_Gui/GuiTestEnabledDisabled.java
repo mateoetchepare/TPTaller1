@@ -78,6 +78,7 @@ public class GuiTestEnabledDisabled {
 		robot.delay(TestUtils.getDelay());
 		TestUtils.clickComponent(usuario, robot);
 	    TestUtils.tipeaTexto("firmanig", robot); 
+	    robot.delay(TestUtils.getDelay());
 	    TestUtils.clickComponent(boton, robot);
 	    
 	    Assert.assertTrue("El boton no deberia estar habilitado",!boton.isEnabled());
@@ -88,6 +89,7 @@ public class GuiTestEnabledDisabled {
 		robot.delay(TestUtils.getDelay());
 		TestUtils.clickComponent(password, robot);
 		TestUtils.tipeaTexto("Gregorio1", robot);
+		robot.delay(TestUtils.getDelay());
 		TestUtils.clickComponent(boton, robot);
 		
 		Assert.assertTrue("El boton no deberia estar habilitado",!boton.isEnabled());
@@ -100,6 +102,7 @@ public class GuiTestEnabledDisabled {
 		TestUtils.tipeaTexto("firmanig", robot);
 		TestUtils.clickComponent(password, robot);
 		TestUtils.tipeaTexto("Grego", robot);
+		robot.delay(TestUtils.getDelay());
 		TestUtils.clickComponent(boton, robot);
 		
 		Assert.assertTrue("El boton no deberia estar habilitado", !boton.isEnabled());
@@ -111,7 +114,9 @@ public class GuiTestEnabledDisabled {
 		TestUtils.clickComponent(usuario, robot);
 		TestUtils.tipeaTexto("firmanig", robot);
 		TestUtils.clickComponent(password, robot);
-		TestUtils.tipeaTexto("Gregorio12345", robot);
+		TestUtils.tipeaTexto("Gregorio1234567", robot);
+		robot.delay(TestUtils.getDelay());
+		robot.delay(TestUtils.getDelay());
 		TestUtils.clickComponent(boton, robot);
 		
 		Assert.assertTrue("El boton no deberia estar habilitado", !boton.isEnabled());
@@ -124,6 +129,8 @@ public class GuiTestEnabledDisabled {
 		TestUtils.tipeaTexto("firmanig", robot);
 		TestUtils.clickComponent(password, robot);
 		TestUtils.tipeaTexto("Gregorio1", robot);
+		robot.delay(TestUtils.getDelay());
+		robot.delay(TestUtils.getDelay());
 		TestUtils.clickComponent(boton, robot);
 		
 		Assert.assertTrue("El boton deberia estar habilitado", boton.isEnabled());
